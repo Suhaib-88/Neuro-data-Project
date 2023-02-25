@@ -35,10 +35,10 @@ Back End:
 1. Python
 2. Data Preprocessing Libs(Numpy, Pandas, Matplotlib, Plotly)
 3. Database (MongoDB, Mysql, Sqlite3)
-4. DataFlows Library
+4. DataFlows Library [https://github.com/datahq/dataflows/blob/master/PROCESSORS.md]
 
 ## Documentation
-Complete Documentation[]
+Complete Documentation[https://drive.google.com/drive/folders/1rtgib-mMRg5fHhSu_uYNiUxPDOxqmesV?usp=sharing]
 
 ## Contributors
 @Suhaib-88
