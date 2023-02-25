@@ -1,0 +1,16 @@
+{% if results %}
+    <ul class="list-group col-xs-12">
+    {% for component in results %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ component.name }}
+            <span class="badge badge-success badge-pill" 
+                style="cursor: pointer;"
+                hx-post="{% url 'add-component' %}"
+                hx-vals='{"componentname": "{{component.name}}"}'
+                hx-target="#components-list">add</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No search results</p>
+{% endif %}

@@ -1,0 +1,41 @@
+{% extends 'dataProcessing/base.html' %}
+{% block content %}
+<div class="table2">
+    {% if status == "error" %}
+    <div class="col-lg-12 col-sm-12 col-md-12">
+        <div class="alert alert-danger">
+        <strong>Error!  </strong>{{msg}}.
+        </div>
+    </div>
+    {% endif %}
+
+    {% if status == "success" %}
+        {% if data == "" %}
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <div class="alert alert-danger">
+            <strong>Alert!  </strong>There is no history. Please perform Data preprocessing and Feature Engineering
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    <div class="jumbotron text-center jumbtron">
+        <h1>Model Actions</h1>
+        <p>Following is the list of all actions that are prformed on your data and same actions will be performed when you will make predictions</p> 
+      </div>
+      <div style="overflow:auto;">
+        {{data | safe}}
+      </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+    $('.dataframe').DataTable({
+    });
+    jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+} );
+
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
+{% endblock %}

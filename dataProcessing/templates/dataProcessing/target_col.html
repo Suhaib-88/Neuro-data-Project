@@ -1,0 +1,60 @@
+{% extends 'dataProcessing/base.html' %}
+{% load static %}
+
+{% block title %} Overview {% endblock %}
+
+{% block content %}
+  {% if not isSetTarget %}
+    <div class="alert alert-primary">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      {{msg}}
+    </div>
+  {% endif %}
+    <div class="jumbotron">
+        <h1>Select Target Column</h1>
+        <p>Project will be permanently deleted from the database and you could not recover.</p>
+        <form action="{% url 'target' Projects.id %}" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Target Columns</label>
+                    <select class="form-control" name="set-target-col">
+                      {% for col in cols %}
+                        <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                      </select>
+                  </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" style="margin-left: -14px">
+              <button type="button" class="btn btn-warning margin-top-10" data-toggle="modal" data-target="#exampleModal">Set Target Column</button>
+          </div>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure??</h5>
+                  </div>
+                  <div class="modal-body">
+                      <p>Are you sure, you want to set this as target column? </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="submit" class="btn btn-danger">Set Target Column</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </form>
+      </div>
+    </div>
+</div>
+
+<script>
+  $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+</script>
+{% endblock %}

@@ -1,0 +1,473 @@
+  <!-- Modal 1 -->
+  <div class="modal" id="modal1">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Components Form</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        <div class="alert"></div>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for component in components %}
+            <div>
+                <input type="hidden" name="component_ids" value="{{component.components.id }}" />
+            </div>
+            {% endfor %}
+            <div id="app">
+                
+                <div id="div1" style="display: none;" class="component">
+                        <h4>Import from database</h4>                    
+                        <label for="database url">Database uri</label>
+                        <input type="text" name="db-uri" class="form-control" id="input1" data-component="component1" placeholder=" Example- sqlite:///SQLite_Python.db">
+                        <label for="tableName">Table name</label>
+                        <input type="text" name="table-name1" class="form-control" id="input2" data-component="component2">
+                </div>
+                
+                <div id="div2" style="display: none;" class="component">
+                    <h4>Import file from local</h4>
+                    <label for="Name">Name:</label><input type="text" name="upload-file-name" class="form-control" id="input3" data-component="component3">
+                    <label for="file">File:</label><input type="file" name="upload-file" class="form-control" id="input4" data-component="component4">
+                </div>
+                
+                <div id="div3" style="display: none;" class="component">
+                        <h4>Import data from cloud</h4>    
+                    <label for="cloudUrl">Cloud url</label>
+                    <input type="text" class="form-control" name="upload-cloud" id="input5" data-component="component5" placeholder=" Example- s3://bucket/data.csv">
+                    <label for="tableName">Table name</label>
+                    <input type="text" class="form-control" name="table-name2" id="input6" data-component="component6">
+                </div>
+
+                <div id="div4" style="display: none;" class="component">
+                        <h4>Aggregate Component</h4>
+                    <label for="aggregate-column">Selected column to aggregate</label>
+                    <select class="form-control" name="columns-1" id="input7" data-component="component7">
+                        {% for col in num_columns %}
+                        <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                    </select>
+
+                    <label for="newName">New column name</label>
+                    <input type="text" name="aggregator-name" class="form-control" id="input8" data-component="component8">
+                    
+                    <label for="aggregate_function">Selected an aggregation function</label>
+                    <select class="form-control" name="agg-function" id="input9" data-component="component9">
+                        {% for agg in aggregate_functions %}
+                            <option value="{{agg}}">{{agg}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div id="div5" style="display: none;" class="component">
+                        <h4>Balanced Data Distributor</h4>
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            No User Input is needed for this component!!
+                        </div>
+                    <input type="hidden" class="form-control" id="input10" data-component="component10">
+                </div>
+                <div id="div6" style="display: none;" class="component">
+                        <h4>Conditional Splitter</h4>
+                    <label for="exampleFormControlSelect1">Select a condition</label>
+                    <select class="form-control" name="select-condition" id="input11" data-component="component11">
+                        {% for condition in conditions %}
+                            <option value="{{condition}}">{{condition}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="exampleFormControlSelect1">Select a column</label>
+                    <select class="form-control" name="columns-2" id="input12" data-component="component12">
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <input type="text" name="enter-condition" class="form-control" id="input13" data-component="component13" placeholder="Enter a condition for split">
+                </div>
+
+                <div id="div7" style="display: none;" class="component">
+                        <h4>Data Conversion</h4>
+                    <select class="form-control" name="columns-3" id="input14" data-component="component14">
+                        <option value="--None--" selected>--None--</option>
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="form-control" name="data-type-1" id="input15" data-component="component15">
+                        {% for dtype in dtypes %}
+                            <option value="{{dtype}}">{{dtype}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div8" style="display: none;" class="component">
+                        <h4>Data Streaming Destination</h4>
+                    <label for="methods">Select a method</label>
+                    <select class="form-control" name="select-method-1" id="input16" data-component="component16">
+                        <option value="--None--" selected>--None--</option>
+                        {% for method in methods %}
+                            <option value="{{method}}">{{method}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div9" style="display: none;" class="component">
+                        <h4>Export column Component</h4>
+                        
+                    <select class="js-example-basic-multiple form-control" name="export-columns" id="input17" data-component="component17" multiple>
+                        <option value="--None--" selected>--None--</option>
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div10" style="display: none;" class="component">
+                        <h4>Merge Join Component</h4>
+                    <label for="methods">Select a column from first dataset</label>
+                    <select class="form-control" name="columns-4" id="input18" data-component="component18">
+                        <option value="--None--" selected>--None--</option>
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="methods">Select a column from second dataset</label>
+                    <select class="form-control" name="columns-5" id="input19" data-component="component19">
+                        <option value="--None--" selected>--None--</option>
+                        {% for column_ in columns2 %}
+                            <option value="{{column_}}">{{column_}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="methods">Select a method</label>
+                    <select class="form-control" name="select-method-2" id="input20" data-component="component20">
+                        {% for method in join_methods %}
+                            <option value="{{method}}">{{method}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div11" style="display: none;" class="component">
+                        <h4>Multicast Component</h4>
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            No User Input is needed for this component!!
+                        </div>
+                    <input type="hidden" name="multicast-component" class="form-control" id="input21" data-component="component21">
+                </div>
+                
+                <div id="div12" style="display: none;" class="component">
+                        <h4>Row Count Component</h4>
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            No User Input is needed for this component!!
+                        </div>
+                    <input type="hidden" name="row-component" class="form-control" id="input22" data-component="component22">
+                </div>
+                
+                <div id="div13" style="display: none;" class="component">
+                        <h4>Sort Component</h4>
+                    <label for="methods">Select a column for sorting</label>
+                    <select class="form-control" name="columns-6" id="input23" data-component="component23">
+                        <option value="--None--" selected>--None--</option>
+                        {% for col in columns %}
+                            <option value="{{col}}">{{col}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div14" style="display: none;" class="component">
+                        <h4>UnionAll Component</h4>
+                    <label for="file">Add another source:</label>
+                    <input type="file" name="add-new-file" class="form-control" id="input24" data-component="component24">
+                </div>
+
+                <div id="div15" style="display: none;" class="component">
+                        <h4>Duplicate resolver Component</h4>
+
+                    <label>Select a column</label>
+                    <select class="form-control" name="columns-7" id="input25" data-component="component25">
+                        <option value="--None--" selected>--None--</option>
+
+                        {% for col in columns %}
+                            <option value="{{col}}">{{col}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div16" style="display: none;" class="component">
+                        <h4>Audit Component</h4>
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            No User Input is needed for this component!!
+                        </div>
+                    <input type="hidden" class="form-control" id="input26" data-component="component26">
+                </div>
+
+                <div id="div17" style="display: none;" class="component">
+                        <h4>CDC Splitter Component</h4>
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            No User Input is needed for this component!!
+                          </div>
+                    <input type="hidden" class="form-control" id="input27" data-component="component27">
+                </div>
+
+                <div id="div18" style="display: none;" class="component">
+                        <h4>Character map Component</h4>
+                    <label>Select a column</label>
+                    <select class="form-control" name="columns-8" id="input28" data-component="component28">
+                        <option value="--None--" selected>--None--</option>
+                        {% for col in cat_columns %}
+                            <option value="{{col}}">{{col}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label>Select a casing method</label>
+                    <select class="form-control" name="select-method-3" id="input29" data-component="component29">
+                        {% for method in casing_methods %}
+                            <option value="{{method}}">{{method}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div19" style="display: none;" class="component">
+                        <h4>Copy Column Component</h4>
+                    <label for="col">Select a Column</label>
+                    <select class="form-control" name="columns-9" id="input30" data-component="component30">
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="col2">New column name</label>
+                    <input type="text" name="new-col-name" class="form-control" id="input31" data-component="component31">
+                    
+                    <label for="col3">select a datatype</label>
+                    <select class="form-control" name="select-dtype" id="input32" data-component="component32">
+                        {% for dtype in dtypes %}
+                            <option value="{{dtype}}">{{dtype}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div20" style="display: none;" class="component">
+                        <h4>DQS Cleansing Component</h4>
+                    <label for="col2">Select a column</label>
+                    <select class="form-control" name="columns-10" id="input33" data-component="component33">
+                        <option value="--None--" selected>--None--</option>
+                        {% for col in columns %}
+                            <option value="{{col}}">{{col}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="col2">Select a datatype</label>
+                    <select class="form-control" name="select-dtype2" id="input34" data-component="component34">
+                        {% for dtype in dtypes %}
+                            <option value="{{dtype}}">{{dtype}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="whitespaces">Remove whitespaces</label>
+                    <input type="checkbox" name="remove-whitespace" id="input35" data-component="component35" checked>
+                    
+                    <label for="numbers">Remove numerical values</label>
+                    <input type="checkbox" name="remove-numericals" id="input36" data-component="component36" checked>
+
+                    <label for="punctuations">Remove punctuations</label>
+                    <input type="checkbox" name="remove-punctuations" id="input37" data-component="component37" checked>
+                    <br><br>
+                    <label for="col2">Find</label>
+                    <input type="text" name="find-string" class="form-control" id="input38" data-component="component38">
+                    
+                    <label for="col2">Replace</label>
+                    <input type="text" name="replace-string" class="form-control" id="input39" data-component="component39">
+                    
+                    <label>Select an Casing</label>
+                    <select class="form-control" name="select-method-4" id="input40" data-component="component40">
+                        {% for method in casing_methods %}
+                            <option value="{{method}}">{{method}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            
+                <div id="div21" style="display: none;" class="component">
+                        <h4>Percentage Sampling Component</h4>
+                    <label for="field21">Select %age of reccords</label>
+                    <input type="range" min="0" value="0.3" max="1" step="0.1" oninput="num.value = this.value"  name="percent-range" id="input41" data-component="component41">
+                    <output id="num">0</output>
+                </div>
+                
+                <div id="div22" style="display: none;" class="component">
+                        <h4>Pivot Component</h4>
+                    <label for="col">Select an header column</label>
+                    <select class="form-control" name="columns-11" id="input42" data-component="component42">
+                        <option value="--None--" selected>--None--</option>
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="col">Select a values column</label>
+                    <select class="form-control" name="columns-12" id="input43" data-component="component43">
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="col">Select an index column </label>
+                    <select class="form-control" name="columns-13" id="input44" data-component="component44">
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="col">Select an operation to perform</label>
+                    <select class="form-control" name="select-operation1" id="input45" data-component="component45">
+                        {% for operation in operation_functions %}
+                            <option value="{{operation}}">{{operation}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div23" style="display: none;" class="component">
+                        <h4>Unpivot Component</h4>
+                        <p> Select datatype string for more general use</p>
+                    <label for="col4">New column name</label>
+                    <input type="text" name="new-col-name2" class="form-control" id="input46" data-component="component46">
+                    
+                    <label for="col5">select a datatype</label>
+                    <select class="form-control" name="select-dtype3" id="input47" data-component="component47">
+                        {% for dtype in dtypes %}
+                            <option value="{{dtype}}">{{dtype}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="col6">Select a values column</label>
+                    <select class="form-control" name="user-input1" id="input48" data-component="component48">
+                        <option value="--None--" selected>--None--</option>
+                        {% for column in columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="div24" style="display: none;" class="component">
+                        <h4>Row Sampling Component</h4>
+                    <label for="field24">Select random number of records</label>
+                    <input type="number" name="select-records" class="form-control" id="input49" data-component="component49">
+                </div>
+
+                <div id="div25" style="display: none;" class="component">
+                        <h4>Derived Column Component</h4>
+                    <label for="col5">select an operation</label>
+                    <select class="form-control" name="select-operation-2" id="input50" data-component="component50">
+                        {% for operation in operations %}
+                            <option value="{{operation}}">{{operation}}</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <label for="col5">select a column</label>
+                    <select class="form-control" name="column-14" id="input51" data-component="component51">
+                        <option value="--None--" selected>--None--</option>
+
+                        {% for column in num_columns %}
+                            <option value="{{column}}">{{column}}</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <input type="number" name="user-input2" class="form-control" id="input52" data-component="component52" placeholder="Enter a number">    
+                </div>
+                <div id="div26" style="display: none;" class="component">
+                    <h3 style="margin-top: 20px; margin-bottom: 20px;">Write Your Code Here:</h3>
+                    <textarea class="form-control terminal" id="input53" data-component="component53" rows="10" name="code" placeholder="def drop_label(df):
+                    df=df.drop(['Label','Frequency'],axis=1)
+                
+                    drop_label(df)"></textarea>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                            <button type="button" id="check_btn"class="btn btn-warning show-loader">Check Script Result</button>
+                        </div>
+                    </div>
+                    <div style="overflow:auto;" id="result">
+                        <h3>New Data:</h3>
+                        <div id="data"></div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="submit" type="submit" name="save-all" class="btn btn-success">Save</button>
+
+        </form>
+        </div>
+    </div>
+    </div>
+</div>    
+                    
+            
+            <script>
+                const app = document.querySelector('#app');
+                const inputs = {};
+
+                app.addEventListener('input', event => {
+                if (event.target.classList.contains('input')) {
+                    const componentName = event.target.dataset.component;
+                    inputs[componentName] = event.target.value;
+                }
+                });
+
+                app.addEventListener('click', event => {
+                if (event.target.id === 'submit') {
+                    for (let component in inputs) {
+                    console.log(`Input from ${component}: ${inputs[component]}`);
+                    }
+                }
+                });
+
+                const formData = new FormData();
+                for (let component in inputs) {
+                    formData.append(component, inputs[component]);
+                }
+                </script>
+                <script>
+                    $(document).ready(function() {
+                        $('.js-example-basic-multiple').select2();
+
+                    });
+                </script>
+                                            
+                <script>
+                    const textarea = document.getElementById("input53");
+                    textarea.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        const start = this.selectionStart;
+                        const end = this.selectionEnd;
+                        const target = event.target;
+                        const value = target.value;
+                        let lineStart = value.lastIndexOf("\n", start) + 1;
+                        let lineEnd = value.indexOf("\n", start);
+                        if (lineEnd === -1) lineEnd = value.length;
+                        let line = value.substring(lineStart, lineEnd);
+                        if (line.endsWith(":")) {
+                        target.value = value.substring(0, start) + "\n\t" + value.substring(end);
+                        this.selectionStart = this.selectionEnd = start + 2;
+                        } else {
+                        target.value = value.substring(0, start) + "\n" + value.substring(end);
+                        this.selectionStart = this.selectionEnd = start + 1;
+                        }
+                    }
+
+                    if (event.key === "Tab") {
+                        event.preventDefault();
+                        const start = this.selectionStart;
+                        const end = this.selectionEnd;
+                        const target = event.target;
+                        const value = target.value;
+                        target.value = value.substring(0, start) + "\t" + value.substring(end);
+                        this.selectionStart = this.selectionEnd = start + 1;
+                    }
+                    });
+
+                    $("#submit").on('click',()=>{
+                        $("#loading").css('display', 'block');
+                    })
+                </script>
+                    
+               

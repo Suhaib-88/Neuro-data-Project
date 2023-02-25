@@ -1,0 +1,46 @@
+{% extends 'EDA/base.html' %}
+{% load static %}
+
+{% block title %} Overview {% endblock %}
+
+{% block content %}
+
+{% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+{% endif %}
+<div class="table2">
+    <div class="jumbotron">
+        <center><h2> Missing data Report </h2></center>
+        <p>This page shows how much missing data is in your dataset and where it occurs. You can use this report to 
+            identify patterns in the missing data and decide how to handle it (e.g., impute missing values, drop 
+            rows with missing data, etc.).</p>
+      </div>
+    {% if has_missing %}
+    <center><h3><u>Missing data table</u> </h3></center>
+        {% for vals in missing_values %}
+            {{ vals|safe }}
+        {% endfor %}
+        <br><br>
+        <center><h3><u>Barplot for missing values count </u></h3></center>
+        <div id="barchart1"></div>
+    {% endif %}
+    
+    {% if not has_missing %}
+        <div class="alert alert-warning">
+            {{msg}}
+        </div>
+    {% endif %}
+    <br><hr><br>
+</div>
+    
+    <script type='text/javascript'>
+        var graphs = {{ barchart | safe }};
+        Plotly.newPlot('barchart1',  graphs);
+    </script>
+
+
+{% endblock %}
+

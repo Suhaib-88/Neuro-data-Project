@@ -1,0 +1,127 @@
+{% extends 'FeatureEngineering/base.html' %}
+{% block content %}
+<div class="table2">
+    {% if success %}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Data Updated Successfully.
+      </div>
+    {% endif %}
+    {% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{error}}
+      </div>
+    {% endif %}
+    <div class="jumbotron">
+      <center><h2> Handle Imbalanced data</h2></center>
+    <p>This feature allows you to handle imbalanced classes in your dataset, where one class has significantly fewer observations than the other(s).
+      You can use this feature to adjust the class distribution, such as by oversampling the minority class or undersampling the majority class, 
+      in order to prevent the model from being biased towards the majority class.
+      You can also use this feature to evaluate the performance of the model on both classes by using metrics such as precision,
+      recall, and F1 score.</p>
+        <hr class="my-4">
+        <ul class="list-group">
+            <li class="list-group-item active">Instructions:</li>
+            <li class="list-group-item">Select an imbalance handling technique </li>
+            <li class="list-group-item"> Click submit results button </li>
+          </ul>
+  </div>
+  {% if target_column %}
+  <h3 style="margin-top: 30px;">Class Distribution</h3>
+    <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-21 col-sm-12">
+     <div id='barChart'></div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-21 col-sm-12">
+        <div id='pieDiv'></div>
+    </div>
+    </div>
+   
+      <form method="post">
+      {% csrf_token %}
+        <div class="row">
+           <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select method for Handling Imbalance Data</label>
+                <select class="form-control" name="method" id="method">
+                    <option value="OS">Over Sampling</option>
+                    <option value="US">Under Sampling</option>
+                    <option value="SMOTE">Synthetic Minority Over-sampling Technique</option>
+                  </select>
+              </div>
+           </div>
+        </div>
+        <div class="under">
+          <div class="alert alert-success">
+            <strong>Note!</strong> For Under Sampling, For Each Class label 
+            Add No Of Record Samller Than Current No Of Records.
+          </div>
+        </div>
+        <div class="over">
+          <div class="alert alert-success">
+            <strong>Note!</strong> For Over Sampling, For Each Class label 
+            Add No Of Record Greater Than Current No Of Records.
+          </div>
+        </div>
+          {% for key,value in data %}
+          <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>No Of Records For Class Name &nbsp;&nbsp;{{key}}</label>
+                  <input type="number" min="0" value={{value}} class="form-control" disabled/>
+              </div>
+            </div>
+        </div>
+          {% endfor %}
+        <div class="row">
+            <div class=" col-lg-4 col-md-4 col-sm-12 col-sm-12">
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Submit Result</button>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Are you sure??</h5>
+                </div>
+                <div class="modal-body">
+                    <p style="color: black;">
+                        <b style="color: #dc3545;font-weight: 700;" id="selected_method">Please verify your selected method and ration value </b>
+                    </p>
+                    <p style="color: black;">
+                        <b style="color: #299e44;font-weight: 700;" id="selected_ratio">It can't be revert back</b>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-danger" id="submit">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </form>
+  {%endif%}
+</div>
+<script type='text/javascript'>
+var graphs = {{ graphJSON | safe}};
+Plotly.newPlot('pieDiv',  graphs);
+
+$("#submit").on('click',()=>{
+  $("#loading").css('display', 'block');
+})
+
+var pie_graphJSON = {{ pie_graphJSON | safe }};
+Plotly.newPlot('barChart',  pie_graphJSON);
+
+var slider = document.getElementById("range");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+</script>
+
+{% endblock %}

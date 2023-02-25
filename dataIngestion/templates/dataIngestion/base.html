@@ -1,0 +1,216 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %} Home {% endblock %} - AutoDataAI Tool</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2083/2083213.png" type="image/icon type">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/datepicker.css' %}" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/glyphicon.css' %}" rel="stylesheet"/>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'js/filetypeValidator.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <!-- jQuery and Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+
+
+
+  <style>
+    .sidenav a, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .instructions {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .expand-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+  }
+  ul {
+    padding-left: 50px;
+    list-style: square;
+    margin: 0;
+  }
+  </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'home' %}">
+         <h3>AutoDataAI</h3>
+      </a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search items like.. dataflows" id="search-input" aria-label="Search">
+
+  <!-- User Account Menu -->
+       <div class="navbar-brand col-sm-3 col-2-md-2 mr-2">
+          <a class="mb-0 text-sm  font-weight-normal">Welcome <span class="fa fa-user-circle"></span> <strong> {{user.username|upper}}</strong></a>
+      </div>
+
+      <a class="nav-link pr-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="media align-items-center">
+          <span class="avatar avatar-sm rounded-circle">
+            <span class="fa fa-user-circle fa-3x"></span>
+            <!--<img alt="Image placeholder" src="{% static 'images/user.svg' %}" width="30" height="30">-->
+          </span>
+        </div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+        <div class=" dropdown-header noti-title">
+          <h6 class="text-overflow m-0">Welcome!</h6>
+        </div>
+        <a href="" class="dropdown-item">
+          <span class="fa fa-user"></span>
+          <span>My Profile</span>
+
+        </a>
+        <a href="{% url 'change_password' %}" class="dropdown-item">
+          <span class="fa fa-lock"></span>
+          <span>Change Password</span>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="{% url 'logout-page' %}" role="button" class="dropdown-item">
+            <span class="fa fa-sign-out"></span>
+          <span>Logout</span>
+        </a>
+      </div>
+    </nav>
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <br>
+<div class="card border-info mb-3" style="max-width: 100%;">
+    <div class="card-header"><h5 style="color:blue">{% block heading %}{% endblock %}</h5></div>
+    <div class="card-body text-info">
+          {% block content %}
+
+
+
+          {% endblock %}
+    </div>
+</div>
+        </main>
+
+      </div>
+    </div>
+    <div id="loading">
+      <img id="loading-image" src="http://css-tricks.com/examples/PageLoadLightBox/loader.gif" alt="Loading..." />
+    </div>
+  </body>
+
+    <script src="{% static 'js/Chart.min.js' %}"></script>
+    <script>
+
+      /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+      var dropdown = document.getElementsByClassName("dropdown-btn");
+      var i;
+      
+      for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+        } else {
+        dropdownContent.style.display = "block";
+        }
+        });
+      }
+
+    </script>
+
+<script>
+document.body.addEventListener('htmx:configRequest', (event) => {
+    event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+})
+
+htmx.onLoad(function(content) {
+    var sortables = content.querySelectorAll(".sortable");
+    for (var i = 0; i < sortables.length; i++) {
+        var sortable = sortables[i];
+        new Sortable(sortable, {
+            animation: 150,
+            ghostClass: 'blue-background-class'
+        });
+    }
+})
+</script>
+<style>
+    
+    .loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: -1%;
+    left: 50%;
+    }
+</style>
+<script>
+
+$(window).on('load', function () {
+  $('#loading').hide();
+}) 
+
+function toggleInstructions() {
+  var list = document.getElementById("instruction-list");
+  if (list.style.display === "none") {
+    list.style.display = "block";
+  } else {
+    list.style.display = "none";
+  }
+}
+
+</script>
+</html>

@@ -1,0 +1,149 @@
+{% extends 'dataPreProcessing/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="table2">
+    {% if status == "success" %}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Dimension Reduction Performed Successfully.
+      </div>
+    {% endif %}
+    {% if status == "error" %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+    {% endif %}
+
+    <div class="jumbotron">
+        <center><h2> Dimensionality Reduction</h2></center>
+        <p> This feature allows you to reduce the number of dimensions (or variables) in your dataset, while retaining as much information as possible. 
+            You can use this feature to simplify your data and make it easier to work with, or 
+            to prepare it for machine learning models that require lower-dimensional data. Techniques used for dimensionality reduction can include PCA (Principal Component Analysis), t-SNE (t-distributed Stochastic Neighbor Embedding) etc</p>
+            <hr class="my-4">
+            <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Select a column to rename </li>
+                <li class="list-group-item">Enter a new name for that column </li>
+                <li class="list-group-item"> Click change column name button </li>
+              </ul>
+        <div class="alert alert-success">
+            <strong>Note!</strong> You can perform Dimension Reduction only Once.
+        </div>
+    </div>
+    <h4 class="result">Current Data</h4>
+    {{data | safe}}
+
+    <form style="margin-top: 50px;" method="post" id="form">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Method for Dimensionality Reduction</label>
+                    <select class="form-control" name="method" id="method">
+                        {% for methods in dimensionality_methods %}
+                            <option value="{{methods}}">{{methods}}</option>
+                        {% endfor %}
+                      </select>
+                  </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
+                <div class="form-group">
+                        <label for="Random_State">Select no of components</label>
+                        <input type="number" id="range" name="range">
+                        <p>No of Components:  {{length}} <span id="demo"></span></p>
+                </div>
+            </div>
+        </div>
+        <h4 class="result">PCA Result</h4>
+            <div class="table"></div>
+            
+        {% if not not_allowed %}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="button" class="btn btn-secondary" data-target="#exampleModal" data-toggle="modal">Submit Selected Components</button>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Are you sure??</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Please make sure that you selected correct no of components, because you can't revert this operation
+                    </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" id="submit" class="btn btn-danger">Save Result</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+</div>
+<script>
+
+    $(document).ready(function() {
+
+        $("#check_pca").on('click',()=>{
+                  $("#loading").css('display', 'block');
+            })
+
+            $("#submit").on('click',()=>{
+                  $("#loading").css('display', 'block');
+            })
+
+    $('.dataframe').DataTable();
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+    $("#check_pca").on('click',()=>{
+        $.ajax({
+                type: "POST",
+                url: `${window.location.origin}/Preprocessing/dimension-reducer/`,
+                dataType:'json',
+                contentType:'application/json',
+                data: {
+              csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                cache: false
+        }).done(function(data) {
+            $("#loading").css('display', 'none');
+           if(data.success){
+            $("#form").show()
+            var after_graph  = data?.graph
+            Plotly.newPlot('myDiv',  JSON.parse(after_graph));
+            $(".table").append(data.data)
+            $('.dataframe').DataTable();
+            $("#range").attr('max',data.no_pca)
+           }
+     
+        })
+        .fail(function(err) {
+            // do stuff here
+            $("#loading").css('display', 'none');
+        })
+        .always(function(info) {
+            // do stuff here
+        });
+    })
+});
+
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+//     var graphs = {{graph | safe}};
+//    Plotly.newPlot('myDiv',  graphs);
+</script>
+{% endblock %}

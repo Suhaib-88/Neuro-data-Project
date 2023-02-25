@@ -1,0 +1,149 @@
+{% extends 'dataPreProcessing/base.html' %}
+{% block content %}
+<div class="table2">
+    {% for message in messages %}
+        <font color="green"><li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li></font>
+    {% endfor %}
+<div class="jumbotron text-center">
+    <h1>Missing Values Report</h1>
+    <p>This class returns table of dataset and this table shows
+        missing values,percentage of missing values, mean, median,
+        mode with respective to each column available in dataset.
+        and also graphical presentation of missing values.</p> 
+  </div>
+  
+  {% if error %}
+  <div class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>{{msg}}</strong>
+    </div>
+  {% endif %}
+  
+  <form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select Columns To Missing Values</label>
+                <select class="form-control" name="columns" id="columns">
+                    {% if not selected_column %}
+                        {% for col in columns %}
+                        <option value="{{col}}">{{col}}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option value="{{selected_column}}">{{selected_column}}</option>
+                            {% for col in columns %}
+                                <option value="{{col}}">{{col}}</option>
+                            {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12 margin-23">
+            <button type="submit" name="proceedSubmit" class="btn btn-primary">Proceed</button>
+        </div>
+        </div>    
+  </form>
+  </div>
+  {% if not has_missing %}
+  <div class="alert alert-warning">
+      {{msg}}
+  </div>
+    {% endif %}
+    <br><hr><br>
+
+{% if has_missing %}
+    {% for vals in missing_values %}
+        {{ vals|safe }}
+    {% endfor %}
+
+    {% if selected_column %}
+      <form method="post" class="margin-23">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Method To Handle Missing</label>
+                    <select class="form-control" name="method" id="method">
+                        {% for col in handler_methods %}
+                        <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                      </select>
+                  </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" id="arbitrary_div">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Insert Specific Value</label>
+                    <input type="number" id="arbitrary" name="arbitrary"  class="form-control" />
+                  </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" id="newcategory_div">
+                <div class="form-group">
+                    <label for="newcategory">Name For New Category</label>
+                    <input type="text" id="newcategory" name="newcategory"  class="form-control margion0" />
+                  </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" id="selectcategory_div">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Category</label>
+                    <select class="form-control" name="selectcategory" id="selectcategory">
+                        {% for col in unique_category %}
+                        <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                      </select>
+                  </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                 <button type="submit" name="finalSubmit" class="btn btn-danger" id="submit">Apply Selected Method</button>
+             </div>
+            
+            <input type="hidden" value="{{selected_column}}" name="selected_column" id="selected_column"/>
+        </div>
+      </form>
+    {% endif %}
+{% endif %}
+
+
+      <script  type='text/javascript'>
+        $(document).ready(function() {
+            $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+
+            $("#arbitrary_div").hide()
+            $("#interpolate_div").hide()
+            $("#newcategory_div").hide()
+            $("#selectcategory_div").hide()
+            $("#method").on('change',function(e){
+                if(e.target.value=='Specific Value'){
+                    $("#arbitrary_div").show()
+                }else{
+                    $("#arbitrary_div").hide()
+                }
+
+                if(e.target.value=='Interpolate'){
+                    $("#interpolate_div").show()
+                }else{
+                    $("#interpolate_div").hide()
+                }
+
+                if(e.target.value=='New Category'){
+                    $("#newcategory_div").show()
+                }else{
+                    $("#newcategory_div").hide()
+                }
+
+                if(e.target.value=='Replace'){
+                    $("#selectcategory_div").show()
+                }else{
+                    $("#selectcategory_div").hide()
+                }
+
+            })
+            
+    } );
+    </script>
+{% endblock %}

@@ -1,0 +1,20 @@
+[ 2023-02-26 01:11:21,128 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:11:33,158 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:11:47,377 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:11:49,684 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:11:49,684 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 01:12:14,880 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:12:14,883 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:12:23,652 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:12:23,705 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:12:23,890 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:13:00,835 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 01:13:12,117 ] 113 root - INFO - All records deleted. Total time taken: 2.1740024089813232 seconds.
+[ 2023-02-26 01:13:19,588 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.454620599746704 seconds.
+[ 2023-02-26 01:13:22,769 ] 206 root - INFO - Find Mean Implemented!
+[ 2023-02-26 01:13:22,772 ] 184 root - INFO - Find Median Implemented!
+[ 2023-02-26 01:13:22,896 ] 194 root - INFO - Find Mode Implemented!
+[ 2023-02-26 01:13:22,897 ] 172 root - INFO - Find Dtypes Implemented!
+[ 2023-02-26 01:13:22,935 ] 242 root - INFO - Missing Cells Table Implemented!
+[ 2023-02-26 01:13:45,678 ] 14 root - INFO - BarPlot Implemented!
+[ 2023-02-26 01:13:50,103 ] 39 root - INFO - 79 details uploaded successfully for EDA!

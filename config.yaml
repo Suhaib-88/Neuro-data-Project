@@ -1,0 +1,9 @@
+confidential_info:
+  host: autodataserver.mysql.database.azure.com
+  port: 3306
+  user: mysqlserver
+  password: 12345qwerty{}
+  database: datasets
+
+  mongo_db_key: mongodb+srv://Ineuron:522595725@cluster0.noqizbf.mongodb.net/?retryWrites=true&w=majority
+  

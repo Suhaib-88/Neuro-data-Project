@@ -1,0 +1,80 @@
+    {% if success %}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Integrated data Successfully.
+    </div>
+    {% endif %}
+    {% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{msg}}</strong>
+      </div>
+    {% endif %}
+
+    <div class="jumbotron text-center">
+        <h1>Select columns for integation</h1>
+    </div>
+          
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
+                <div class="form-group">
+                    <!-- select an integration method -->
+                    <label for="method">Select an integration method</label>
+                    <select class="form-control" id="method" name="select-integrate-function">
+                      {% for function in integrate_functions %}
+                        <option value="{{function}}">{{function}}</option>
+                      {% endfor %}
+                    </select>
+
+                    <!-- select a column from first dataset -->
+                    <label for="method">Select a column from first dataset (Applies only to merge function)</label>
+                    <select class="form-control" id="col1" name="columns1">
+                        <option value="None" selected>--None--</option>
+                      {% for col in cols1 %}
+                        <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                    </select>
+
+                    <label for="method">select a column from second dataset (Applies only to merge function)</label>
+                    <select class="form-control" id="col2" name="columns2">
+                        <option value="None" selected>--None--</option>
+
+                      {% for col in cols2 %}
+                        <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                    </select>
+                                
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="submit" class="btn btn-primary" name="get-columns" id="select1">Proceed</button>
+            </div>
+        </div>
+    </form>
+
+    {% if data %}
+        <form method="post">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
+                    <div class="form-group">
+                        {{data | safe}}
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                    <button type="submit" class="btn btn-success" name="save-data" id="idk4">Save</button>
+                </div>
+            </div>
+            <input type="hidden" name="selected-columns1" value="{{ selected_col_1 }}">
+            <input type="hidden" name="selected-columns2" value="{{ selected_col_2 }}">
+            <input type="hidden" name="selected-integrate-function" value="{{ selected_function }}">
+
+        </form>
+    {% endif %}

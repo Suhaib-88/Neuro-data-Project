@@ -1,0 +1,198 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %} Home {% endblock %} - AutoDataAI Tool</title>
+    <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
+      
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="{% static 'css/loader.css' %}" rel="stylesheet"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet"/>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      
+    <link href="{% static 'css/workPage.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/loading.css' %}" rel="stylesheet"/>
+
+
+  </head>
+  <body>
+<h5 style="color:blue">{% block heading %}{% endblock %}</h5>
+<div class="wrapper">
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <a href="/" class="form-group">	<h3>AutoDataAI</h3></a>	<hr>
+    </div>	
+    <ul class="list-unstyled components">	
+      <p>Components</p><hr>
+      
+
+      <li>	<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">EDA</a>	
+      <ul class="collapse list-unstyled" id="homeSubmenu">
+      
+      <li>	<a href="{% url 'summary' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Data Summary</a>	</li>
+      <li>	<a href="{% url 'missing' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Missing data Report</a>	</li>
+      <li>	<a href="{% url 'show-dataset' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Show Dataset</a>	</li>
+      <li>	<a href="#SubSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Correlation Report</a>	
+        <ul class="collapse list-unstyled" id="SubSubmenu">
+        
+        <li>	<a href="{% url 'corr-heatmap' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Correlation heatmap</a>	</li>
+        <li>	<a href="{% url 'corr-cols' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Find Highly correlated Features</a>	</li>	
+      </ul></li>
+      <li>	<a href="{% url 'outlier' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Outlier Report</a>	</li>
+      <li>	<a href="{% url 'plots' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Plots</a>	</li>	
+
+    </ul></li>
+
+      <li>	<a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Data Preprocessing</a>	  
+      <ul class="collapse list-unstyled" id="pageSubmenu2">
+
+      <li>	<a href="#SubSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Data Cleaning</a>	
+        <ul class="collapse list-unstyled" id="SubSubmenu1">
+          <li>	<a href="{% url 'duplicates' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Handle Duplicated Data</a>	</li>	
+          <li>	<a href="{% url 'missings' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Handle Missing Data</a>	</li>
+          <li>	<a href="{% url 'delete-cols' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Delete Columns with NAN</a>	</li>            
+          <li>	<a href="{% url 'consistency' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Handle Inconsistent Data</a>	</li>            
+          
+        </ul>
+      </li>	  
+        
+      <li>	<a href="#SubSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Data Integration</a>	
+        <ul class="collapse list-unstyled" id="SubSubmenu2">
+          <li>	<a href="{% url 'merging' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Merging multiple datasets</a>	</li>  
+  
+            
+        </ul>
+      </li>	  
+          
+      <li>	<a href="#SubSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Data Reduction</a>	
+        <ul class="collapse list-unstyled" id="SubSubmenu3">
+          <li>	<a href="{% url 'reducing' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Dimensionality Reduction</a>	</li>  
+            
+        </ul>
+      </li>	  
+          
+      <li>	<a href="#SubSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Data Transformation</a>	
+          <ul class="collapse list-unstyled" id="SubSubmenu4">
+            <li>	<a href="{% url 'rename' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Change Column names</a>	</li>
+            <li>	<a href="{% url 'change-dtype' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Convert DataType</a>	</li>	  
+            <li>	<a href="{% url 'outliers' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Handle Outliers</a>	</li>
+            <li>	<a href="{% url 'str-operation' %}" onclick="javascript:document.getElementById('loading').style.display='block';">String Operations</a>	</li>
+            <li>	<a href="{% url 'split-data' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Dataset Splitter</a>	</li>
+      
+          </ul>
+      </li>	  
+            
+    </ul>	</li>
+    
+    <li>	<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Feature Engineering</a>	
+      <ul class="collapse list-unstyled" id="pageSubmenu">	
+        <li>	<a href="{% url 'encoding' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Feature Encoding</a>	</li>
+        <li>	<a href="{% url 'imbalanced' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Handle imbalanced Data</a>	</li>	        
+        <li>	<a href="{% url 'scaling' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Feature Scaling</a>	</li>          
+  	  </ul>	</li>
+
+
+    <li>	<a href="#SubSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Export options</a>	
+        <ul class="collapse list-unstyled" id="SubSubmenu6">
+        
+        <li>	<a href="{% url 'export' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Export File</a>	</li>
+        <li>	<a href="{% url 'export-resource' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Export resources</a>	</li>	
+      </ul>
+    </li>
+	
+    
+    <li>	<a href="#SubSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Operations Reports</a>	
+      <ul class="collapse list-unstyled" id="SubSubmenu7">
+        <li><a href="{% url 'project-reports' %}" >Project reports</a></li>
+        <li>	<a href="{% url 'action-history' %}"  class="download">Actions History</a>	</li>		
+    </ul>
+  </li>
+    <ul class="list-unstyled CTAs">	<li>	<a href="{% url 'helper' %}"  class="download">Help</a>	</li>	</ul>		
+    </ul>
+  </nav>	
+  <div class="content">	
+    <button type="button" id="sidebarCollapse" class="btn btn-info">	<i class="fa fa-align-justify"></i>	</button> 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+      </button> 
+      <div class="collapse navbar-collapse" id="navbarNav"> 
+        <ul class="navbar-nav ml-auto"> <li class="nav-item active">          
+      </div>	</nav>
+
+        
+              {% block content %}
+        
+              {% endblock %}
+          </div>
+
+                
+          <div id="loading">
+            <img id="loading-image" src="http://css-tricks.com/examples/PageLoadLightBox/loader.gif" alt="Loading..." />
+          </div>
+          <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+          <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+            });
+          </script>
+                <script>
+
+                  $(window).on('load', function () {
+                    $('#loading').hide();
+                  }) 
+                  
+                
+                </script>
+        </div>
+    </div>
+      
+      </div>	
+  </div> 
+</div>
+
+
+
+    </div>
+</div>
+        </main>
+
+      </div>
+    </div>
+
+    <script>
+
+      $(document).ready(function(){
+			$("#sidebarCollapse").on('click', function(){
+				$("#sidebar").toggleClass('active');
+			});
+		});
+
+    </script>
+
+</body>
+</html>

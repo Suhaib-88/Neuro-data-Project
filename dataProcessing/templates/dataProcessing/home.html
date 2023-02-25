@@ -1,0 +1,19 @@
+{% extends 'dataProcessing/base.html' %}
+{% load static %}
+
+{% block title %} Overview {% endblock %}
+
+{% block content %}
+<div class="content">	
+    <div class="col-sm-8">
+        <div class="card border-info mb-3" style="max-width: 100%;">
+          <div class="card-header"><h5 style="color:blue">Set the Target Column for this dataset</h5></div>
+          <div class="card-body text-info">
+            {% if Projects.id %}
+              <a class="btn btn-info" href="{% url 'target' Projects.id %}">Set Target Column</a>	
+            {% endif %}
+          </div>
+        </div>
+	
+</div>
+{% endblock %}

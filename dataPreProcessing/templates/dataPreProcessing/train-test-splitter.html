@@ -1,0 +1,43 @@
+{% extends 'dataPreProcessing/base.html' %}
+{% load static %}
+
+{% block title %} Data Preprocessing- Train test Split {% endblock %}
+
+{% block content %}
+
+    {% if success %}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Data splitting done Successfully !!
+    </div>
+    {% endif %}
+    {% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{msg}}</strong>
+      </div>
+    {% endif %}
+
+<div class="table2">
+    <div class="jumbotron">
+        <center><h2> Split dataset into training and test set </h2></center>
+        <p>This feature will split the dataset into training and testing set based on user set test size. The splitted data will then be saved into resources section.</p>
+            <hr class="my-4">
+            <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Set a test size from the range </li>
+                <li class="list-group-item"> Click Perform data splitting button </li>
+            </ul>
+    </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="slidecontainer">
+                <input type="range" name="select-thresh" class="slider" min="0.1" max="0.3" step="0.05" oninput="this.nextElementSibling.value = this.value"/>
+                <output>0.10</output>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button id="submit" type="submit" class="btn btn-success margin-top-10">Perform data splitting</button>
+            </div>
+        </form>
+</div>
+{% endblock %}

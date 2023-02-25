@@ -1,0 +1,104 @@
+{% extends 'dataPreProcessing/base.html' %}
+{% load static %}
+
+{% block title %} Data Transfomation- Change Dtypes {% endblock %}
+
+{% block content %}
+
+<div class="table2">
+    {% if status == 'success' %}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong>Column: {{col_name}} Data type has been Changed to {{changed_dtype}}.
+      </div>
+    {% endif %}
+    {% if status == 'error' %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> This Data Type conversion is not possible, please select other datatype.
+      </div>
+    {% endif %}
+    
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <div class="jumbotron">
+      <center><h2> Convert datatypes </h2></center>
+      <p>This feature allows you to convert the data type of one or more columns in your dataset, such as changing a column of integers to floats, or converting a string column to a datetime format.
+         You can use this feature to prepare your data for analysis or to ensure that it is in the correct format for a specific analysis technique. </p>
+           <hr class="my-4">
+           <ul class="list-group">
+              <li class="list-group-item active">Instructions:</li>
+              <li class="list-group-item">Select a column </li>
+              <li class="list-group-item">Select a target datatype </li>
+              <li class="list-group-item"><font color="blue"> click Convert datatype </font></li>
+
+            </ul>
+    </div>
+      <form method="post">
+          {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Columns</label>
+                    <a href="#" class="badge badge-warning" id="dtype"></a>
+                    <select class="js-example-basic-multiple form-control" name="column" id="column">
+                      {% for key, val in columns %}
+                        <option value="{{key}}" dtype="{{val}}">{{key}}</option>
+                      {% endfor %}
+                      </select>
+                  </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Target Data Type</label>
+                    <select class="js-example-basic-multiple form-control" name="datatype" id="datatype">
+                        {% for val in supported_dtypes %}
+                        <option value="{{val}}" >{{val}}</option>
+                      {% endfor %}
+                      </select>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Convert Data Type</button>
+            </div>
+        </div>
+                <!-- Modal-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Are you sure??</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>You can again change the datatype
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" id="submit" class="btn btn-danger">Change Data Type</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      </form>
+</div>
+    <script>
+        $(document).ready(function() {
+          
+          $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+        $("#dtype").text($("#column option:selected").attr("dtype"))
+        $("#column").on('change',()=>{
+            $("#dtype").text($("#column option:selected").attr("dtype"))
+        })
+    } );
+    </script>
+{% endblock %}

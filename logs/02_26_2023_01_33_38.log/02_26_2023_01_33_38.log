@@ -1,0 +1,20 @@
+[ 2023-02-26 01:33:43,122 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:33:56,208 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:34:09,640 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:34:11,879 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:34:11,879 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 01:34:35,705 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:34:35,708 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:34:48,925 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:34:48,969 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:34:49,260 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:35:15,174 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 01:35:25,910 ] 113 root - INFO - All records deleted. Total time taken: 2.076997995376587 seconds.
+[ 2023-02-26 01:35:32,616 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.528280258178711 seconds.
+[ 2023-02-26 01:35:35,821 ] 206 root - INFO - Find Mean Implemented!
+[ 2023-02-26 01:35:35,822 ] 184 root - INFO - Find Median Implemented!
+[ 2023-02-26 01:35:35,824 ] 194 root - INFO - Find Mode Implemented!
+[ 2023-02-26 01:35:35,824 ] 172 root - INFO - Find Dtypes Implemented!
+[ 2023-02-26 01:35:35,828 ] 242 root - INFO - Missing Cells Table Implemented!
+[ 2023-02-26 01:35:47,855 ] 14 root - INFO - BarPlot Implemented!
+[ 2023-02-26 01:35:49,409 ] 114 root - ERROR - [WinError 2] The system cannot find the file specified: 'C:\\Users\\suhai\\Newz\\neuro-project-engineering\\staticfiles\\images\\matrix.png'

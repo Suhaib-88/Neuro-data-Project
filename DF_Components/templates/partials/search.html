@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-end mb-4">
+    <form>
+        {% csrf_token %}
+        <label for="Import">DataFlow Components</label>
+        <input type="text"
+            hx-post="{% url 'search-component' %}" 
+            hx-target='#results'
+            hx-trigger="keyup changed delay:500ms"
+            name="search"
+            class="form-control-sm mr-2" 
+            placeholder="Search sources..." />
+
+    </form>
+</div>
+<div id="results"></div>

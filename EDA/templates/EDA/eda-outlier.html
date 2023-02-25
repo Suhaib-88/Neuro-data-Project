@@ -1,0 +1,80 @@
+{% extends 'EDA/base.html' %}
+{% load static %}
+
+{% block title %} EDA outliers {% endblock %}
+
+{% block content %}
+
+{% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+{% endif %}
+<div class="table2">
+    <div class="jumbotron">
+        <center><h2> Outlier Report </h2></center>
+        <p> This page identifies potential outliers/extreme values in your dataset using various statistical methods (e.g., Z-score, IQR, etc.). You can use this report to 
+            investigate these outliers and decide how to handle them (e.g., remove them, keep them, or transform them).</p>
+             <hr class="my-4">
+             <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Select an outlier detection method </li>
+                <li class="list-group-item"> Click show results </li>
+              </ul>
+      </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Outlier Detection Method</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="outlier-method">
+                        {% for outlier_method in methods %}
+                            <option value="{{outlier_method}}">{{outlier_method}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button id="submit" type="submit" class="btn btn-success margin-top-10">Show Result</button>
+            </div>
+        </div>
+      </form>
+      <hr class="max-width">
+      {% if outliers %}
+        <center><h3><u> Outlier report table for {{method}} </u></h3></center>
+        {{ outliers | safe }}
+
+        <center><h3><u> Barplot for outlier count </u></h3></center>
+        <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+        <div id='pieplot'><!-- Plotly chart will be drawn inside this DIV --></div>
+      {% endif %}
+    </div>
+<script>
+    $(document).ready(function() {
+        
+    $('.dataframe').DataTable();
+    });
+</script>
+
+<script type='text/javascript'>
+   var graphs = {{barplot | safe}};
+   Plotly.newPlot('myDiv',  graphs);
+
+   var pie_graphs = {{pieplot | safe}};
+   Plotly.newPlot('pieplot',  pie_graphs);
+
+   </script>
+
+<script>
+    $(document).ready(()=>{
+        $("#submit").on('click',()=>{
+                  $("#loading").css('display', 'block');
+            })
+        $(".dataframe").attr("class","table table-hover")
+    })
+</script>
+
+{% endblock %}

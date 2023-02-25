@@ -1,0 +1,27 @@
+[ 2023-02-25 15:59:31,250 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:59:41,524 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:59:53,281 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:59:55,212 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:59:55,212 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-25 16:00:14,155 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 16:00:14,158 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 16:00:19,393 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 16:00:19,399 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 16:00:19,418 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 16:00:52,468 ] 25 root - INFO - 76 : Sucessfully entered Project Details!
+[ 2023-02-25 16:00:53,437 ] 74 root - INFO - Project actions performed for: 76!
+[ 2023-02-25 16:00:55,322 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-25 16:01:05,610 ] 113 root - INFO - All records deleted. Total time taken: 2.0390026569366455 seconds.
+[ 2023-02-25 16:01:12,545 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.8210084438323975 seconds.
+[ 2023-02-25 16:01:15,512 ] 86 root - INFO - Fetching categorical and numerical columns!
+[ 2023-02-25 16:01:15,512 ] 39 root - INFO - 76 details uploaded successfully for EDA!
+[ 2023-02-25 16:01:48,997 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-25 16:01:59,262 ] 113 root - INFO - All records deleted. Total time taken: 2.051150321960449 seconds.
+[ 2023-02-25 16:02:06,190 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.8219847679138184 seconds.
+[ 2023-02-25 16:02:09,113 ] 86 root - INFO - Fetching categorical and numerical columns!
+[ 2023-02-25 16:02:09,894 ] 39 root - ERROR - Value of 'color' is not the name of a column in 'data_frame'. Expected one of ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species'] but received: Stage
+[ 2023-02-25 16:14:02,281 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-25 16:14:12,638 ] 113 root - INFO - All records deleted. Total time taken: 2.078444480895996 seconds.
+[ 2023-02-25 16:14:19,788 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.878039598464966 seconds.
+[ 2023-02-25 16:14:22,692 ] 86 root - INFO - Fetching categorical and numerical columns!
+[ 2023-02-25 16:14:34,413 ] 36 root - INFO - Distplot Implemented!

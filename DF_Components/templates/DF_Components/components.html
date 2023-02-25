@@ -1,0 +1,27 @@
+{% extends 'dataIngestion/base.html' %}
+{% block content %}
+
+
+<div class="instructions">
+    <button class="expand-btn" onclick="toggleInstructions()">+</button>
+    <ul id="instruction-list">
+      <li>Add components from the searchbar</li>
+      <li>Refresh the page every time you add a component</li>
+      <li>Click on the component to configure and click save after configuring</li>
+      <li>Some components may not need configuration</li>
+      <li><font color="red">Note: For merge-join you may need to add union all component first</font></li>
+      <li><font color="green">After adding, configuing and saving of all components click `Submit` to download all operations perfomed into a zipfile</font></li>
+
+    </ul>
+</div>
+
+<div class="align-center col-10 offset-1">
+    <main class="d-flex">
+        <section id="components-list" class="col-12">
+            {% include 'partials/components-list.html' %}
+        </section>
+    </main>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'dataProcessing/base.html' %}
+{% block content %}
+<div class="jumbotron text-center" style="margin-top: 60px;">
+  <h1>Export Resources</h1>
+  <p>This feature allows the user to export resources such as like Encoder, Scaler, PCA models and Data splitter, that were created during their analysis. 
+    These resources help users in the future without having to re-create the resources.
+     This feature is especially useful for advanced users who may need to apply the same resources to multiple datasets.</p>
+     
+     <hr class="my-4">
+             <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Click on `export project resources` button to download a zip file containing all resources </li>
+     
+              </ul>
+</div>
+{% if status == "error" %}
+<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> {{msg}}
+  </div>
+{% endif %}
+{% if status == "success" %}
+    <form method="post">
+      {% csrf_token %}
+      <div class="col-4" style="padding-top: 20px;">
+        <button type="submit" id="submit" class="btn btn-warning">Export Project Resources</button>
+      </div>
+
+    </form>
+{% endif %}
+</div>
+
+{% endblock %}

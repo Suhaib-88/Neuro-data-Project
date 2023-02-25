@@ -1,0 +1,184 @@
+{% extends 'dataProcessing/base.html' %}
+<div class="card border-info mb-3" style="max-width: 100%;">
+    <div class="card-header"><h5 style="color:blue">{% block heading %} Export Data To Source{% endblock %}</h5></div>
+
+{% block content %}
+<div class="card-body text-info">
+    <div class="jumbotron text-center" style="margin-top: 60px;">
+        <h1>Export file</h1>
+        <p>This feature allows the user to export their modified dataset to a database, cloud or local system. File can be exported as any selected format(json,xlsx,csv,tsv). 
+            This feature allows the user to easily share their data or use it for further analysis outside of the app</p>
+           
+           <hr class="my-4">
+                   <ul class="list-group">
+                      <li class="list-group-item active">Instructions:</li>
+                      <li class="list-group-item">Select an export source</li>
+                      <li class="list-group-item">If you want to export to local system there is no configuration needed!</li>
+                      <li class="list-group-item">Otherwise you will need to make some configurations!</li>
+                    </ul>
+      </div>
+      
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        {% if msg %}
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <div class="alert alert-warning">
+                <strong> Alert! </strong>{{msg}}.
+            </div>
+        </div>
+        {% endif %}
+
+    
+    <div class="row">
+     <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+         <div class="form-group">
+           <label class="exampleFormControlSelect1">Export to:</label>
+           <select class="form-control" name="export-data-source" hx-get="{% url 'export-helper' %}" hx-trigger="change" hx-target="#sources">
+             <option selected>-- Export to --</option>
+             {% for source in sources  %}
+                 <option value="{{source.id}}">{{source.name}}</option>
+             {% endfor %}
+            </select>
+         </div>
+       </div>
+
+   <div id="sources"> {% include 'partials/export-choices.html' %} </div>
+   
+   
+   <!-- for databases -->
+   <div id="div1" style="display: none;">
+    <label for ="Host">Host</label><input type="text" class="form-control mySql" name="host">
+    <label for="Port">Port</label><input type="text" class="form-control mySql" name="port">
+    <label for="User">User</label><input type="text" class="form-control mySql" name="user">
+    <label for="Password">Password</label><input type="password" class="form-control mySql" name="password">
+    <label for="Database ">Database </label><input type="text" class="form-control mySql" name="database">
+  </div>
+  
+  <div id="div2" style="display: none;">
+    <label for="secure_connect_bundle" class="col-form-label"><b> Secure Connect Bundle </b></label><input type="file" accept=".zip,.rar,.7zip" class="form-control cassandra" name="secure_connect_bundle"><p><font color="blue">allowed file *.zip</font></p>
+    <label for ="Client Id">Client Id</label><input type="text" class="form-control cassandra" name="client_id">
+    <label for="Client Secret">Client Secret</label><input type="password" class="form-control cassandra" name="client_secret">
+    <label for ="Keyspace">Keyspace </label><input type="text" class="form-control cassandra" name="keyspace">
+  </div>
+
+   <div id="div3" style="display: none;">
+    <label for ="Mongo DB URL">Mongo DB URL</label><input type="text" class="form-control mongodb" name="mongo_db_url">
+    <label for="Database">Database</label><input type="text" class="form-control mongodb" name="mongo_database">
+  </div>
+
+
+   <!-- for cloud -->
+   <div id="div4" style="display: none;">
+    <label for ="region_name" class="col-form-label">Region Name</label><input type="text" class="form-control awsS3bucket" name="region_name">
+    <label for="aws_access_key_id" class="col-form-label">AWS Access Key Id</label><input type="text" class="form-control awsS3bucket" name="aws_access_key_id">
+    <label for="aws_secret_access_key" class="col-form-label">AWS Secret Access Key</label><input type="password" class="form-control awsS3bucket" name="aws_secret_access_key">
+    <label for="aws_bucket_name" class="col-form-label">Bucket Name</label><input type="text" class="form-control awsS3bucket" name="aws_bucket_name"><br><br><br>
+    <label for="File Type">File Type </label>
+    <select class="form-control awsS3bucket" name="fileTypeAws" id="fileTypeAws">
+      <option value="" selected> Select any one </option>
+      <option value="csv"> csv </option>
+      <option value="tsv"> tsv </option>
+      <option value="json"> json </option>
+      <option value="xlsx"> xlsx </option>
+    </select>
+    </div>
+
+   <div id="div5" style="display: none;">
+    <label for="GCP_credentials_file" class="col-form-label"><b> GCP Credentials file </b></label><input type="file" class="form-control gcpStorage" name="GCP_credentials_file"><p>allowed file *.json</p>
+    <label for="gcp_bucket_name" class="col-form-label">Bucket Name</label><input type="text" form-control gcpStorage name="gcp_bucket_name"><br><br><br>
+    <label for="File Type">File Type </label>
+    <select class="form-control gcpStorage" name="fileTypeGcp" id="fileTypeGcp">
+      <option value="" selected> Select any one </option>
+      <option value="csv"> csv </option>
+      <option value="tsv"> tsv </option>
+      <option value="json"> json </option>
+      <option value="xlsx"> xlsx </option>
+    </select>
+  </div>
+
+  <div id="div6" style="display: none;">
+    <label for ="azure_connection_string" class="col-form-label">Azure Connection String</label><input type="text" form-control azureStorage name="azure_connection_string">
+    <label for="container_name" class="col-form-label">Container Name</label><input type="text" form-control azureStorage name="container_name"><br><br><br>
+    <label for="file_type" class="col-form-label"><b> File Type </b></label>
+    <select class="form-control azureStorage" name="fileTypeAzure" id="fileTypeAzure">
+        <option value=""> Select any one </option>
+        <option value="csv"> csv </option>
+        <option value="tsv"> tsv </option>
+        <option value="json"> json </option>
+        <option value="xlsx"> xlsx </option>
+    </select>
+
+  </div>
+   
+  {{data}}
+
+  </div>
+    <button type="submit" class="btn btn-primary" id="export">Export</button>
+   <a href="/">
+       <button type="button" class="btn btn-danger back">Back</button>
+   </a>
+
+
+</form>
+</div>
+
+
+<script type="text/javascript">
+  function Check(that){
+      if (that.value=="5"){
+          document.getElementById('div1').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div1').style.display="none";
+      }
+
+      if (that.value=="6"){
+          document.getElementById('div2').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div2').style.display="none";
+      }
+      
+      
+      if (that.value=="7"){
+          document.getElementById('div3').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div3').style.display="none";
+      }
+   
+      if (that.value=="8"){
+          document.getElementById('div4').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div4').style.display="none";
+      }
+
+      if (that.value=="9"){
+          document.getElementById('div5').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div5').style.display="none";
+      }
+      
+      
+      if (that.value=="10"){
+          document.getElementById('div6').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div6').style.display="none";
+      }
+      
+  }
+  
+</script>
+  
+{% endblock %}
+</div>

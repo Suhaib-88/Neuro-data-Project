@@ -1,0 +1,154 @@
+{% extends 'EDA/base.html' %}
+{% load static %}
+
+{% block title %} EDA plots {% endblock %}
+
+
+{% block content %}
+{% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+{% endif %}
+<div class="table2">
+    <div class="jumbotron">
+        <center><h2> Data visualization </h2></center>
+        <p>This page allows you to visualize your data in various ways, such as histograms, scatter plots, bar charts, line graphs and mode.
+             You can use these plots to explore the relationships between variables, identify trends and patterns, and
+              communicate your findings to others.
+            User can select a specific task to get its recommended plotting methods </p>
+             <hr class="my-4">
+             <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Select a type of task </li>
+                <li class="list-group-item">Select a graph to plot </li>
+                <li class="list-group-item">Select an x-axis column </li>
+                <li class="list-group-item">Select an y-axis column </li>
+                <li class="list-group-item"> Click show results </li>
+                <li class="list-group-item"><font color="red"> Note: user will get different x and y column suggestions based on selected plots </font></li>
+
+              </ul>
+      </div>
+    <form method="post">
+     {% csrf_token %}
+     
+     <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+          <div class="form-group">
+            <label class="exampleFormControlSelect1">Tasks:</label>
+            <select class="form-control" name="tasker" hx-get="{% url 'plotter' %}" hx-trigger="change" hx-target="#plotting">
+              <option selected>-- Select a type of task --</option>
+              {% for task in tasks %}
+                  <option value="{{task.pk}}">{{task.name}}</option>
+              {% endfor %}
+             </select>
+          </div>
+		<div id ="x_y_cols">{% include 'partials/x_y_columns.html' %}</div>
+
+        </div>
+
+    <div id="plotting">{% include 'partials/charttype.html' %}    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+        <button type="submit" id="submit" class="btn btn-success margin-top-10">Show Result</button>
+    </div>
+    </form>
+    </div>
+
+      <!-- Plotly chart will be drawn inside this DIV -->
+      <div id='myDiv'> </div>
+
+</div>
+
+<script type='text/javascript'>
+    var graphs = {{graphJSON | safe}};
+    Plotly.newPlot('myDiv',  graphs);
+
+    
+    $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+</script>
+
+<script type="text/javascript">
+  function Check(that){
+
+      if (that.value=="31"){
+          document.getElementById('div2').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div2').style.display="none";
+      }
+
+      if (that.value=="34"){
+          document.getElementById('div5').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div5').style.display="none";
+      }
+      
+      
+      if (that.value=="35"){
+          document.getElementById('div6').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div6').style.display="none";
+      }
+
+      if (that.value=="36"){
+          document.getElementById('div7').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div7').style.display="none";
+      }
+      if (that.value=="37"){
+          document.getElementById('div8').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div8').style.display="none";
+      }
+      if (that.value=="38"){
+          document.getElementById('div9').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div9').style.display="none";
+      }
+      if (that.value=="39"){
+          document.getElementById('div10').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div10').style.display="none";
+      }
+      if (that.value=="40"){
+          document.getElementById('div4').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div4').style.display="none";
+      }
+      if (that.value=="41"){
+          document.getElementById('div1').style.display="block";
+      }
+      else{
+          document.getElementById('div1').style.display="none";
+      }
+      if (that.value=="42"){
+          document.getElementById('div3').style.display="block";
+  
+      }
+      else{
+          document.getElementById('div3').style.display="none";
+      }
+  }
+  
+</script>
+
+{% endblock %}

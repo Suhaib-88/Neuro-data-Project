@@ -1,0 +1,88 @@
+{% extends 'dataPreProcessing/base.html' %}
+{% load static %}
+
+{% block title %} DataPreprocessing- String operations {% endblock %}
+
+{% block content %}
+
+{% if isSuccess %}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{msg}}!</strong>.
+      </div>
+    {% endif %}
+{% if not isSuccess %}
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong>{{msg}}
+      </div>
+{% endif %}
+<div class="table2">
+  <div class="jumbotron">
+    <center><h2> Perform string operations </h2></center>
+        <p class="myclass"> This feature allows you to perform various operations on string columns in your dataset, such as cleaning categorical data and applying stemming using NLP Techniques.
+           You can use this feature to prepare your data for analysis or to extract specific information from text data.</p>
+      
+           <hr class="my-4">
+            <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Select a categorical column to apply this operation </li>
+                <li class="list-group-item"> Click proceed and apply operation button </li>
+                
+              </ul>
+      </div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Columns for String operations</label>
+                    <select class="form-control" name="columns">
+                        {% for col in columns %}
+                        <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                      </select>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+          {% if allowed_operation != "not" %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Proceed</button>
+            </div>
+          {% endif %}
+      </div>
+              <!-- Modal-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure??</h5>
+              </div>
+              <div class="modal-body">
+                  <p>This will update your current data
+                  </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" id="submit" class="btn btn-danger">Apply string operation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      {{data | safe}}
+      
+</div>
+
+<script>
+  $(document).ready(function() {
+
+    
+    $("#submit").on('click',()=>{
+            $("#loading").css('display', 'block');
+          })
+        }); 
+          
+</script>
+{% endblock %}

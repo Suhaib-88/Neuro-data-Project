@@ -1,0 +1,102 @@
+{% extends 'FeatureEngineering/base.html' %}
+{% block content %}
+
+<div class="table2">
+    {% if status == "success" %}
+    
+    <div class="jumbotron">
+        <center><h2> Perform Feature Encoding </h2></center>
+        <p>This feature allows you to encode categorical variables in your dataset, such as converting nominal variables to one-hot encoding or ordinal variables to numeric encoding.
+             You can use this feature to prepare your data for certain machine learning algorithms that require numerical input.</p>
+            <hr class="my-4">
+            <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Select an encoding method</li>
+                <li class="list-group-item"><font color="red">Note: if you want to encode the target column then please <strong> select label encoder</strong></font></li>
+                <li class="list-group-item">Click `check result` button </li>
+                <li class="list-group-item"> Click save result button </li>
+              </ul>
+        <div class="alert alert-success">
+            <strong>Note!</strong> You can perform Encoding Reduction only Once.
+        </div>
+    </div>
+    {% endif %}
+    {% if status == "error" %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+    {% endif %}
+</div>
+<form action="" method="post">
+     {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select Type of Encoding</label>
+                <select class="form-control" name="encoding_type" id="encoding_type">
+                    {% for col in encoding_types %}
+                    <option value="{{col}}">{{col}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+            
+            {% if allowed_operation != "not" %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="submit" name="checkResult" class="btn btn-primary" id="check_result">Check Result</button>
+               
+            </div>
+            {% endif %}
+
+        </div>
+        {% if data %}
+
+            <div class="result"><h2>Encoding Result</h2>
+                <div style="overflow:auto;">
+                    <div class="table"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Save Result</button>
+                    </div>
+                </div>
+             <!-- Modal-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Are you sure??</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>Please make sure,because you can't revert this operation
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="submit" name="saveResult" class="btn btn-danger">Save Result</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </form>
+    {{ data | safe }}
+    {% endif %}
+
+</div>
+</div>
+<script>
+
+    $(document).ready(function() {
+        $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+        $('.js-example-basic-multiple').select2();
+       
+        });
+</script>
+{% endblock %}

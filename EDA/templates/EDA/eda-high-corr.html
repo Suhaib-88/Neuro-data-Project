@@ -1,0 +1,54 @@
+{% extends 'EDA/base.html' %}
+{% load static %}
+
+{% block title %} EDA Correlation {% endblock %}
+{% block content %}
+
+{% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+{% endif %}
+
+<div class="jumbotron">
+    <center><h2> Set threshold to find highly correlated columns </h2></center>
+    <p>This page displays highly correlated features based on selected selected threshold.</p>
+         <hr class="my-4">
+         <ul class="list-group">
+            <li class="list-group-item active">Instructions:</li>
+            <li class="list-group-item">Set a threshold from the range </li>
+            <li class="list-group-item"> Click show results </li>
+          </ul>
+  </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="slidecontainer">
+                        <input type="range" name="select-thresh" class="slider" min="0.9" max="1" step="0.01" oninput="this.nextElementSibling.value = this.value"/>
+                        <output>0.95</output>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                        <button id="submit" type="submit" class="btn btn-success margin-top-10">Show Result</button>
+                    </div>
+                </form>
+                {% if Exists %}
+                    <div class="alert alert-info">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+                        {{ output_corr | safe }} is highly correlated with a threshold of: {{thres}}
+                    </div>
+                {% endif %}
+                
+                {% if not Exists %}
+                    <div class="alert alert-warning">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{msg}}
+                    </div>
+                {% endif %}
+<script>
+    
+    $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+</script>
+{% endblock %}

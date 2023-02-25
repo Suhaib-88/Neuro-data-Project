@@ -1,0 +1,32 @@
+[ 2023-02-26 01:24:39,424 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:24:51,875 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:25:07,959 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:25:10,600 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:25:10,600 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 01:25:32,313 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:25:32,317 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:25:39,422 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:25:39,481 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:25:39,667 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 01:26:24,636 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 01:26:32,985 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 01:26:38,273 ] 113 root - INFO - All records deleted. Total time taken: 2.14827561378479 seconds.
+[ 2023-02-26 01:26:43,222 ] 113 root - INFO - All records deleted. Total time taken: 2.0410702228546143 seconds.
+[ 2023-02-26 01:26:45,484 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.5468811988830566 seconds.
+[ 2023-02-26 01:26:48,936 ] 206 root - INFO - Find Mean Implemented!
+[ 2023-02-26 01:26:48,937 ] 184 root - INFO - Find Median Implemented!
+[ 2023-02-26 01:26:48,963 ] 194 root - INFO - Find Mode Implemented!
+[ 2023-02-26 01:26:48,964 ] 172 root - INFO - Find Dtypes Implemented!
+[ 2023-02-26 01:26:48,969 ] 242 root - INFO - Missing Cells Table Implemented!
+[ 2023-02-26 01:26:49,872 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.5531680583953857 seconds.
+[ 2023-02-26 01:26:53,273 ] 206 root - INFO - Find Mean Implemented!
+[ 2023-02-26 01:26:53,273 ] 184 root - INFO - Find Median Implemented!
+[ 2023-02-26 01:26:53,276 ] 194 root - INFO - Find Mode Implemented!
+[ 2023-02-26 01:26:53,276 ] 172 root - INFO - Find Dtypes Implemented!
+[ 2023-02-26 01:26:53,278 ] 242 root - INFO - Missing Cells Table Implemented!
+[ 2023-02-26 01:27:00,453 ] 14 root - INFO - BarPlot Implemented!
+[ 2023-02-26 01:27:02,568 ] 14 root - INFO - BarPlot Implemented!
+[ 2023-02-26 01:27:02,770 ] 897 matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: Can't set icon; window has no wrapper.
+[ 2023-02-26 01:27:03,423 ] 113 root - ERROR - [WinError 2] The system cannot find the file specified: 'C:\\Users\\suhai\\Newz\\neuro-project-engineering\\staticfiles\\images\\matrix.png'
+[ 2023-02-26 01:27:04,503 ] 113 root - ERROR - [WinError 2] The system cannot find the file specified: 'C:\\Users\\suhai\\Newz\\neuro-project-engineering\\staticfiles\\images\\matrix.png'
+[ 2023-02-26 01:32:29,181 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\EDA\views.py changed, reloading.

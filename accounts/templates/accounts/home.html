@@ -1,0 +1,26 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+
+{% block heading %} Welcome to AutoDataAI Online Tool {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<div class="card" style="width: 30rem;">
+  <div class="card-body">
+    <a href="{% url 'projects' user_id %}"><button class="btn btn-success btn-sm">Go to Projects</button></a>
+  </div>
+</div>
+
+
+{% endblock %}

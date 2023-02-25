@@ -1,0 +1,394 @@
+<div class="d-flex justify-content-between align-items-center">
+    <p class="lead ml-0">My Components</p>
+    <form hx-post="{% url 'add-component' %}" hx-target='#components-list' class="d-flex align-items-center">
+        {% csrf_token %}
+        <input type="hidden" 
+            id="filmname-input"
+            name="componentname" 
+            class="form-control-sm mr-2" 
+            placeholder="Enter a component" />
+    </form>
+</div>
+<hr/>
+
+<div class="d-flex justify-content-between">
+
+    <section class="col-6">
+    
+        {% if messages %}
+        <ul class="messages" hx-get="{% url 'clear' %}" hx-trigger="load delay:3s">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if components %}
+        
+            <form method="post" class="sortable list-group" hx-trigger="end" hx-post="{% url 'sort' %}" hx-target="#components-list">
+                {% csrf_token %}
+
+                <div class="htmx-indicator">Updating...</div>
+                {% for component in components %}
+                <div>
+                    <input type="hidden" name="component_order" value="{{component.pk }}" />
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <!-- <input type="hidden" name="component_ids" value="{{component.components.id }}" /> -->
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {% if component.components.id == 35 %}
+                                <button id="btn1" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            {% elif component.components.id == 36 %}
+                                <button id="btn2" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 37 %}
+                                <button id="btn3" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 38 %}
+                                <button id="btn4" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 39 %}
+                                <button id="btn5" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 40 %}
+                                <button id="btn6" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 41 %}
+                                <button id="btn7" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 42 %}
+                                <button id="btn8" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>                            
+
+                            {% elif component.components.id == 44 %}
+                                <button id="btn10" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 45 %}
+                                <button id="btn11" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 46 %}
+                                <button id="btn12" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 47 %}
+                                <button id="btn13" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+
+                            {% elif component.components.id == 48 %}
+                                <button id="btn14" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 49 %}
+                                <button id="btn15" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 50 %}
+                                <button id="btn16" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 51 %}
+                                <button id="btn17" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 52 %}
+                                <button id="btn18" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 53 %}
+                                <button id="btn19" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 54 %}
+                                <button id="btn20" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 55 %}
+                                <button id="btn21" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 56 %}
+                                <button id="btn22" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 57 %}
+                                <button id="btn23" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 58 %}
+                                <button id="btn24" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>
+                            
+                            {% elif component.components.id == 59 %}
+                                <button id="btn25" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>                   
+
+                            {% elif component.components.id == 60 %}
+                                <button id="btn26" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>                   
+                            
+                            {% elif component.components.id == 61 %}
+                                <button id="btn27" type="button" class="btn btn-light" data-target="#modal1" data-toggle="modal" value="{{ component.components}}">{{ component.components}}</button>                   
+
+                            {% endif %}                         
+                        <span class="badge badge-danger badge-pill" 
+                            style="cursor: pointer;" hx-delete="{% url 'delete-component' component.pk %}"
+                            hx-target="#components-list"
+                            hx-confirm="Are you sure you wish to delete?">X</span> 
+                    </li>
+                </div>
+                
+            {% endfor %}
+
+            <input name="submit-all" type="submit">
+            </form>
+        {% else %}
+            <p>You do not have any components in your list</p>
+        {% endif %}
+
+        {% include 'partials/component-modals.html' %}
+    
+    </section>
+    
+    <section class="col-4 offset-1">
+        {% include 'partials/search.html' %}
+    </section>
+    
+    </div>
+    
+    {% if request.method == 'POST' %}
+    <input type="text"
+        hx-swap-oob="true"
+        id="componentname-input"
+        name="componentname" 
+        class="form-control-sm mr-2" 
+        placeholder="Enter a component" />
+    
+    {% endif %}
+
+    <script>
+        const clickButton1 = document.getElementById("btn1");
+        const clickButton2 = document.getElementById("btn2");
+        const clickButton3 = document.getElementById("btn3");
+        const clickButton4 = document.getElementById("btn4");
+        const clickButton5 = document.getElementById("btn5");
+        const clickButton6 = document.getElementById("btn6");
+        const clickButton7 = document.getElementById("btn7");
+        const clickButton8 = document.getElementById("btn8");
+        const clickButton10 = document.getElementById("btn10");
+        const clickButton11 = document.getElementById("btn11");
+        const clickButton12 = document.getElementById("btn12");
+        const clickButton13 = document.getElementById("btn13");
+        const clickButton14 = document.getElementById("btn14");
+        const clickButton15 = document.getElementById("btn15");
+        const clickButton16 = document.getElementById("btn16");
+        const clickButton17 = document.getElementById("btn17");
+        const clickButton18 = document.getElementById("btn18");
+        const clickButton19 = document.getElementById("btn19");
+        const clickButton20 = document.getElementById("btn20");
+        const clickButton21 = document.getElementById("btn21");
+        const clickButton22 = document.getElementById("btn22");
+        const clickButton23 = document.getElementById("btn23");
+        const clickButton24 = document.getElementById("btn24");
+        const clickButton25 = document.getElementById("btn25");
+        const clickButton26 = document.getElementById("btn26");
+        const clickButton27 = document.getElementById("btn27");
+
+
+
+        const div1 = document.getElementById("div1");
+        const div2 = document.getElementById("div2");
+        const div3 = document.getElementById("div3");
+        const div4 = document.getElementById("div4");
+        const div5 = document.getElementById("div5");
+        const div6 = document.getElementById("div6");
+        const div7 = document.getElementById("div7");
+        const div8 = document.getElementById("div8");
+        const div9 = document.getElementById("div9");
+        const div10 = document.getElementById("div10");
+        const div11 = document.getElementById("div11");
+        const div12 = document.getElementById("div12");
+        const div13 = document.getElementById("div13");
+        const div14 = document.getElementById("div14");
+        const div15 = document.getElementById("div15");
+        const div16 = document.getElementById("div16");
+        const div17 = document.getElementById("div17");
+        const div18 = document.getElementById("div18");
+        const div19 = document.getElementById("div19");
+        const div20 = document.getElementById("div20");
+        const div21 = document.getElementById("div21");
+        const div22 = document.getElementById("div22");
+        const div23 = document.getElementById("div23");
+        const div24 = document.getElementById("div24");
+        const div25 = document.getElementById("div25");
+        const div26 = document.getElementById("div26");
+
+        
+
+        function handleClick(event) {
+        div1.style.display = "none";
+        div2.style.display = "none";
+        div3.style.display = "none";
+        div4.style.display = "none";
+        div5.style.display = "none";
+        div6.style.display = "none";
+        div7.style.display = "none";
+        div8.style.display = "none";
+        div9.style.display = "none";
+        div10.style.display = "none";
+        div11.style.display = "none";
+        div12.style.display = "none";
+        div13.style.display = "none";
+        div14.style.display = "none";
+        div15.style.display = "none";
+        div16.style.display = "none";
+        div17.style.display = "none";
+        div18.style.display = "none";
+        div19.style.display = "none";
+        div20.style.display = "none";
+        div21.style.display = "none";
+        div22.style.display = "none";
+        div23.style.display = "none";
+        div24.style.display = "none";
+        div25.style.display = "none";
+        div26.style.display = "none";
+        
+        if (event.target.value === 'Import data from DataBase') {
+            div1.style.display = "block";
+        } else if (event.target.value === 'Import data from file') {
+            div2.style.display = "block";
+        } else if (event.target.value === 'Import data from cloud') {
+            div3.style.display = "block";
+        } else if (event.target.value === 'Aggregate Component') {
+            div4.style.display = "block";
+        } 
+        else if (event.target.value === 'Balanced Data Distributor') {
+            div5.style.display = "block";
+        }
+        else if (event.target.value === 'Conditional Splitter') {
+            div6.style.display = "block";
+        } 
+        else if (event.target.value === 'Data Conversion') {
+            div7.style.display = "block";
+        }
+        else if (event.target.value === 'Data Streaming Destination') {
+            div8.style.display = "block";
+        } 
+        else if (event.target.value === 'Export Column') {
+            div9.style.display = "block";
+        }
+        else if (event.target.value === 'Merge Join Component') {
+            div10.style.display = "block";
+        }
+        else if (event.target.value === 'MultiCast Component') {
+            div11.style.display = "block";
+        }
+        else if (event.target.value === 'RowCount Component') {
+            div12.style.display = "block";
+        } 
+        else if (event.target.value === 'Sort Component') {
+            div13.style.display = "block";
+        }
+        else if (event.target.value === 'Union All Component') {
+            div14.style.display = "block";
+        }
+        else if (event.target.value === 'Duplicate resolver Component') {
+            div15.style.display = "block";
+        }
+        else if (event.target.value === 'Audit Component') {
+            div16.style.display = "block";
+        }
+        else if (event.target.value === 'CDC Splitter') {
+            div17.style.display = "block";
+        }
+        else if (event.target.value === 'Character Map Component') {
+            div18.style.display = "block";
+        }
+        else if (event.target.value === 'Copy Column Component') {
+            div19.style.display = "block";
+        }
+        else if (event.target.value === 'DQS Cleaning') {
+            div20.style.display = "block";
+        } 
+        else if (event.target.value === 'Percentage sampling Component') {
+            div21.style.display = "block";
+        }
+        else if (event.target.value === 'Pivot Component') {
+            div22.style.display = "block";
+        } 
+        else if (event.target.value === 'Unpivot Component') {
+            div23.style.display = "block";
+        }
+        else if (event.target.value === 'Row Sampling Component') {
+            div24.style.display = "block";
+        } 
+        else if (event.target.value === 'Derived Column Component') {
+            div25.style.display = "block";
+        }
+        else if (event.target.value === 'Custom Script') {
+            div26.style.display = "block";
+        }
+        
+        }
+
+        if (clickButton1){
+        clickButton1.addEventListener("click", handleClick);
+        }
+        if (clickButton2){
+            clickButton2.addEventListener("click", handleClick);
+        }
+        if (clickButton3){
+        clickButton3.addEventListener("click", handleClick);
+        }
+        if (clickButton4){
+        clickButton4.addEventListener("click", handleClick);
+        }
+        if (clickButton5){
+        clickButton5.addEventListener("click", handleClick);
+        }
+        if (clickButton6){
+        clickButton6.addEventListener("click", handleClick);
+        }
+        if (clickButton7){
+        clickButton7.addEventListener("click", handleClick);
+        }
+        if (clickButton8){
+        clickButton8.addEventListener("click", handleClick);
+        }
+        if (clickButton10){
+        clickButton10.addEventListener("click", handleClick);
+        }
+        if (clickButton11){
+        clickButton11.addEventListener("click", handleClick);
+        }
+        if (clickButton12){
+        clickButton12.addEventListener("click", handleClick);
+        }
+        if (clickButton13){
+        clickButton13.addEventListener("click", handleClick);
+        }
+        if (clickButton14){
+        clickButton14.addEventListener("click", handleClick);
+        }
+        if (clickButton15){
+        clickButton15.addEventListener("click", handleClick);
+        }
+        if (clickButton16){
+        clickButton16.addEventListener("click", handleClick);
+        }
+        if (clickButton17){
+        clickButton17.addEventListener("click", handleClick);
+        }
+        if (clickButton18){
+        clickButton18.addEventListener("click", handleClick);
+        }
+        if (clickButton19){
+        clickButton19.addEventListener("click", handleClick);
+        }
+        if (clickButton20){
+        clickButton20.addEventListener("click", handleClick);
+        }
+        if (clickButton21){
+        clickButton21.addEventListener("click", handleClick);
+        }
+        if (clickButton22){
+        clickButton22.addEventListener("click", handleClick);
+        }
+        if (clickButton23){
+        clickButton23.addEventListener("click", handleClick);
+        }
+        if (clickButton24){
+        clickButton24.addEventListener("click", handleClick);
+        }
+        if (clickButton25){
+        clickButton25.addEventListener("click", handleClick);
+        }
+        if (clickButton26){
+        clickButton26.addEventListener("click", handleClick);
+        }
+        if (clickButton27){
+        clickButton27.addEventListener("click", handleClick);
+        }
+    </script>

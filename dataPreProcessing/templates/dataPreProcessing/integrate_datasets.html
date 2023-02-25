@@ -1,0 +1,73 @@
+{% extends 'dataPreProcessing/base.html' %}
+
+{% block content %}
+
+<div class="table2">
+    {% if is_loaded %}
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> data loaded Successfully.
+        </div>
+        
+    {% endif %}
+    {% if success %}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Integrated data Successfully.
+    </div>
+    {% endif %}
+    {% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{msg}}</strong>
+      </div>
+    {% endif %}
+
+    <div class="jumbotron">
+        <center><h2>Integrate multiple data into single source </h2></center>
+        <p class="myclass">This feature allows you to combine two or more datasets into a single dataset, using a common variable to link the data together. You can use this feature to integrate data from multiple sources
+             or to perform more complex analyses that require data from different datasets</p>
+      <ul class="list-group">
+        <li class="list-group-item active">Instructions:</li>
+        <li class="list-group-item">load a new dataset </li>
+        <li class="list-group-item">click upload </li>
+        <li class="list-group-item">select an Integration method </li>
+        <li class="list-group-item">select columns only in case of selecting merge function </li>
+        <li class="list-group-item">click to check integrated data </li>
+        <li class="list-group-item"> Click save button to update data </li>
+      </ul>
+    </div>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
+                <div class="form-group">
+                    <label for="file">Add new dataset:</label><input type="file" name="upload-files" id="input-file-now" class="form-control" />         
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="submit" class="btn btn-secondary" name="upload-data" id="submit">Upload file</button>
+            </div>
+        </div>
+      </form>
+      {% if success %}
+        <div>{% include 'partials/integrate_data_columns.html' %}</div>
+      {% endif %}
+
+</div>
+
+<script>
+    $(document).ready(function() {
+            $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+        $('.dataframe').DataTable({
+            "bScrollCollapse": true,
+        });
+        jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+        });
+
+</script>
+{% endblock %}

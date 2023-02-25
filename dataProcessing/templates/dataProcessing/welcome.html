@@ -1,0 +1,41 @@
+{% extends 'dataProcessing/base.html' %}
+{% load static %}
+
+{% block title %} Welcome to AutoDataAI {% endblock %}
+
+
+{% block content %}
+    <div>
+        {% if set_status == "unsuccessful" %}
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> Coudn't Set Target Column.
+            </div>
+        {% elif set_status == "successful" %}
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Successfully!</strong> Set Target Column: {{target_column}}.
+            </div>
+        {% endif %}
+
+        {% if msg %}
+            <div class="alert alert-info">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ msg }}
+            </div>
+
+        {% endif %}
+    </div>
+    
+    <div class="jumbotron">
+        <h1>Welcome To Neuro Engineering Project</h1>
+        <p>The main purpose of this application is to familiarize users with the machine learning lifecycle. For any given dataset user can chose from the below components and apply it onto the data</p>
+        <ul>
+            <li>Exploratory Data Analysis</li>
+            <li>Feature Engineering</li>
+            <li>Data Preprocessing</li>
+        </ul>
+    </div>    
+                    
+    
+{% endblock %}

@@ -1,0 +1,17 @@
+[ 2023-02-25 15:08:30,313 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:32,858 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:35,229 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:36,182 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:36,182 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-25 15:08:39,670 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:39,673 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:40,727 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:40,733 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:40,753 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:08:46,460 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-25 15:08:56,713 ] 113 root - INFO - All records deleted. Total time taken: 2.021995782852173 seconds.
+[ 2023-02-25 15:09:03,750 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.903996706008911 seconds.
+[ 2023-02-25 15:09:06,613 ] 86 root - INFO - Fetching categorical and numerical columns!
+[ 2023-02-25 15:09:07,364 ] 43 root - ERROR - can't multiply sequence by non-int of type 'float'
+[ 2023-02-25 15:09:07,364 ] 39 root - INFO - 76 details uploaded successfully for EDA!
+[ 2023-02-25 15:10:00,674 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\EDA\views.py changed, reloading.

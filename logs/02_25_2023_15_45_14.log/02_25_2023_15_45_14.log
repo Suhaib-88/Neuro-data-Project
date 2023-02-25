@@ -1,0 +1,17 @@
+[ 2023-02-25 15:45:21,305 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:45:36,411 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:45:53,722 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:46:03,742 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:46:03,742 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-25 15:46:34,466 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:46:34,468 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:46:38,763 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:46:38,810 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:46:39,016 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-25 15:47:44,903 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-25 15:47:55,606 ] 113 root - INFO - All records deleted. Total time taken: 2.0194294452667236 seconds.
+[ 2023-02-25 15:48:02,835 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.900775909423828 seconds.
+[ 2023-02-25 15:48:05,988 ] 86 root - INFO - Fetching categorical and numerical columns!
+[ 2023-02-25 15:48:30,360 ] 40 root - INFO - Distplot Implemented!
+[ 2023-02-25 15:48:30,361 ] 39 root - INFO - 76 details uploaded successfully for EDA!
+[ 2023-02-25 15:53:39,464 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\src\utils\plotlyFunctions.py changed, reloading.

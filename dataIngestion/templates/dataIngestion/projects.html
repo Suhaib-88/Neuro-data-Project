@@ -1,0 +1,75 @@
+{% extends 'dataIngestion/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+{% block title %} Project View {% endblock %}
+<style>
+  .table1 {
+    float: left;
+  }
+  .table2 {
+    float: left;
+  }
+</style>
+  
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+      <div class="alert alert-primary" role="alert">
+        <h5>Projects_list</h5>
+    </div>
+
+
+  <div style="float: left;">    
+    <table class="table mb-0" style="display: inline-block;">
+      <thead>
+        <tr>
+          {% for list in LISTS %}
+            <th>{{list}}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+      {% for Projects_list in PROJECTS %}    
+      <tr>
+        <td>{{ Projects_list.problem_statement_name}} </td> 
+        <td>{{ Projects_list.problem_statement_type }}</td>
+        {% if Projects_list.file_upload %}
+          <td>{{ Projects_list.file_upload}} </td>
+        
+        {% elif Projects_list.file_from_resources %}
+          <td>{{ Projects_list.file_from_resources}} </td>
+          
+        {% endif %}
+        <td>{{ Projects_list.Last_modified}}</td>
+      <td>
+        <form action="{% url 'project' Projects_list.id %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-success btn-sm" value="Continue">
+        </form>
+        <form action="{% url 'update-data' Projects_list.id %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-warning btn-sm" value="Edit">
+        </form>
+        <form action="{% url 'delete-data' Projects_list.id %}" method="post" class="d-inline">        
+          {% csrf_token %}
+          <input type="submit" class="btn btn-danger btn-sm" value="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+        </form>
+
+      </td></tr>
+      {% endfor %}
+      
+      </tbody>
+    </table>
+    </div>  
+  </div>
+</div>
+<script>
+  $("#submit").on('click',()=>{
+      $("#loading").css('display', 'block');
+      })
+</script>
+    {% endblock %}

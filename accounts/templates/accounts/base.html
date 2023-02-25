@@ -1,0 +1,136 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %} Home {% endblock %} - AutoDataAI Tool</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2083/2083213.png" type="image/icon type">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/datepicker.css' %}" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/glyphicon.css' %}" rel="stylesheet"/>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+  <style>.sidenav a, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+  }
+  </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'home' %}">
+         <h3>AutoDataAI </h3>
+      </a>
+      <input class="form-control form-control-dark w-100" type="text" id="search-input" placeholder="Search" aria-label="Search">
+
+  <!-- User Account Menu -->
+       <div class="navbar-brand col-sm-3 col-2-md-2 mr-2">
+          <a class="mb-0 text-sm  font-weight-normal">Welcome <span class="fa fa-user-circle"></span> <strong> {{user.username|upper}}</strong></a>
+      </div>
+      
+
+            <a class="nav-link pr-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <span class="fa fa-user-circle fa-3x"></span>
+                  <!--<img alt="Image placeholder" src="{% static 'images/user.svg' %}" width="30" height="30">-->
+                </span>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+              <div class=" dropdown-header noti-title">
+                <h6 class="text-overflow m-0">Welcome!</h6>
+              </div>
+              <a href="" class="dropdown-item">
+                <span class="fa fa-user"></span>
+                <span>My Profile</span>
+
+              </a>
+              <a href="{% url 'change_password' %}" class="dropdown-item">
+                <span class="fa fa-lock"></span>
+                <span>Change Password</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="{% url 'logout-page' %}" role="button" class="dropdown-item">
+                  <span class="fa fa-sign-out"></span>
+                <span>Logout</span>
+              </a>
+            </div>
+
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'add-mod' %}"> <!--add url for data uploading page-->
+                  <h5 class="text-center col-md-8"><span class="fa fa-upload"></span>
+                   Add New Project</h5><span class="sr-only">(current)</span>
+                </a>
+              </li>
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span><font family="times-new-roman" size="2" color="magenta">SSIS Toolbox</font></span>
+              <hr><font family="arial" size="4" color="blue"><a href="{% url 'component-list' %}" class="d-flex align-items-center text-muted">
+                Data Flows
+                </a></font>
+              </a>
+            </h6>
+              
+          
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <br>
+<div class="card border-info mb-3" style="max-width: 100%;">
+    <div class="card-header"><h5 style="color:blue">{% block heading %}{% endblock %}</h5></div>
+    <div class="card-body text-info">
+          {% block content %}
+
+
+
+          {% endblock %}
+    </div>
+</div>
+        </main>
+
+      </div>
+    </div>
+
+</body>
+<script>
+  function handleSearch(event) {
+    event.preventDefault(); // prevent the default form submission
+    const searchTerm = document.getElementById("search-input").value;
+    const keywords = ["eda-plots", "outlier", "missing"]; // list of keywords to search for
+    const matchingKeyword = keywords.find(keyword => keyword === searchTerm.toLowerCase());
+    if (matchingKeyword) {
+      window.location.href = `/${matchingKeyword}.html`; // redirect to the matching page
+    } else {
+      alert("No results found."); // display an error message if no matching keyword was found
+    }}
+</script>
+</html>

@@ -1,0 +1,117 @@
+{% extends 'dataProcessing/base.html' %}
+
+{% block content %}
+
+{% if error %}
+<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{msg}}</strong>
+  </div>
+{% endif %}
+
+{% for message in messages %}
+    <font color="green"><li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li></font>
+{% endfor %}  
+<div class="card border-info mb-3" style="max-width: 100%;">
+    <div class="card-header"><h5 style="color:blue">Custom script</h5></div>
+    <div class="card-body text-info">
+<div class="table2">
+    <div class="jumbotron">
+        <center><h2> Custom script </h2></center>
+        <p>This feature allows the user to write and execute custom Python code on their dataset, allowing for custom operations that are not available through the app's built-in features.
+             The user can manually manipulate only the current dataset using this feature.
+             This feature provides greater flexibility and control for advanced users who may need to perform specific or complex operations on their data. .</p>
+             <hr class="my-4">
+             <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Write a function to the script </li>
+                <li class="list-group-item"> Click show results </li>
+                <li class="list-group-item"> Click save results </li>
+
+              </ul>
+      </div>
+      
+  {% if data %}
+    {{ data | safe }}
+  {% endif %}
+<form method="post">
+    {% csrf_token %}
+    
+    <label for="function_text">Enter your custom function:</label>
+    <textarea id="function_text_1" rows="10" cols="50" name="function_text" placeholder="
+    ## dont use double quotes
+    ## write a function and call that function as per this example
+    
+    def add_column(df):
+    df['new_column'] = df['column1'] + df['column2']
+    
+    add_column(df)"></textarea>
+    <input type="submit" id="submit1" class="btn btn-primary btn-lg" name="run-script" value="Run script">
+    <input type="hidden" name="hidden_input" value="{{code}}">
+
+    {% if updated_data %}
+
+        <input type="submit" id="submit2" class="btn btn-success btn-sm" name="save-script" value="Save script">
+    {% endif %}
+  </form>
+</div>
+{% if updated_data %}
+    <h2>Results:<h2>
+
+    <h4><font color="green"> Updated dataframe </font></h4>
+
+    {{ updated_data | safe }}
+{% endif %}
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+
+    $("#submit1").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+    
+    $("#submit2").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+
+    $('.dataframe').DataTable({
+            "bScrollCollapse": true,
+        });
+        jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+        });
+
+    const textarea = document.getElementById("function_text_1");
+    textarea.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        const target = event.target;
+        const value = target.value;
+        let lineStart = value.lastIndexOf("\n", start) + 1;
+        let lineEnd = value.indexOf("\n", start);
+        if (lineEnd === -1) lineEnd = value.length;
+        let line = value.substring(lineStart, lineEnd);
+        if (line.endsWith(":")) {
+        target.value = value.substring(0, start) + "\n\t" + value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 2;
+        } else {
+        target.value = value.substring(0, start) + "\n" + value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 1;
+        }
+    }   
+    if (event.key === "Tab") {
+        event.preventDefault();
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        const target = event.target;
+        const value = target.value;
+        target.value = value.substring(0, start) + "\t" + value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 1;
+                                }
+            });
+
+
+</script>
+{% endblock %}

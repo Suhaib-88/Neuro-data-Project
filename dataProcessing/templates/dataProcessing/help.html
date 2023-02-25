@@ -1,0 +1,43 @@
+{% extends 'dataProcessing/base.html' %}
+{% block heading %}
+<style>
+</style>
+{% endblock %}
+{% block content %}
+  <div class="jumbotron text-center" style="margin-top: 60px;">
+    <h1>Welcome to the Help Section of Neuro Data Engineering App</h1><br>
+    <p class="myclass">This feature provides documentation and guidance to the user on how to use the app's features and functionalities. The help section may include video tutorials, user manuals, frequently asked questions (FAQs), 
+      and support contact information.This feature helps the user to navigate and make the most of the app's features, even if they are not familiar with all aspects of data science.</p>
+  </div>
+  <h3> Watch this tutorial on usage of this app</h3>
+  <iframe height="300" width="650" src="">
+    
+  </iframe><hr><h4><u><strong>For developers</strong></u></h4><p>Refer this github for documentation and code <font color="cyan"> <a href="https://github.com/Suhaib-88/Neuro-engineering-project.git">https://github.com/Suhaib-88/Neuro-engineering-project.git</a></font></p><hr>
+  <h3> FAQS </h3>
+  <ul ><li><div class="expandContent1"><h4><a href="#q1">What is EDA ?</a></h4></div></li>
+  <div id="q1" class="showMe1" style="display:none"><p>Exploratory Data Analysis (EDA) is the very first step before you can perform any changes to the dataset or 
+  develop a statistical model to answer business problems. In other words, the process of EDA contains summarizing, visualizing and getting deeply acquainted with the important traits of a data set</p></div>
+  
+  <li><div class="expandContent2"><h4><a href="#q3">What is DP ?</a></h4></div></li>
+  <div id="q3" class="showMe2" style="display:none"><p>Data Preprocessing is usually about getting large volumes of data from the sources — databases, object stores, data lakes, etc — and performing basic data cleaning and data wrangling preparing them for the later part, which is essentially important before modelling — feature engineering!</p></div>
+  
+  <li><div class="expandContent3"><h4><a href="#q2">What is FE ?</a></h4></div></li>
+  <div id="q2" class="showMe3" style="display:none"><p>Feature Engineering is known as the process of transforming raw data (that has already been processed ) into features that better represent the underlying problem to predictive models, resulting in improved model accuracy on unseen data.</p></div>
+  
+  <br>
+  <h3>Get support</h3>
+  <p>If you can't find the information you're looking for, please contact us at <font color="cyan"><a href="mailto:suhaibarshad2017@gmail.com">suhaibarshad2017@gmail.com</a></font>. We're here to help!</p>
+
+<script>
+   
+   $('.expandContent1').click(function(){
+        $('.showMe1').toggle();
+    });
+    $('.expandContent2').click(function(){
+        $('.showMe2').toggle();
+    });
+    $('.expandContent3').click(function(){
+        $('.showMe3').toggle();
+    });
+</script>
+{% endblock %}

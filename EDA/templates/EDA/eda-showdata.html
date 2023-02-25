@@ -1,0 +1,88 @@
+{% extends 'EDA/base.html' %}
+{% load static %}
+
+{% block title %} Overview {% endblock %}
+
+{% block content %}
+{% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+{% endif %}
+<div class="table2">
+    <div class="jumbotron">
+        <center><h2>Show Dataset</h2></center>
+        <p>This page allows you to view the actual data in your dataset, row by row.
+             You can scroll through the rows, search for specific values, and sort the data by column.</p>
+             <hr class="my-4">
+             <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Enter number of rows to show</li>
+                <li class="list-group-item">Select columns(mandatory to select)</li>
+                <li class="list-group-item">Select an order by method </li>
+                <li class="list-group-item">Click show result </li>
+
+              </ul>
+      </div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-outline">
+            <label class="form-label" for="typeNumber">Number of rows**</label>
+            <input type="number" name="range" id="typeNumber" class="form-control" required/>
+        </div>
+        
+            <p>Total Records:  {{length}}; Max Records To Show: <strong> {{number_of_rows}}</strong>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Columns</label>
+                    <select class="selectpicker" multiple data-live-search="true" name="column" required>
+                        {% for col in columns %}
+                            <option value="{{col}}">{{col}}</option>
+                        {% endfor %}
+                    </select>
+                
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="pwd">Order by:</label>
+                    <select name="order-select">
+                        {% for order in showOrder %}
+                            <option value="{{order}}">{{order}}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="submit" class="btn btn-success btn-large" id="submit">Show Result</button>
+            </div>
+        </div>
+      </form>
+      {% if data %}
+        <h3 class="result">Result</h3>
+        <div style="overflow:auto;">
+        {{data | safe}}
+        </div>
+      {% endif %}
+</div>>
+    <script>
+        $(document).ready(function() {
+            $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+        $('.dataframe').DataTable({
+            "bScrollCollapse": true,
+        });
+        jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+        });
+
+        // Material Select Initialization
+        $(document).ready(function() {
+            $('select').selectpicker();
+        });
+        
+    </script>
+{% endblock %}

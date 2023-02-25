@@ -1,0 +1,44 @@
+{% extends 'EDA/base.html' %}
+{% load static %}
+
+{% block title %} Overview {% endblock %}
+
+{% block content %}
+{% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+{% endif %}
+<div class="table2">
+    <div class="jumbotron">
+        <center><h2> Data Summary </h2></center>
+        <p>This page provides a quick overview of your dataset, including the number of rows and columns,
+            data types, and summary statistics such as min, q1, median, q3, max and number of unique values.</p>
+             <hr class="my-4">
+      </div>
+    <div class="alert alert-info">
+        <bold>Total Records: &nbsp;&nbsp;</bold> {{row_count}}
+        &nbsp;&nbsp;<bold>Total Columns: &nbsp;&nbsp;</bold> {{column_count}}
+    </div>
+
+    <center><h3><u> 5 point summary of the dataset </u></h3></center>
+    {% for table in table_summary %}
+        {{ table|safe }}
+    {% endfor %}
+    <br><hr><br>
+
+    <center><h3><u> Dataset info </u></h3></center>
+    {% for table in data_types %}
+        {{ table|safe }}
+    {% endfor %}
+</div>
+<script>
+    $(document).ready(function() {
+    $('.dataframe').DataTable({
+            "bScrollCollapse": true,
+        });
+        jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+        });
+</script>
+{% endblock %}

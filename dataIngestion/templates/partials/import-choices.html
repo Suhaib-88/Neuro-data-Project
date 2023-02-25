@@ -1,0 +1,11 @@
+<div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+    <div class="form-group">
+      <label class="exampleFormControlSelect1">Source:</label>
+      <select class="custom-select mb-4" id="from" name="get-source"  onchange="Check(this);">
+        <option selected>-- Select an import source --</option>
+          {% for choice in choices %}
+            <option value="{{choice.pk}}">{{choice.name}}</option>
+          {% endfor %}
+      </select>
+    </div>
+  </div>

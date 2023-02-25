@@ -1,0 +1,11 @@
+<div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+  <div class="form-group">
+    <label class="exampleFormControlSelect1">charts:</label>
+    <select class="custom-select mb-4" name="graph-method" id="graphId" onchange="Check(this);">
+      <option selected>-- Select a type of chart --</option>
+        {% for chart in charts %}
+          <option value="{{chart.pk}}">{{chart.name}}</option>
+        {% endfor %}
+    </select>
+  </div>
+</div>

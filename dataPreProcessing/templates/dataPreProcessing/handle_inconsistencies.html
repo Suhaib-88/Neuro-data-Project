@@ -1,0 +1,120 @@
+{% extends 'dataPreProcessing/base.html' %}
+{% load static %}
+
+{% block title %} Data Transfomation- Change Dtypes {% endblock %}
+
+{% block content %}
+
+<div class="table2">
+    {% if status == 'success' %}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Successfully updated dataframe!</strong>.
+      </div>
+    {% endif %}
+    
+    {% if error %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{msg}}
+      </div>
+    {% endif %}
+
+    {% if message %}
+    <div class="alert alert-warning">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>{{message}}!</strong>.
+    </div>
+    {% endif %}
+    <div class="jumbotron">
+      <center><h2> Check data consistency </h2></center>
+      <p>>Choosing the right data types for your data  not only improves
+        performance by ensuring a correct execution plan, but it also reduce the size of your data.</p>
+          <hr class="my-4">
+          <ul class="list-group">
+              <li class="list-group-item active">Instructions:</li>
+              <li class="list-group-item">Select a numeric column </li>
+              <li class="list-group-item">Enter minimum value </li>
+              <li class="list-group-item">Enter a maximum value </li>
+              <li class="list-group-item">click to check consistency </li>
+              <li class="list-group-item"> Click save button to update data </li>
+            </ul>
+    </div>
+      <form method="post">
+          {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Columns</label>
+                    <select class="form-control" name="column" id="column">
+                      {% for col in columns %}
+                        <option value="{{col}}">{{col}}</option>
+                      {% endfor %}
+                      </select>
+                    <label for="exampleFormControlSelect1">Minimum value</label>
+                    <input type="number" name="minimum_value" class="form-control" required>
+                    <label for="exampleFormControlSelect1">Maximum value</label>
+                    <input type="number" name="maximum_value" class="form-control" required>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Proceed to check data consistency</button>
+            </div>
+        </div>
+        <!-- Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Are you sure??</h5>
+                </div>
+                <div class="modal-body">
+                    <p>You want to check consistencies for this column
+                    </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" id="submit" name="check-data" class="btn btn-danger">Check inconsistency </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+      </form>
+      
+      {% if data %}
+        <div class="overflow:auto;">
+          {{data | safe}}
+        </div>
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <input type="hidden" name="selected-column" value="{{ select_col }}">
+                <input type="hidden" name="selected-minimum-value" value="{{ select_min }}">
+                <input type="hidden" name="selected-maximum-value" value="{{ select_max }}">
+                <br>
+                <button type="submit" class="btn btn-success" name="save-data" >Save</button>
+            </div>
+        </div>
+        </form>
+      {% endif %}
+</div>
+    <script>
+        $(document).ready(function() {
+          
+          $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+            $('.dataframe').DataTable({
+            "bScrollCollapse": true,
+        });
+        jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+        });
+    </script>
+{% endblock %}
