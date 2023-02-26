@@ -1,0 +1,49 @@
+[ 2023-02-26 22:07:22,440 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:07:45,613 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:07:59,935 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:08:01,736 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:08:01,736 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:08:46,086 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:08:46,090 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:08:54,524 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:08:54,540 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:08:54,680 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:09:20,372 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:09:34,003 ] 113 root - INFO - All records deleted. Total time taken: 4.878999948501587 seconds.
+[ 2023-02-26 22:09:43,840 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.8800015449523926 seconds.
+[ 2023-02-26 22:10:15,489 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:10:25,980 ] 113 root - INFO - All records deleted. Total time taken: 2.311000108718872 seconds.
+[ 2023-02-26 22:10:34,119 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.880999803543091 seconds.
+[ 2023-02-26 22:10:37,325 ] 453 root - INFO - Statistical function:Covariance Implemented!
+[ 2023-02-26 22:10:37,590 ] 532 root - ERROR - The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+[ 2023-02-26 22:10:37,854 ] 222 django.request - ERROR - Internal Server Error: /EDA/statistical-report/
+Traceback (most recent call last):
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\base.py", line 124, in _get_response
+    raise ValueError(
+ValueError: The view EDA.views.EDA_statistical_functions didn't return an HttpResponse object. It returned None instead.
+[ 2023-02-26 22:13:12,614 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:13:22,930 ] 113 root - INFO - All records deleted. Total time taken: 2.0809710025787354 seconds.
+[ 2023-02-26 22:13:30,917 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.814016819000244 seconds.
+[ 2023-02-26 22:13:34,121 ] 449 root - INFO - Statistical function:Percentage change Implemented!
+[ 2023-02-26 22:13:34,283 ] 532 root - ERROR - The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+[ 2023-02-26 22:13:34,469 ] 222 django.request - ERROR - Internal Server Error: /EDA/statistical-report/
+Traceback (most recent call last):
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\base.py", line 124, in _get_response
+    raise ValueError(
+ValueError: The view EDA.views.EDA_statistical_functions didn't return an HttpResponse object. It returned None instead.
+[ 2023-02-26 22:15:09,603 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:15:19,994 ] 113 root - INFO - All records deleted. Total time taken: 2.2019989490509033 seconds.
+[ 2023-02-26 22:15:27,899 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.7890007495880127 seconds.
+[ 2023-02-26 22:15:31,367 ] 437 root - INFO - Statistical function:Window rolling with mean Implemented!
+[ 2023-02-26 22:15:31,367 ] 532 root - ERROR - window must be an integer 0 or greater
+[ 2023-02-26 22:15:31,496 ] 222 django.request - ERROR - Internal Server Error: /EDA/statistical-report/
+Traceback (most recent call last):
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\base.py", line 124, in _get_response
+    raise ValueError(
+ValueError: The view EDA.views.EDA_statistical_functions didn't return an HttpResponse object. It returned None instead.

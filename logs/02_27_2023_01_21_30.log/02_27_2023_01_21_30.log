@@ -1,0 +1,23 @@
+[ 2023-02-27 01:21:35,162 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:21:47,350 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:22:00,474 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:22:02,660 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:22:02,660 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-27 01:22:25,110 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:22:25,110 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:22:32,269 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:22:32,316 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:22:32,478 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-27 01:23:08,126 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-27 01:23:18,866 ] 113 root - INFO - All records deleted. Total time taken: 2.015995740890503 seconds.
+[ 2023-02-27 01:23:26,366 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.367997407913208 seconds.
+[ 2023-02-27 01:23:28,945 ] 449 root - INFO - Statistical function:Percentage change Implemented!
+[ 2023-02-27 01:23:30,004 ] 547 root - ERROR - The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+[ 2023-02-27 01:23:30,170 ] 222 django.request - ERROR - Internal Server Error: /EDA/statistical-report/
+Traceback (most recent call last):
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\base.py", line 124, in _get_response
+    raise ValueError(
+ValueError: The view EDA.views.EDA_statistical_functions didn't return an HttpResponse object. It returned None instead.
+[ 2023-02-27 01:24:49,952 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\EDA\views.py changed, reloading.

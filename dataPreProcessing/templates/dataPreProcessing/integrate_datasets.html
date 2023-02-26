@@ -67,7 +67,18 @@
             "bScrollCollapse": true,
         });
         jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
-        });
+        
+        $("#method").on('change',function(e){
+                if(e.target.value=='merge'){
+                    $("#first_cols_div").show()
+                    $("#second_cols_div").show()
+                }else{
+                    $("#first_cols_div").hide()
+                    $("#second_cols_div").hide()
+                }
+                })   
+    });
+
 
 </script>
 {% endblock %}

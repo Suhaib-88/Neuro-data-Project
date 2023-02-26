@@ -20,6 +20,8 @@ CORRELATION_METHODS=['pearson','spearman','kendall']
 
 OUTLIER_DETECT_METHODS=['z-score','iqr']
 
+STATISTICAL_FUNCTIONS=['Window','Expanding','Rolling','Percentage change','Covariance','Correlation','Ranking']
+
 SAMPLING_METHODS=['UnderSampling','Resample','SMOTE']
 
 AGGREGATE_FUNCTIONS=['count','nunique','sum','min','mean','max']

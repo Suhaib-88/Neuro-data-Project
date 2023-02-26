@@ -1,0 +1,15 @@
+[ 2023-02-26 22:19:35,407 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:19:58,990 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:20:32,295 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:20:35,132 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:20:35,132 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:21:19,145 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:21:19,145 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:21:37,114 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:21:37,161 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:21:37,333 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:24:33,721 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:24:48,923 ] 113 root - INFO - All records deleted. Total time taken: 2.085999011993408 seconds.
+[ 2023-02-26 22:24:57,950 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.943992853164673 seconds.
+[ 2023-02-26 22:25:02,262 ] 461 root - INFO - Statistical function:Data Ranking Implemented!
+[ 2023-02-26 22:36:15,262 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\EDA\views.py changed, reloading.

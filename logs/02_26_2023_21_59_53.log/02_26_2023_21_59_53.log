@@ -1,0 +1,30 @@
+[ 2023-02-26 22:00:00,477 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:00:21,207 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:00:43,081 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:00:46,420 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:00:46,421 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:01:27,927 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:01:27,932 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:01:41,220 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:01:41,314 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:01:41,613 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 22:05:15,446 ] 25 root - INFO - 76 : Sucessfully entered Project Details!
+[ 2023-02-26 22:05:16,264 ] 74 root - INFO - Project actions performed for: 76!
+[ 2023-02-26 22:05:17,643 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 22:05:28,330 ] 113 root - INFO - All records deleted. Total time taken: 2.1569976806640625 seconds.
+[ 2023-02-26 22:05:36,549 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.9019973278045654 seconds.
+[ 2023-02-26 22:05:39,934 ] 245 root - INFO - Missing Cells Table is None!
+[ 2023-02-26 22:05:55,166 ] 222 django.request - ERROR - Internal Server Error: /EDA/statistical-report/
+Traceback (most recent call last):
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: get() takes 1 positional argument but 2 were given
+[ 2023-02-26 22:06:46,839 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\EDA\views.py changed, reloading.

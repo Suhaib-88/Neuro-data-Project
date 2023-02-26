@@ -406,3 +406,57 @@ class EDA:
             logging.info("Outlier Detection Implemented!")
         except Exception as e:
             logging.error(f"{e} occurred in Outlier Detection Zscore!")
+
+
+
+class StatisticalDataAnalysis:
+
+    def __init__(self, data):
+        self.data = data
+
+    def choose_statistical_function(self, function_name, window_size=None):
+        if function_name == 'Window':
+            return self.window(window_size)
+        elif function_name == 'Expanding':
+            return self.expanding()
+        elif function_name == 'Rolling':
+            return self.rolling(window_size)
+        elif function_name == 'Percentage change':
+            return self.pct_change()
+        elif function_name == 'Covariance':
+            return self.cov()
+        elif function_name == 'Correlation':
+            return self.corr()
+        elif function_name == 'Ranking':
+            return self.rank()
+        else:
+            logging.error('Function not found.')
+            return None
+
+    def window(self, window_size):
+        logging.info("Statistical function:Window rolling with mean Implemented!")
+        return self.data.rolling(window=window_size)
+
+    def expanding(self):
+        logging.info("Statistical function: Expanding Implemented!")
+        return self.data.expanding()
+
+    def rolling(self, window_size):
+        logging.info("Statistical function:Window rolling with standard deviation Implemented!")
+        return self.data.rolling(window=window_size)
+
+    def pct_change(self):
+        logging.info("Statistical function:Percentage change Implemented!")
+        return self.data.pct_change()
+
+    def cov(self):
+        logging.info("Statistical function:Covariance Implemented!")
+        return self.data.cov()
+
+    def corr(self):
+        logging.info("Statistical function:Correlation Implemented!")
+        return self.data.corr()
+
+    def rank(self):
+        logging.info("Statistical function:Data Ranking Implemented!")
+        return self.data.rank()

@@ -1,0 +1,39 @@
+{% extends 'dataProcessing/base.html' %}
+{% block content %}
+
+
+{% if status == "error" %}
+    <div class="alert alert-warning">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      {{msg}}
+    </div>
+  {% endif %}
+
+{% if status == "success" %}
+  <div class="alert alert-secondary">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{msg}}
+  </div>
+{% endif %}
+
+
+<div class="table2 terminal_table">
+  <h1> System Logs page</h1>
+  <p class="myclass"> A system logs page that delivers live logs to your web page is a useful tool for monitoring the operation of your application's backend. Such a page can provide real-time feedback on the performance of your application, as well as help you identify and diagnose any errors or issues that may arise.</p>
+    <div class="jumbotron text-center terminal">
+        <div style="
+        overflow-y: scroll;
+        overflow-x: hidden;
+        text-align: initial;
+        background-color: black;
+        height: 60vh;
+    ">
+            <p style="color:Green">Live Logs</p>
+            {% for log in logs %}
+                <p> -> {{log}} </p>
+            {% endfor %}
+            </div>
+
+      </div>
+</div>
+{% endblock %}

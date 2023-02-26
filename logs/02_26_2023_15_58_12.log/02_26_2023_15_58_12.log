@@ -1,0 +1,12 @@
+[ 2023-02-26 15:58:22,087 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:58:38,306 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:58:53,939 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:58:56,689 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:58:56,689 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 15:59:34,967 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:59:34,967 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:59:48,153 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:59:48,200 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:59:48,575 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 16:00:58,773 ] 853 root - ERROR - [Errno 13] Permission denied: 'C:\\Users\\suhai\\Newz\\neuro-project-engineering\\logs\\02_26_2023_15_21_38.log' In System Logs API
+[ 2023-02-26 16:05:57,504 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\dataProcessing\views.py changed, reloading.

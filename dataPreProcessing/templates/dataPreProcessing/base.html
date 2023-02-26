@@ -71,6 +71,8 @@
         <li>	<a href="{% url 'corr-cols' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Find Highly correlated Features</a>	</li>	
       </ul></li>
       <li>	<a href="{% url 'outlier' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Outlier Report</a>	</li>
+      <li>	<a href="{% url 'statistics' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Statistical functions</a>	</li>
+  
       <li>	<a href="{% url 'plots' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Plots</a>	</li>	
 
     </ul></li>
@@ -135,10 +137,12 @@
     
     <li>	<a href="#SubSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Operations Reports</a>	
       <ul class="collapse list-unstyled" id="SubSubmenu7">
-        <li><a href="{% url 'project-reports' %}" >Project reports</a></li>
-        <li>	<a href="{% url 'action-history' %}"  class="download">Actions History</a>	</li>		
+        <li><a href="{% url 'project-reports' %}" onclick="javascript:document.getElementById('loading').style.display='block';">Project reports</a></li>
+        <li>	<a href="{% url 'action-history' %}"  onclick="javascript:document.getElementById('loading').style.display='block';">Actions History</a>	</li>		
     </ul>
   </li>
+    <ul class="list-unstyled CTAs">	<li>	<a href="{% url 'syslogs' %}" >System Logs</a>	</li>	</ul>		
+
     <ul class="list-unstyled CTAs">	<li>	<a href="{% url 'helper' %}"  class="download">Help</a>	</li>	</ul>		
     </ul>    
      </nav>	

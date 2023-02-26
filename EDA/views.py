@@ -1,23 +1,19 @@
-from django.shortcuts import render
-import os
+from django.shortcuts import render,redirect
 import pandas as pd
 import numpy as np
+from django.contrib import messages
 # Create your views here.
 
 # from dataProcessing.forms import GetTargetColumn
 from dataProcessing.views import Project
-from .functions_EDA.eda_operations import EDA
+from .functions_EDA.eda_operations import EDA, StatisticalDataAnalysis
 from src.utils.plotlyFunctions import Plotly_agent
 from src.utils.basicFunctions import fetch_num_cat_cols
-from src.constants.const import GRAPH_TYPES_LIST, GRAPH_TYPES_LIST_2,SHOWDATA_FUNCTIONS,CORRELATION_METHODS,OUTLIER_DETECT_METHODS
-from src.utils.basicFunctions import move_file
+from src.constants.const import GRAPH_TYPES_LIST, GRAPH_TYPES_LIST_2,SHOWDATA_FUNCTIONS,CORRELATION_METHODS,OUTLIER_DETECT_METHODS,STATISTICAL_FUNCTIONS
 from django.shortcuts import render
 import numpy as np
 from django.views import View
 from .models import TaskType, plot_Data
-from django.http import HttpResponse
-
-import missingno as msno
 import matplotlib.pyplot as plt
 import plotly
 import json
@@ -463,6 +459,81 @@ class EDA_outliers(View):
         except Exception as e:
             logging.error(e)
             return render(request,'EDA/eda-outlier.html',{"error":True,"msg":e.__str__()})
+
+
+class EDA_statistical_functions(View):
+    """
+    Class view for performing statistical analysis on a dataset as part of exploratory data analysis (EDA).
+        get(self, request):
+        Renders the EDA statistical analysis page and checks if the dataset contains categorical or missing data.
+
+    post(self, request):
+        Updates the ModuleUrl in the projects_info table to 'statistics' for the current project.
+        Performs the selected statistical analysis method on the dataset and returns the resulting dataset.
+        Renders selected method for customized info
+    """
+    def get(self,request):
+        id_ = sql_obj.fetch_one(f"""SELECT project_id FROM get_project_id ORDER BY id DESC LIMIT 1;""")[0]
+        # Call the fetch method from Project class
+        proj1=Project()
+        df=proj1.fetch(id=id_)
+
+        if len(df.columns[df.dtypes == 'category']) > 0 or len(df.columns[df.dtypes == 'object']) > 0:    
+            return render(request,'FeatureEngineering/feat-scaling.html',{"allowed_operation":"not", "status":"error","msg":"Statistical Operations can't be performed at this point, data contain categorical data. Please comeback after performing encoding !"})
+
+        context={"methods":STATISTICAL_FUNCTIONS}
+        return render(request,'EDA/eda-statistical.html',context)
+
+
+    def post(self,request):
+        id_ = sql_obj.fetch_one(f"""SELECT project_id FROM get_project_id ORDER BY id DESC LIMIT 1;""")[0]
+
+        try:
+            # Update the ModuleUrl in the projects_info table
+            query_ = f"UPDATE projects_info set ModuleUrl='statistics' where Projectid= {id_}"
+            sql_obj.update_records(query_)
+
+            # Call the fetch method from Project class
+            proj1=Project()
+            df=proj1.fetch(id=id_)
+            select_method=request.POST.get('select-stats-method')
+            applied_dataframe = StatisticalDataAnalysis(df)
+            if select_method=="Window":
+                window_size=request.POST.get('windowsize-norm')
+                # Choose a function to perform and provide any necessary arguments
+                dataframe=applied_dataframe.choose_statistical_function(select_method, window_size=int(window_size)).mean()
+
+            elif select_method=="Expanding":
+                # Choose a function to perform and provide any necessary arguments
+                dataframe=applied_dataframe.choose_statistical_function(select_method).sum()
+            
+            elif select_method=="Rolling":
+                window_size=request.POST.get('windowsize-roll')
+                # Choose a function to perform and provide any necessary arguments
+                dataframe=applied_dataframe.choose_statistical_function(select_method, window_size=int(window_size)).std()
+
+            elif select_method=="Percentage change":
+                # Choose a function to perform and provide any necessary arguments
+                dataframe=applied_dataframe.choose_statistical_function(select_method)
+
+
+            elif select_method=="Covariance":
+                # Choose a function to perform and provide any necessary arguments
+                dataframe=applied_dataframe.choose_statistical_function(select_method)
+
+            elif select_method=="Covariance":
+                # Choose a function to perform and provide any necessary arguments
+                dataframe=applied_dataframe.choose_statistical_function(select_method)
+
+            elif select_method=="Ranking":
+                # Choose a function to perform and provide any necessary arguments
+                dataframe=applied_dataframe.choose_statistical_function(select_method)
+
+            context={"selected_method":select_method,"data":dataframe.to_html(),"methods":STATISTICAL_FUNCTIONS}
+            return render(request,'EDA/eda-statistical.html',context)
+
+        except Exception as e:
+            logging.error(e)
 
 
 def plot_helper(request):    

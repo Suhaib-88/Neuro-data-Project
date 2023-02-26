@@ -20,7 +20,7 @@ from src.utils.plotlyFunctions import Plotly_agent
 from src.constants.const import PROJECT_ACTIONS
 
 import time
-import os
+import os,glob
 import numpy as np
 from logger import logging
 from logger import logging
@@ -837,6 +837,28 @@ def Custom_script(request):
     except:
         return render(request,'dataProcessing/custom-script.html', {"status":"error","msg":"Code snippets is not valid"})
         
+
+def system_logs(request):
+    try:
+        lines = []
+        path = glob.glob(os.path.join(next(absoluteFilePaths('logs')), '**/*.log'))
+
+        # Sort the list of log files by modification time in descending order (newest first)
+        path.sort(key=os.path.getmtime, reverse=True)
+
+        # Get the path of the latest log file (i.e., the first file in the sorted list)
+        latest_log_file = path[0]
+
+        with open(latest_log_file, 'r') as file:
+            file_lines = file.readlines()
+            lines.extend(file_lines)
+        
+        return render(request,'dataProcessing/systemlogs.html', {"status":"success","logs":lines,"msg":"Success! Showing logs.."})
+    
+    except Exception as e:
+        logging.error(f"{e} In System Logs API")
+        return render(request,'dataProcessing/systemlogs.html', {"status":"error","logs":lines,"msg":e.__str__()})
+
 
 def get_help(request):
     return render(request,'dataProcessing/help.html')

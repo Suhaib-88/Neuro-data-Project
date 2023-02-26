@@ -27,27 +27,36 @@
                         <option value="{{function}}">{{function}}</option>
                       {% endfor %}
                     </select>
-
-                    <!-- select a column from first dataset -->
-                    <label for="method">Select a column from first dataset (Applies only to merge function)</label>
-                    <select class="form-control" id="col1" name="columns1">
-                        <option value="None" selected>--None--</option>
-                      {% for col in cols1 %}
-                        <option value="{{col}}">{{col}}</option>
-                      {% endfor %}
-                    </select>
-
-                    <label for="method">select a column from second dataset (Applies only to merge function)</label>
-                    <select class="form-control" id="col2" name="columns2">
-                        <option value="None" selected>--None--</option>
-
-                      {% for col in cols2 %}
-                        <option value="{{col}}">{{col}}</option>
-                      {% endfor %}
-                    </select>
-                                
                 </div>
             </div>
+                    <!-- select a column from first dataset -->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" id="first_cols_div">
+                        <div class="form-group">
+                            <label for="method">Select a column from first dataset (Applies only to merge function)</label>
+                            <select class="form-control" id="col1" name="columns1">
+                                <option value="None" selected>--None--</option>
+                                {% for col in cols1 %}
+                                    <option value="{{col}}">{{col}}</option>
+                                {% endfor %}
+                            </select>
+        
+                        </div>
+                    </div>
+        
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" id="second_cols_div">
+                    <div class="form-group">
+                        <label for="method">select a column from second dataset (Applies only to merge function)</label>
+                        <select class="form-control" id="col2" name="columns2">
+                            <option value="None" selected>--None--</option>
+                        {% for col in cols2 %}
+                            <option value="{{col}}">{{col}}</option>
+                        {% endfor %}
+                        </select>
+                      </div>
+                </div>
+        
+                  
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">

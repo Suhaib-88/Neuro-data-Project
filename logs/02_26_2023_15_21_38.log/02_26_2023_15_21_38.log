@@ -1,0 +1,17 @@
+[ 2023-02-26 15:21:46,846 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:22:11,447 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:22:49,894 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:22:58,777 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:22:58,777 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 15:23:50,019 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:23:50,019 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:24:01,734 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:24:01,838 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:24:02,152 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:28:06,523 ] 25 root - INFO - 76 : Sucessfully entered Project Details!
+[ 2023-02-26 15:28:07,914 ] 74 root - INFO - Project actions performed for: 76!
+[ 2023-02-26 15:28:09,590 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 15:28:21,188 ] 113 root - INFO - All records deleted. Total time taken: 2.205061435699463 seconds.
+[ 2023-02-26 15:28:29,757 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.96720552444458 seconds.
+[ 2023-02-26 15:28:48,303 ] 852 root - ERROR - expected str, bytes or os.PathLike object, not list In System Logs API
+[ 2023-02-26 15:31:19,566 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\dataProcessing\views.py changed, reloading.

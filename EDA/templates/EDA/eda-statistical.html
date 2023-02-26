@@ -1,0 +1,130 @@
+{% extends 'EDA/base.html' %}
+{% load static %}
+
+{% block title %} Overview {% endblock %}
+
+{% block content %}
+{% if status == "error" %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{msg}}
+      </div>
+{% endif %}
+
+<div class="table2">
+    <div class="jumbotron">
+        <center><h2>Statistical Functions</h2></center>
+        <p>This page allows you to perform various Statistical functions on the dataset and extract meaningful information and insights.</p>
+             <hr class="my-4">
+             <ul class="list-group">
+                <li class="list-group-item active">Instructions:</li>
+                <li class="list-group-item">Select a statistical function to perform</li>
+                <li class="list-group-item">Click show result </li>
+
+              </ul>
+      </div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select a statistical method</label>
+                    <select class="form-control" id="method" name="select-stats-method" required>
+                        {% for method in methods %}
+                            <option value="{{method}}">{{method}}</option>
+                        {% endfor %}
+                    </select>
+                
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" id="window_div">
+                <div class="form-group">
+                    <label for="windowselement1">Enter Window size</label>
+                    <input type="number" id="windowsize1" name="windowsize-norm"  class="form-control margion0" />
+                  </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" id="rolling_div">
+                <div class="form-group">
+                    <label for="windowelement2">Enter Window size</label>
+                    <input type="number" id="windowsize2" name="windowsize-roll"  class="form-control margion0" />
+                  </div>
+            </div>
+
+            {% if selected_method == "Expanding" or selected_method == "Window" or selected_method == "Rolling" %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                    <div style="border: 1px solid #ddd; padding: 10px; margin: 10px;">
+                        <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Window, expanding, and rolling functions</h3>
+                        <p>These functions are used to apply a rolling window of a specific size to a time-series or other data to compute metrics such as moving average, standard deviation, or correlation.</p>
+                    </div>
+                </div>
+            {% endif %}
+            {% if selected_method == "Percentage change" %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div style="border: 1px solid #ddd; padding: 10px; margin: 10px;">
+                    <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Function pct_change:</h3>
+                    <p>This function is used to compute the percentage change between each element and the previous element in a time-series or other data.</p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if selected_method == 'Covariance' or selected_method == 'Correlation' %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <div style="border: 1px solid #ddd; padding: 10px; margin: 10px;">
+                    <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Covariance and correlation functions: </h3>
+                    <p>These functions are used to calculate the statistical relationship between two or more variables in a dataset. Covariance measures how much two variables vary together, while correlation measures the strength and direction of the linear relationship between two variables.</p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if selected_method == "Ranking" %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12" id="expanding_div">
+                <div style="border: 1px solid #ddd; padding: 10px; margin: 10px;">
+                    <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Data Ranking</h3>
+                    <p>This function is used to assign ranks to the elements in a dataset. The rank of an element represents its position in the sorted dataset..</p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if allowed_operation != "not" %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <button type="submit" id="submit" class="btn btn-success btn-large" id="submit">Show Result</button>
+            </div>
+            {% endif %}
+        </div>
+      </form>
+      {% if data %}
+        <h3 class="result">Result</h3>
+        <div style="overflow:auto;">
+        {{data | safe}}
+        </div>
+      {% endif %}
+</div>
+<script>
+    $(document).ready(function() {
+            $("#submit").on('click',()=>{
+                $("#loading").css('display', 'block');
+            })
+
+            $("#method").on('change',function(e){
+                if(e.target.value=='Window'){
+                    $("#window_div").show()
+                }else{
+                    $("#window_div").hide()
+                }
+
+                if(e.target.value=='Rolling'){
+                    $("#rolling_div").show()
+                }else{
+                    $("#rolling_div").hide()
+                }})
+
+                $('.dataframe').DataTable({
+                    "bScrollCollapse": true,
+                });
+                jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+
+            });
+
+</script>
+
+{% endblock %}

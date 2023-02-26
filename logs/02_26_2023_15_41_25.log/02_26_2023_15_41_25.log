@@ -1,0 +1,12 @@
+[ 2023-02-26 15:41:29,636 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:41:45,929 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:42:05,833 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:42:08,400 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:42:08,400 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-26 15:42:34,383 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:42:34,383 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:42:42,065 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:42:42,112 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:42:42,353 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-26 15:43:11,347 ] 853 root - ERROR - [Errno 13] Permission denied: 'C:\\Users\\suhai\\Newz\\neuro-project-engineering\\logs\\02_26_2023_15_21_38.log' In System Logs API
+[ 2023-02-26 15:46:43,667 ] 853 root - ERROR - [Errno 13] Permission denied: 'C:\\Users\\suhai\\Newz\\neuro-project-engineering\\logs\\02_26_2023_15_21_38.log' In System Logs API
