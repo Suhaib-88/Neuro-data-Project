@@ -82,7 +82,7 @@ class ProjectReports:
     def retrive_project_reports(project_id):
         try:
             query_=f"""
-            select projectreports.ModuleId, projectreports.ModuleName, projectreports.ActionName, project_actions.ProjectActionId, projectreports.timings from projectreports inner join project_actions on (project_actions.Projectid=projectreports.ProjectId) where projectreports.Projectid={project_id};
+            select projectreports.ModuleId, projectreports.ModuleName, projectreports.ActionName, project_actions.ProjectActionId, projectreports.current_datetime from projectreports inner join project_actions on (project_actions.Projectid=projectreports.ProjectId) where projectreports.Projectid={project_id};
             """
 
             rows_data = sql_obj.fetch_all(query_)

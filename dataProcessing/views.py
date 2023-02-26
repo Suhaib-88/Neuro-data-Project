@@ -253,9 +253,8 @@ def project_action_history(request):
     try:
         id_ = sql_obj.fetch_one(f"""SELECT project_id FROM get_project_id ORDER BY id DESC LIMIT 1;""")[0]
 
-        all_actions_data = sql_obj.fetch_all(f''' select project_actions.ProjectActionId,project_actions.CurrentDate,projectreports.Input,projectreports.ModuleName from projectreports join project_actions on project_actions.Projectid=projectreports.Projectid where project_actions.ProjectId ={int(id_)}
+        all_actions_data = sql_obj.fetch_all(f''' select project_actions.ProjectActionId,project_actions.current_datetime,projectreports.Input,projectreports.ModuleName from projectreports join project_actions on project_actions.Projectid=projectreports.Projectid where project_actions.ProjectId ={int(id_)}
         ''')
-
         data = ""
         if len(all_actions_data) > 0:
             df = pd.DataFrame(np.array(all_actions_data), columns=['ProjectActionID','Current_date','Input','Module Name'])

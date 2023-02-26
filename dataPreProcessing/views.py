@@ -4,7 +4,7 @@ import os
 import numpy as np
 from EDA.functions_EDA.eda_operations import EDA
 from src.utils.plotlyFunctions import Plotly_agent
-from src.utils.basicFunctions import fetch_num_cat_cols,save_project_pca,save_numpy_array
+from src.utils.basicFunctions import fetch_num_cat_cols,save_project_pca,save_numpy_array,absoluteFilePaths
 from django.contrib import messages
 
 
@@ -167,11 +167,11 @@ class dataCleaning:
                 
                     # apply the selected nan handling method on the selected column and store the result into the dataframe
                     if method == 'Mean':
-                        df[selected_column] = Preprocessor.impute_nan_numerical(df, 'Mean', [selected_column])
+                        df[selected_column] = Preprocessor.impute_nan_numerical(df, 'Mean', selected_column)
                     elif method == 'Median':
-                        df[selected_column] = Preprocessor.impute_nan_numerical(df, 'Median', [selected_column])
+                        df[selected_column] = Preprocessor.impute_nan_numerical(df, 'Median', selected_column)
                     elif method == 'Specific Value':
-                        df[selected_column] = Preprocessor.impute_nan_numerical(df, 'Specific Value', [selected_column],
+                        df[selected_column] = Preprocessor.impute_nan_numerical(df, 'Specific Value', selected_column,
                                                                         request.POST.get('arbitrary'))
                     elif method == 'KNNImputer':
                         df[selected_column] = Preprocessor.impute_nan_numerical(df, 'KNNImputer', selected_column)
@@ -307,7 +307,9 @@ class dataIntegration:
                 dataSource.handle_uploaded_file_2(file)
                 
                 # Check if the uploaded file exists and display it on the UI
-                get_status,df1= check_file_exists(os.path.join('media/dataflow_uploads',open('file_name2.txt','r').read()))
+                file_name2=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 2 ORDER BY id DESC LIMIT 1;""")[0]
+
+                get_status,df1= check_file_exists(os.path.join(next(absoluteFilePaths('media')),'dataflow_uploads',file_name2))
                 return render(request,'dataPreProcessing/integrate_datasets.html', {'integrate_functions':INTEGRATE_FUNCTIONS,"cols1":list(df.columns),"cols2":list(df1.columns),'is_loaded':get_status,"success":True})        
 
             # If a POST request with 'get-columns' is received, fetch the project data and perform data integration
@@ -317,8 +319,10 @@ class dataIntegration:
                 proj1=Project()
                 df=proj1.fetch(id=id_)
                 
+                file_name2=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 2 ORDER BY id DESC LIMIT 1;""")[0]
+
                 # Check if the uploaded file exists and get the selected integrate function and columns
-                get_status,df1=check_file_exists(os.path.join('media/dataflow_uploads',open('file_name2.txt','r').read()))
+                get_status,df1= check_file_exists(os.path.join(next(absoluteFilePaths('media')),'dataflow_uploads',file_name2))
                 selected_integrate_function=request.POST.get('select-integrate-function')
                 selected_col1=request.POST.get('columns1')
                 selected_col2=request.POST.get('columns2')
@@ -345,8 +349,10 @@ class dataIntegration:
                 proj1=Project()
                 df=proj1.fetch(id=id_)
                 
+                file_name2=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 2 ORDER BY id DESC LIMIT 1;""")[0]
+
                 # Check if the uploaded file exists and get the selected integrate function and columns
-                get_status,df1=check_file_exists(os.path.join('media/dataflow_uploads',open('file_name2.txt','r').read()))
+                get_status,df1= check_file_exists(os.path.join(next(absoluteFilePaths('media')),'dataflow_uploads',file_name2))
                 selected_integrate_function=request.POST.get('selected-integrate-function')
                 selected_col1=request.POST.get('selected-columns1')
                 selected_col2=request.POST.get('selected-columns2')
