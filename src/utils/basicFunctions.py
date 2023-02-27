@@ -39,7 +39,6 @@ def move_file(src_dir,dst_dir,file_extension):
         shutil.copy(file, dst_dir)
 
 
-@staticmethod
 def get_latest_file(directory:str)->list:
     csv_files=[]
     latest_dir=max(glob.glob(os.path.join(directory,'*')),key=os.path.getctime)
@@ -50,7 +49,6 @@ def get_latest_file(directory:str)->list:
     return csv_files
 
 
-@staticmethod
 def handle_uploaded_file(f,file_path):
     with open(file_path, 'wb+') as destination:
         for chunk in f.chunks():

@@ -304,7 +304,7 @@ def export_data(request):
                 logging.info('Export File in Process')
                 # Retrieve the selected export format
                 fileID = request.POST.get('get-source', '')
-
+                
                 # Check if a format has been selected
                 if fileID != "":
                     # Log the creation of a temporary file
@@ -314,11 +314,11 @@ def export_data(request):
                     # Remove the first character of the URL
                     urls = urls[1:]
                     # Get the file name without the extension
-                    file_name = urls.split(".")[0].split("/")[-1]
+                    file_name = os.path.basename(urls).split('.')[0]
                     # Check if the URL is None
                     if urls is None:
                         # Return an error message
-                        render('dataProcessing/export-file.html', {"msg": "OOPS something went wrong!!"})
+                        render(request,'dataProcessing/export-file.html', {"msg": "OOPS something went wrong!!"})
 
                 # Check if the selected format is CSV
                 if fileID == "1":
