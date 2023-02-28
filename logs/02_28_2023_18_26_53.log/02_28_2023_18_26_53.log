@@ -1,0 +1,67 @@
+[ 2023-02-28 18:27:02,054 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 18:27:22,282 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 18:27:52,034 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 18:27:55,591 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 18:27:55,592 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 18:28:33,118 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 18:28:33,121 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 18:28:43,721 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 18:28:43,783 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 18:28:44,236 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 21:52:18,625 ] 222 django.request - WARNING - Not Found: /favicon.ico
+[ 2023-02-28 21:56:22,020 ] 25 root - INFO - 81 : Sucessfully entered Project Details!
+[ 2023-02-28 21:56:23,580 ] 74 root - INFO - Project actions performed for: 81!
+[ 2023-02-28 21:56:24,659 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 21:56:36,261 ] 113 root - INFO - All records deleted. Total time taken: 2.231064558029175 seconds.
+[ 2023-02-28 21:56:44,479 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.855991840362549 seconds.
+[ 2023-02-28 21:57:44,216 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 21:57:54,484 ] 113 root - INFO - All records deleted. Total time taken: 2.1060116291046143 seconds.
+[ 2023-02-28 21:58:01,546 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.913036823272705 seconds.
+[ 2023-02-28 21:58:04,633 ] 84 root - INFO - Fetching categorical and numerical columns!
+[ 2023-02-28 21:58:04,660 ] 445 root - INFO - Statistical function:Window rolling with standard deviation Implemented!
+[ 2023-02-28 22:00:01,288 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:00:11,562 ] 113 root - INFO - All records deleted. Total time taken: 2.0709681510925293 seconds.
+[ 2023-02-28 22:00:18,434 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.7849996089935303 seconds.
+[ 2023-02-28 22:02:55,125 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:03:05,438 ] 113 root - INFO - All records deleted. Total time taken: 2.130000591278076 seconds.
+[ 2023-02-28 22:03:12,429 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.9049947261810303 seconds.
+[ 2023-02-28 22:03:15,448 ] 62 root - INFO - 81 details uploaded successfully for Feature Engineering!
+[ 2023-02-28 22:03:34,598 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:03:44,887 ] 113 root - INFO - All records deleted. Total time taken: 2.1220879554748535 seconds.
+[ 2023-02-28 22:03:51,988 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.8870577812194824 seconds.
+[ 2023-02-28 22:03:54,833 ] 84 root - INFO - Fetching categorical and numerical columns!
+[ 2023-02-28 22:03:54,977 ] 62 root - INFO - 81 details uploaded successfully for Feature Engineering!
+[ 2023-02-28 22:03:55,309 ] 48 root - INFO - Label/Ordinal Encoder implemented!
+[ 2023-02-28 22:04:04,997 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:04:15,180 ] 113 root - INFO - All records deleted. Total time taken: 2.0320401191711426 seconds.
+[ 2023-02-28 22:04:22,158 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.9020280838012695 seconds.
+[ 2023-02-28 22:04:25,136 ] 84 root - INFO - Fetching categorical and numerical columns!
+[ 2023-02-28 22:04:25,308 ] 56 root - INFO - Pandas get_dummies implemented!
+[ 2023-02-28 22:04:25,905 ] 102 root - INFO - removed temp files successfully!
+[ 2023-02-28 22:04:26,085 ] 125 root - INFO - DataFrame updated successfully!
+[ 2023-02-28 22:04:26,085 ] 74 root - INFO - Project actions performed for: 81!
+[ 2023-02-28 22:04:27,086 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:04:37,372 ] 113 root - INFO - All records deleted. Total time taken: 2.1099913120269775 seconds.
+[ 2023-02-28 22:04:44,435 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.85500431060791 seconds.
+[ 2023-02-28 22:04:47,706 ] 62 root - INFO - 81 details uploaded successfully for Feature Engineering!
+[ 2023-02-28 22:05:00,511 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:05:02,993 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:05:10,914 ] 113 root - INFO - All records deleted. Total time taken: 2.1710026264190674 seconds.
+[ 2023-02-28 22:05:13,236 ] 113 root - INFO - All records deleted. Total time taken: 1.97200608253479 seconds.
+[ 2023-02-28 22:05:17,853 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.8260016441345215 seconds.
+[ 2023-02-28 22:05:19,962 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.610996961593628 seconds.
+[ 2023-02-28 22:05:21,595 ] 62 root - INFO - 81 details uploaded successfully for Feature Engineering!
+[ 2023-02-28 22:05:21,966 ] 108 root - INFO - MinMax Scaler implemented!
+[ 2023-02-28 22:05:22,500 ] 102 root - INFO - removed temp files successfully!
+[ 2023-02-28 22:05:22,510 ] 125 root - INFO - DataFrame updated successfully!
+[ 2023-02-28 22:05:22,510 ] 74 root - INFO - Project actions performed for: 81!
+[ 2023-02-28 22:05:23,646 ] 62 root - INFO - 81 details uploaded successfully for Feature Engineering!
+[ 2023-02-28 22:05:23,946 ] 108 root - INFO - MinMax Scaler implemented!
+[ 2023-02-28 22:05:24,465 ] 102 root - INFO - removed temp files successfully!
+[ 2023-02-28 22:05:24,475 ] 125 root - INFO - DataFrame updated successfully!
+[ 2023-02-28 22:05:24,476 ] 74 root - INFO - Project actions performed for: 81!
+[ 2023-02-28 22:06:15,121 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:06:25,487 ] 113 root - INFO - All records deleted. Total time taken: 2.1930367946624756 seconds.
+[ 2023-02-28 22:06:37,966 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 4.924041271209717 seconds.
+[ 2023-02-28 22:06:42,400 ] 62 root - INFO - 81 details uploaded successfully for Feature Engineering!
+[ 2023-02-28 22:14:46,002 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\dataPreProcessing\views.py changed, reloading.

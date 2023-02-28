@@ -92,7 +92,8 @@ class Preprocessor:
         elif impute_type == 'Median':
             try:
                 logging.info("Missing Values Imputed by Median")
-                return df[columns].fillna(np.median(df[columns]))
+                return df[columns].replace(np.nan,df[columns].median())
+
             except Exception as e:
                 logging.info(f"Error while imputing nan values with median occured at :{e}")
 

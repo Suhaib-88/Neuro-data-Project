@@ -78,7 +78,7 @@ class Project(View):
         sql_obj.insert_records(f"""INSERT INTO get_project_id (project_id) VALUES ({Project_details.id});""")
 
 
-        ProjectReports.insert_project_action_report(PROJECT_ACTIONS.get("INITIALIZATION"))
+        ProjectReports.insert_project_action_report(Project_details.id,PROJECT_ACTIONS.get("INITIALIZATION"))
 
         # Query the project module URL from the "projects_info" table
         query = sql_obj.fetch_one(f"SELECT ModuleUrl FROM projects_info WHERE Projectid={id}")[0]

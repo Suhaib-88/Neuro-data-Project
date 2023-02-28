@@ -1,0 +1,20 @@
+[ 2023-02-28 22:37:28,636 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:37:40,421 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:37:55,304 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:37:57,293 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:37:57,293 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:38:22,605 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:38:22,608 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:38:28,651 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:38:28,680 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:38:28,863 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-02-28 22:39:41,649 ] 109 root - INFO - added project sucessfully with bass
+[ 2023-02-28 22:39:51,385 ] 25 root - INFO - 80 : Sucessfully entered Project Details!
+[ 2023-02-28 22:39:52,477 ] 74 root - INFO - Project actions performed for: 80!
+[ 2023-02-28 22:39:53,619 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:40:04,143 ] 113 root - INFO - All records deleted. Total time taken: 2.127997636795044 seconds.
+[ 2023-02-28 22:40:11,340 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.9019992351531982 seconds.
+[ 2023-02-28 22:41:14,334 ] 222 django.request - WARNING - Not Found: /Project/setTarget
+[ 2023-02-28 22:41:30,868 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-02-28 22:42:14,857 ] 115 root - ERROR - Error:ac-4wikiyo-shard-00-01.noqizbf.mongodb.net:27017: timed out
+[ 2023-02-28 22:42:21,872 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 2.923999309539795 seconds.

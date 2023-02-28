@@ -478,8 +478,8 @@ class EDA_statistical_functions(View):
         proj1=Project()
         df=proj1.fetch(id=id_)
 
-        if len(df.columns[df.dtypes == 'category']) > 0 or len(df.columns[df.dtypes == 'object']) > 0:    
-            return render(request,'FeatureEngineering/feat-scaling.html',{"allowed_operation":"not", "status":"error","msg":"Statistical Operations can't be performed at this point, data contain categorical data. Please comeback after performing encoding !"})
+        if len(df.columns[df.dtypes == 'float']) < 0 or len(df.columns[df.dtypes == 'int']) < 0:    
+            return render(request,'EDA/eda-statistical.html',{"allowed_operation":"not", "status":"error","msg":"Statistical Operations can't be performed at this point, data does not contain any numerical data!"})
 
         context={"methods":STATISTICAL_FUNCTIONS}
         return render(request,'EDA/eda-statistical.html',context)
@@ -496,6 +496,9 @@ class EDA_statistical_functions(View):
             # Call the fetch method from Project class
             proj1=Project()
             df=proj1.fetch(id=id_)
+            num_cols,cat_cols=fetch_num_cat_cols(df)
+            df=df.loc[:,num_cols]
+            
             select_method=request.POST.get('select-stats-method')
             applied_dataframe = StatisticalDataAnalysis(df)
             if select_method=="Window":

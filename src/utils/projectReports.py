@@ -56,7 +56,7 @@ class ProjectReports:
     def insert_record_fe(actionName, input=''):
         try:
             query = f"""INSERT INTO 
-            ProjectReports(`Projectid`, `ModuleId`,`ModuleName` ,`ActionName`, `Input`)
+            ProjectReports(`ProjectId`, `ModuleId`,`ModuleName` ,`ActionName`, `Input`)
             VALUES ('{ProjectReports.id}',4,'FE','{actionName}','{input}')"""
 
             logging.info(f"{ProjectReports.id} details uploaded successfully for Feature Engineering!")
@@ -65,11 +65,11 @@ class ProjectReports:
             logging.error(f"{ProjectReports.id} details upload failed for Feature Engineering!")
     
     @staticmethod
-    def insert_project_action_report(projectActionId,input_=''):
+    def insert_project_action_report(project_id,projectActionId,input_=''):
         try:
             query = f"""INSERT INTO 
             Project_Actions(ProjectId, ProjectActionId,Input)
-            VALUES ({ProjectReports.id},{projectActionId},'{input_}')"""
+            VALUES ("{project_id}",{projectActionId},'{input_}')"""
             
             logging.info(f"Project actions performed for: {ProjectReports.id}!")
             rowcount = sql_obj.insert_records(query)

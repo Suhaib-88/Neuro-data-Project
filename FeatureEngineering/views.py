@@ -144,7 +144,7 @@ class FE_feature_encoding(View):
                 update_data(df)
             
         
-                ProjectReports.insert_project_action_report(PROJECT_ACTIONS.get("ENCODING"),input_=",".join(encoding_cols))
+                ProjectReports.insert_project_action_report(id_,PROJECT_ACTIONS.get("ENCODING"),input_=",".join(encoding_cols))
                 messages.success(request,'Successfully performed encoding')
                 return redirect('scaling')
                             
@@ -271,7 +271,7 @@ class FE_feature_scaling(View):
             update_data(scaled_df)
             
             # inserting an action report into the ProjectReports
-            ProjectReports.insert_project_action_report(PROJECT_ACTIONS.get("SCALING"),input_=scaling_method)
+            ProjectReports.insert_project_action_report(id_,PROJECT_ACTIONS.get("SCALING"),input_=scaling_method)
             
             # rendering the HTML template with the scaling types and scaled data
             return render(request,'FeatureEngineering/feat-scaling.html',{"scaler_types":ALLOWED_SCALE_TYPES,'data':df_to_html})

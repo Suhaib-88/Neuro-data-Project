@@ -454,7 +454,7 @@ class dataReduction:
                 df = update_data(data)
 
                 # Log the PCA action in the project reports
-                ProjectReports.insert_project_action_report(PROJECT_ACTIONS.get("PCA"),no_pca_selected)
+                ProjectReports.insert_project_action_report(id_,PROJECT_ACTIONS.get("PCA"),no_pca_selected)
 
                 # Convert the data to HTML for display
                 data = df.head(5).to_html()
