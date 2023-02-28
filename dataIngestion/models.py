@@ -16,7 +16,7 @@ class import_Data(models.Model):
 
 
 class upload_Dataset(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     problem_statement_type= models.CharField(max_length=20,choices=PROBLEM_TYPES_LIST) #
     problem_statement_name = models.CharField(max_length=40,null=True)
     problem_statement_description = models.TextField(max_length=75,null=True,blank=True)
