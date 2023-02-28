@@ -31,38 +31,38 @@ class ProjectReports:
         
 
     @staticmethod
-    def insert_record_eda(actionName, input=''):
+    def insert_record_eda(project_id,actionName, input=''):
         try:
             query = f"""INSERT INTO 
             ProjectReports(`Projectid`, `ModuleId`,`ModuleName`, `ActionName`, `Input`)
-             VALUES ('{ProjectReports.id}',2,'EDA','{actionName}','{input}')"""
-            logging.info(f"{ProjectReports.id} details uploaded successfully for EDA!")
+             VALUES ('{project_id}',2,'EDA','{actionName}','{input}')"""
+            logging.info(f"{project_id} details uploaded successfully for EDA!")
             rowcount = sql_obj.insert_records(query)
         except Exception as e:
-            logging.error(f"{ProjectReports.id} details upload failed for EDA!")
+            logging.error(f"{project_id} details upload failed for EDA!")
 
     @staticmethod
-    def insert_record_dp(actionName, input=''):
+    def insert_record_dp(project_id,actionName, input=''):
         try:
             query = f"""INSERT INTO 
             ProjectReports(`Projectid`, `ModuleId`,`ModuleName`, `ActionName`, `Input`)
-            VALUES ('{ProjectReports.id}',3,'DP','{actionName}','{input}')"""
-            logging.info(f"{ProjectReports.id} details uploaded successfully for Data Preprocessing!")
+            VALUES ('{project_id}',3,'DP','{actionName}','{input}')"""
+            logging.info(f"{project_id} details uploaded successfully for Data Preprocessing!")
             rowcount = sql_obj.insert_records(query)
         except Exception as e:
-            logging.error(f"{ProjectReports.id} details upload failed for Data Preprocessing!")
+            logging.error(f"{project_id} details upload failed for Data Preprocessing!")
 
     @staticmethod
-    def insert_record_fe(actionName, input=''):
+    def insert_record_fe(project_id,actionName, input=''):
         try:
             query = f"""INSERT INTO 
             ProjectReports(`ProjectId`, `ModuleId`,`ModuleName` ,`ActionName`, `Input`)
-            VALUES ('{ProjectReports.id}',4,'FE','{actionName}','{input}')"""
+            VALUES ('{project_id}',4,'FE','{actionName}','{input}')"""
 
-            logging.info(f"{ProjectReports.id} details uploaded successfully for Feature Engineering!")
+            logging.info(f"{project_id} details uploaded successfully for Feature Engineering!")
             sql_obj.insert_records(query)
         except Exception as e:
-            logging.error(f"{ProjectReports.id} details upload failed for Feature Engineering!")
+            logging.error(f"{project_id} details upload failed for Feature Engineering!")
     
     @staticmethod
     def insert_project_action_report(project_id,projectActionId,input_=''):

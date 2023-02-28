@@ -72,7 +72,7 @@ class FE_feature_encoding(View):
             target_ = sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={Project_details.id}""")[0]
 
             # Inserting a record in the ProjectReports table
-            ProjectReports.insert_record_fe('Redirect To Encoding')        
+            ProjectReports.insert_record_fe(id_,'Redirect To Encoding')        
 
             # If the problem statement type is not "Clustering" and the target column is not set
             if Project_details.problem_statement_type != "Clustering" and target_ == 'None':
@@ -124,7 +124,7 @@ class FE_feature_encoding(View):
             if request.method=='POST' and 'checkResult' in request.POST:
                 encoding_type=request.POST.get('encoding_type')
 
-                ProjectReports.insert_record_fe('Perform Encoding', encoding_type)
+                ProjectReports.insert_record_fe(id_,'Perform Encoding', encoding_type)
                 
                 non_encoded_columns=[col for col in df.columns if col not in encoding_cols]            
                 encoded_df,encoder=FE.encode(df,encoding_cols,encoding_type)
@@ -193,7 +193,7 @@ class FE_feature_scaling(View):
             target_=sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={Project_details.id}""")[0]
             
             # Insert a record for redirecting to scaling
-            ProjectReports.insert_record_fe('Redirect To Scaling')
+            ProjectReports.insert_record_fe(id_,'Redirect To Scaling')
 
             # If the problem statement type is not clustering and the target column is not set, return an error message
             # indicating that the target column must be set first.
@@ -253,7 +253,7 @@ class FE_feature_scaling(View):
             scaling_method = request.POST['scaling_method']
             
             # inserting the scaling method used into the ProjectReports
-            ProjectReports.insert_record_fe("Perform Scaling",scaling_method)
+            ProjectReports.insert_record_fe(id_,"Perform Scaling",scaling_method)
             
             # if a target column is set
             if target_ != "None":

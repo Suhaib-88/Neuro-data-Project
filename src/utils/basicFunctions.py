@@ -135,8 +135,8 @@ def save_project_encoding(encoder):
         Project_details= upload_Dataset.objects.get(id=int(id_))
         Project_details.problem_statement_name= "_".join(Project_details.problem_statement_name.split())
         path = os.path.join(next(absoluteFilePaths('artifacts')),Project_details.problem_statement_name)
-        if not os.path.exists(path):
-            os.mkdir(path)
+        if not os.path.isdir(path):
+            os.makedirs(path)
 
         file_name = os.path.join(path, 'encoder.pkl')
         pickle.dump(encoder, open(file_name, 'wb'))
@@ -171,8 +171,8 @@ def save_project_scaler(scaler):
         Project_details.problem_statement_name= "_".join(Project_details.problem_statement_name.split())
         
         path = os.path.join(next(absoluteFilePaths('artifacts')), Project_details.problem_statement_name)
-        if not os.path.exists(path):
-            os.mkdir(path)
+        if not os.path.isdir(path):
+            os.makedirs(path)
 
         file_name = os.path.join(path, 'scaler.pkl')
         pickle.dump(scaler, open(file_name, 'wb'))
@@ -209,8 +209,8 @@ def save_project_pca(pca):
         
 
         path = os.path.join(next(absoluteFilePaths('artifacts')), Project_details.problem_statement_name)
-        if not os.path.exists(path):
-            os.mkdir(path)
+        if not os.path.isdir(path):
+            os.makedirs(path)
 
         file_name = os.path.join(path, 'pca.pkl')
         pickle.dump(pca, open(file_name, 'wb'))
@@ -246,8 +246,8 @@ def save_project_model(model, name='model_temp.pkl'):
         
 
         path = os.path.join(next(absoluteFilePaths('artifacts')), Project_details.problem_statement_name)
-        if not os.path.exists(path):
-            os.mkdir(path)
+        if not os.path.isdir(path):
+            os.makedirs(path)
 
         file_name = os.path.join(path, name)
         pickle.dump(model, open(file_name, 'wb'))
@@ -280,9 +280,11 @@ def save_numpy_array(X_train,X_test,y_train,y_test):
         id_ = sql_obj.fetch_one(f"""SELECT project_id FROM get_project_id ORDER BY id DESC LIMIT 1;""")[0]
 
         Project_details= upload_Dataset.objects.get(id=int(id_))
-        
+        path=os.path.join(next(absoluteFilePaths('artifacts')), Project_details.problem_statement_name,'dataset_splitter.npy')
+        if os.path.isdir(path):
+            os.makedirs(path)
 
-        with open (os.path.join(next(absoluteFilePaths('artifacts')), Project_details.problem_statement_name,'dataset_splitter.npy'),'wb') as f:
+        with open (path,'wb') as f:
             np.save(f,X_train)
             np.save(f,X_test)
             np.save(f,y_train)
@@ -297,12 +299,13 @@ def load_numpy_array(X_train,X_test,y_train,y_test):
 
         Project_details= upload_Dataset.objects.get(id=int(id_))
         
-        
-        with open (os.path.join(next(absoluteFilePaths('artifacts')), Project_details.problem_statement_name,'dataset_splitter.npy'),'rb') as f:
-            X_train=np.load(f,allow_pickle=True)
-            X_test=np.load(f,allow_pickle=True)
-            y_train=np.load(f,allow_pickle=True)
-            y_test=np.load(f,allow_pickle=True)
-        return X_train,X_test,y_train,y_test
+        path=os.path.join(next(absoluteFilePaths('artifacts')), Project_details.problem_statement_name,'dataset_splitter.npy')
+        if os.path.exists(path):
+            with open (path,'rb') as f:
+                X_train=np.load(f,allow_pickle=True)
+                X_test=np.load(f,allow_pickle=True)
+                y_train=np.load(f,allow_pickle=True)
+                y_test=np.load(f,allow_pickle=True)
+            return X_train,X_test,y_train,y_test
     except Exception as e:
         logging.error(f"Error occurred While loading numpy array: {e}!")

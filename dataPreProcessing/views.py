@@ -65,7 +65,7 @@ class dataCleaning:
             data = duplicate_data.to_html()
 
             # Insert record into ProjectReports table for Redirect To Handle Duplicate Data.
-            ProjectReports.insert_record_dp('Redirect To Handle Duplicate Data!')
+            ProjectReports.insert_record_dp(id_,'Redirect To Handle Duplicate Data!')
 
             # Check if the request method is POST.
             if request.method == "POST":
@@ -227,7 +227,7 @@ class dataCleaning:
             df=proj1.fetch(id=id_)
             
             # record the status in the ProjectReports table
-            ProjectReports.insert_record_dp('Redirect To Delete Columns!')
+            ProjectReports.insert_record_dp(id_,'Redirect To Delete Columns!')
 
             if request.method=="POST":
                 # retrieve the selected columns from the POST request data
@@ -278,7 +278,7 @@ class dataCleaning:
                 min_value=request.POST.get('selected-minimum-value')
                 max_value=request.POST.get('selected-maximum-value')
                 message,dataframe=Preprocessor.clean_column(df,selected_column,int(min_value),int(max_value))
-                ProjectReports.insert_record_dp('Redirect To handle inconsistent data!',selected_column)
+                ProjectReports.insert_record_dp(id_,'Redirect To handle inconsistent data!',selected_column)
 
                 update_data(dataframe)
                 return render(request,'dataPreProcessing/handle_inconsistencies.html', {"columns":num_cols,"status":"success"})
@@ -340,7 +340,7 @@ class dataIntegration:
 
                 # Convert the resulting data to HTML format and display it on the UI
                 df_to_html=[data.to_html(classes='data')]
-                ProjectReports.insert_record_dp('Perform data integration!',selected_integrate_function)
+                ProjectReports.insert_record_dp(id_,'Perform data integration!',selected_integrate_function)
 
                 # If a POST request with 'get-columns' is received, display the resulting data on the UI
                 return render(request,'dataPreProcessing/integrate_datasets.html', {'integrate_functions':INTEGRATE_FUNCTIONS,"data":df_to_html,"success":True,"selected_function":selected_integrate_function,"selected_col_1":selected_col1,"selected_col_1":selected_col2})
@@ -501,7 +501,7 @@ class dataTransformation:
                 # Return a template with a success message and the updated list of columns
                 return render(request,'dataPreProcessing/rename-cols.html',{"status":"success", "columns":list(df.columns)})
                     
-            ProjectReports.insert_record_dp('Redirect To Change Column Name')
+            ProjectReports.insert_record_dp(id_,'Redirect To Change Column Name')
             return render(request,'dataPreProcessing/rename-cols.html',{"columns":list(df.columns)})
         except Exception as e:
              # Return a template with an error message and the list of columns in the dataframe
@@ -547,7 +547,7 @@ class dataTransformation:
                     # Get the selected column and the new data type from the POST request
                     selected_column = request.POST.get('column','')
                     datatype = request.POST.get('datatype','')
-                    ProjectReports.insert_record_dp('Change dtypes!',datatype)
+                    ProjectReports.insert_record_dp(id_,'Change dtypes!',datatype)
                     
                     # If the selected column is a categorical column, clean the data and convert it to the specified data type
                     if selected_column in cat_cols:
@@ -569,7 +569,7 @@ class dataTransformation:
                                                             "msg":f'{e}'})
         
 
-            ProjectReports.insert_record_dp('Redirect To Handle DataType')
+            ProjectReports.insert_record_dp(id_,'Redirect To Handle DataType')
             return render(request,'dataPreProcessing/change-dtypes.html',{"columns":df.loc[:, column_lists].dtypes.apply(lambda x: x.name).to_dict().items(),"supported_dtypes":ALLOWED_DTYPES})
             
         except Exception as e:
@@ -612,7 +612,7 @@ class dataTransformation:
                 return redirect('missings')
 
             # insert a record in the ProjectReports table
-            ProjectReports.insert_record_dp('Redirect To Handler Outlier!')
+            ProjectReports.insert_record_dp(id_,'Redirect To Handler Outlier!')
             # fetch the numerical and categorical columns from the data frame
             num_cols, cat_cols = fetch_num_cat_cols(df)
 
@@ -733,7 +733,7 @@ class dataTransformation:
                 X_train, X_test, y_train, y_test=Preprocessor.train_test_splitter(df.drop(columns=target_col).values,df[target_col].values,test_size=float(test_size),random_state=42)
                 save_numpy_array(X_train, X_test, y_train, y_test)
     
-                ProjectReports.insert_record_dp('Perform dataset splitting into train and test sets!',test_size)
+                ProjectReports.insert_record_dp(id_,'Perform dataset splitting into train and test sets!',test_size)
                 return render(request,'dataPreProcessing/train-test-splitter.html',{"success":True})
             return render(request,'dataPreProcessing/train-test-splitter.html')
 

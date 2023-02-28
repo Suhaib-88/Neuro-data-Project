@@ -86,7 +86,7 @@ class EDA_missing(View):
                 missing_df_to_html=[dataframe.to_html(classes='data')]
                 # insert the record of the
                 
-                ProjectReports.insert_record_eda('Redirect To Missing Value')
+                ProjectReports.insert_record_eda(id_,'Redirect To Missing Value')
                 return render(request,'EDA/eda-missing.html',{"missing_values":missing_df_to_html, "has_missing":True,"barchart":bar_graphJSON})
             
             # else if dataframe is empty then render message
@@ -130,7 +130,7 @@ class EDA_summary(View):
             dtypes_to_html = [dataTypeInfo.to_html(classes='data')]
 
             # Insert a record for the EDA summary operation
-            ProjectReports.insert_record_eda('Redirect To Data Summary')
+            ProjectReports.insert_record_eda(id_,'Redirect To Data Summary')
 
             # Render the EDA summary page with the data summary and data type information
             return render(request, 'EDA/eda-summary.html', {"table_summary": summary_to_html, "data_types": dtypes_to_html, 'row_count': len(df), 'column_count': len(list(df.columns))})        
@@ -166,7 +166,7 @@ class EDA_showDataset(View):
             cols = df.columns
 
             # Record the redirect to show dataset in the ProjectReports
-            ProjectReports.insert_record_eda('Redirect To Show Dataset')
+            ProjectReports.insert_record_eda(id_,'Redirect To Show Dataset')
 
             # Render the EDA/eda-showdata.html template with the length of the dataframe, showOrder and columns as parameters
             return render(request, 'EDA/eda-showdata.html', {"length": len(df), "showOrder": SHOWDATA_FUNCTIONS, "columns": cols})
@@ -194,7 +194,7 @@ class EDA_showDataset(View):
             order_selected = request.POST.get('order-select', '')
 
             # Record the show action in the ProjectReports with the number of rows as input
-            ProjectReports.insert_record_eda('Show', input=no_of_rows)
+            ProjectReports.insert_record_eda(id_,'Show', input=no_of_rows)
 
             if selected_choice != '':
                 # Get the specified number of records from the selected columns in the specified order
@@ -237,7 +237,7 @@ class EDA_correlation(View):
             df=proj1.fetch(id=id_)
 
             # insert record for redirecting to correlation
-            ProjectReports.insert_record_eda('Redirect To Correlation')
+            ProjectReports.insert_record_eda(id_,'Redirect To Correlation')
             
             # fetching numerical and categorical columns
             num_cols,cat_cols= fetch_num_cat_cols(df)
@@ -275,7 +275,7 @@ class EDA_correlation(View):
             method_selected=request.POST.get('method','')
 
             # insert record for redirecting to correlation with the selected method
-            ProjectReports.insert_record_eda('Redirect To Correlation', input=method_selected)
+            ProjectReports.insert_record_eda(id_,'Redirect To Correlation', input=method_selected)
 
             if method_selected is not None :
                 # generate the correlation matrix
@@ -366,7 +366,7 @@ class EDA_higly_correlated(View):
             highly_correlated_cols=EDA.high_correlation_matrix(df,float(threshold))
 
             # Insert the record of the redirect to the highly correlated feature view
-            ProjectReports.insert_record_eda('Redirect To highly correlated features', input=threshold)
+            ProjectReports.insert_record_eda(id_,'Redirect To highly correlated features', input=threshold)
 
             if highly_correlated_cols != set():
                 # Return the template with the highly correlated columns and threshold
@@ -424,7 +424,7 @@ class EDA_outliers(View):
             selected_outlier_method = request.POST.get('outlier-method', '')
 
             # Log the user's input in the project reports table
-            ProjectReports.insert_record_eda('Redirect To Outlier', input=selected_outlier_method)
+            ProjectReports.insert_record_eda(id_,'Redirect To Outlier', input=selected_outlier_method)
 
             # Detect outliers using the Z-score method or the Interquartile Range (IQR) method
             if selected_outlier_method == 'z-score':
@@ -584,7 +584,7 @@ class EDA_plots(View):
             num_cols, cat_cols = fetch_num_cat_cols(df)
             
             # Insert a record in the ProjectReports table for the 'Plots' page
-            ProjectReports.insert_record_eda('Plots')
+            ProjectReports.insert_record_eda(id_,'Plots')
 
             # Render the EDA/eda-plots.html template and pass the data to the template
             return render(request,'EDA/eda-plots.html',{ "columns":list(df.columns), "x_list":list(df.columns),"y_list":num_cols,'tasks':tasks})
@@ -725,7 +725,7 @@ class EDA_plots(View):
                 return render(request,'EDA/eda-plots.html', {'tasks':tasks,"error_message":error_message})
             
 
-            ProjectReports.insert_record_eda('Redirect to Plot', input=selected_graph_type)
+            ProjectReports.insert_record_eda(id_,'Redirect to Plot', input=selected_graph_type)
                         
             return render(request,'EDA/eda-plots.html', {'tasks':tasks,"selected_graph_type":selected_graph_type,"columns":list(df.columns),"x_list":list(df.columns),"y_list":num_cols,"graphJSON":graphJSON})
 
