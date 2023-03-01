@@ -249,22 +249,18 @@ class FE_feature_scaling(View):
             # inserting the scaling method used into the ProjectReports
             ProjectReports.insert_record_fe(id_,"Perform Scaling",scaling_method)
             
-            # creating a list of columns except for the target column
-            columns = list(df.columns)
-            columns.remove(target_)
-
-            # Filter the dataset to contain only the columns that can be used for scaling
-            df = df.loc[:, columns]
+            if target_:
+                columns = [col for col in df.columns if col != target_]
             
             # scaling the data using the selected method
-            scaled_df, scaler = FE.scale(df,columns, scaling_method)
+            df[columns], scaler = FE.scale(df[columns], scaling_method)
             # converting the scaled data into HTML format
-            df_to_html = [scaled_df.sample(10).to_html(classes='data')]
+            df_to_html = [df.sample(10).to_html(classes='data')]
             
             # saving the scaler used for scaling
             save_project_scaler(scaler)
             # updating the dataframe
-            update_data(scaled_df)
+            update_data(df)
             
             # inserting an action report into the ProjectReports
             ProjectReports.insert_project_action_report(id_,PROJECT_ACTIONS.get("SCALING"),input_=scaling_method)
