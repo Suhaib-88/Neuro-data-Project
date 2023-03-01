@@ -726,7 +726,7 @@ def export_resources(request):
             folder_path = os.path.join(next(absoluteFilePaths('artifacts')), Project_details.problem_statement_name)
 
             # Get project actions data based on the project ID
-            all_actions_data = sql_obj.fetch_all(f''' select project_actions.ProjectActionId,project_actions.CurrentDate,projectreports.Input,projectreports.ModuleName from projectreports join project_actions on project_actions.Projectid=projectreports.Projectid where project_actions.ProjectId ={int(id_)}
+            all_actions_data = sql_obj.fetch_all(f''' select project_actions.ProjectActionId,project_actions.current_datetime,projectreports.Input,projectreports.ModuleName from projectreports join project_actions on project_actions.Projectid=projectreports.Projectid where project_actions.ProjectId ={int(id_)}
             ''')
             print(all_actions_data)
 
