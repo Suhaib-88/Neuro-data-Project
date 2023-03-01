@@ -127,6 +127,7 @@ class FE_feature_encoding(View):
                 ProjectReports.insert_record_fe(id_,'Perform Encoding', encoding_type)
                 
                 non_encoded_columns=[col for col in df.columns if col not in encoding_cols]            
+                
                 encoded_df,encoder=FE.encode(df,encoding_cols,encoding_type)
                 
                 rem_data=df.loc[:,non_encoded_columns]
@@ -190,7 +191,7 @@ class FE_feature_scaling(View):
             Project_details= upload_Dataset.objects.get(id=id_)
             
             # Fetch the target column
-            target_=sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={id_}""")[0]
+            target_=sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={Project_details.id}""")[0]
             
             # Insert a record for redirecting to scaling
             ProjectReports.insert_record_fe(id_,'Redirect To Scaling')
@@ -247,27 +248,28 @@ class FE_feature_scaling(View):
             Project_details = upload_Dataset.objects.get(id=id_)
             
             # fetching the target column from the database
-            target_ = sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={id_}""")[0]
+            target_ = sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={Project_details.id}""")[0]
             
             # getting the selected scaling method from the form
             scaling_method = request.POST['scaling_method']
             
             # inserting the scaling method used into the ProjectReports
             ProjectReports.insert_record_fe(id_,"Perform Scaling",scaling_method)
-            
-            # creating a list of columns except for the target column
-            columns = list(df.columns)
-            columns.remove(target_)
-            
+
+            if target_:
+                columns = [col for col in df.columns if col != target_]
+
             # scaling the data using the selected method
-            scaled_df, scaler = FE.scale(df,columns, scaling_method)
+            scaled_df, scaler = FE.scale(df,columns,scaling_method)
+
+            final_result=pd.concat(scaled_df,df.loc[:,target_],axis=1)
             # converting the scaled data into HTML format
-            df_to_html = [scaled_df.sample(10).to_html(classes='data')]
+            df_to_html = [final_result.sample(10).to_html(classes='data')]
             
             # saving the scaler used for scaling
             save_project_scaler(scaler)
             # updating the dataframe
-            update_data(scaled_df)
+            update_data(final_result)
             
             # inserting an action report into the ProjectReports
             ProjectReports.insert_project_action_report(id_,PROJECT_ACTIONS.get("SCALING"),input_=scaling_method)

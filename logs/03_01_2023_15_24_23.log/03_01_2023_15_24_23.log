@@ -1,0 +1,11 @@
+[ 2023-03-01 15:24:29,581 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:24:44,835 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:25:07,237 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:25:15,249 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:25:15,249 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-03-01 15:25:46,436 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:25:46,439 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:25:50,134 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:25:50,440 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:25:50,609 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 15:27:23,684 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\FeatureEngineering\views.py changed, reloading.
