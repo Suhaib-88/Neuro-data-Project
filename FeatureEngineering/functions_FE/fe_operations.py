@@ -73,7 +73,7 @@ class FE:
 
     
     @staticmethod
-    def scale(data,cols,scaler_type):
+    def scale(data,scaler_type):
         """
         
         Method Name: scale
@@ -81,7 +81,6 @@ class FE:
         
         Args:
             data: dataframe([type])
-            columns: list([type])
             scaler_type: str([type])
             
         Output:
@@ -94,30 +93,34 @@ class FE:
         Revisions: None
         
         """
-        try:    
-            if scaler_type=='Robust Scaler':
-                scaler=RobustScaler()
-                scaled_data=scaler.fit_transform(data[cols])
-                logging.info("Robust Scaler implemented!")
 
-
-
-            elif scaler_type=='MinMax Scaler':
-                scaler=MinMaxScaler()
-                scaled_data=scaler.fit_transform(data[cols])
+        try:
+            if scaler_type=='MinMax Scaler':
+                scaler = MinMaxScaler()
+                scaled_data = scaler.fit_transform(data)
                 logging.info("MinMax Scaler implemented!")
-                
-
-            elif scaler_type=='Standard Scaler':
-                scaler=StandardScaler()
-                scaled_data=scaler.fit_transform(data[cols])
-                logging.info("StandardScaler implemented!")
-
-            
-            return pd.DataFrame(scaled_data,columns=cols),scaler
-        
+                return scaled_data, scaler
         except Exception as e:
-            logging.error(f"{e} occurred while Feature Scaling!")
+            logging.error(f"{e} occurred in Min Max Scaler!")
+            
+        try:
+            if scaler_type == 'Standard Scaler':
+                scaler = StandardScaler()
+                scaled_data = scaler.fit_transform(data)
+                logging.info("Standard Scaler implemented!")
+                return scaled_data, scaler
+        except Exception as e:
+            logging.error(f"{e} occurred in Standard Scaler!")            
+
+        try:
+
+            if scaler_type == 'Robust Scaler':
+                scaler = RobustScaler()
+                scaled_data = scaler.fit_transform(data)
+                logging.info("Robust Scaler implemented!")
+                return scaled_data, scaler
+        except Exception as e:
+            logging.error(f"{e} occurred in Robust Scaler")
 
 
     @staticmethod
