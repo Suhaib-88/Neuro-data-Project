@@ -16,7 +16,7 @@ from sklearn.decomposition import PCA
 ## for TSNE
 from sklearn.manifold import TSNE
 from sklearn.model_selection import train_test_split
-# nltk.download('stopwords')
+nltk.download('stopwords')
 
 
 class Preprocessor:
