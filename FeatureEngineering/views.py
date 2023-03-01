@@ -254,8 +254,11 @@ class FE_feature_scaling(View):
             
             # inserting the scaling method used into the ProjectReports
             ProjectReports.insert_record_fe(id_,"Perform Scaling",scaling_method)
-            cols = list(df.columns)
-            columns=cols.remove(target_)
+            
+            # if a target column is set
+            if target_ != "None":
+                # creating a list of columns except for the target column
+                columns = [col for col in df.columns if col != target_]
             
             # scaling the data using the selected method
             scaled_df, scaler = FE.scale(df,columns, scaling_method)
