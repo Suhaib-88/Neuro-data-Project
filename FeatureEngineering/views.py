@@ -190,7 +190,7 @@ class FE_feature_scaling(View):
             Project_details= upload_Dataset.objects.get(id=id_)
             
             # Fetch the target column
-            target_=sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={Project_details.id}""")[0]
+            target_=sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={id_}""")[0]
             
             # Insert a record for redirecting to scaling
             ProjectReports.insert_record_fe(id_,'Redirect To Scaling')
@@ -255,10 +255,9 @@ class FE_feature_scaling(View):
             # inserting the scaling method used into the ProjectReports
             ProjectReports.insert_record_fe(id_,"Perform Scaling",scaling_method)
             
-            # if a target column is set
-            if target_ != "None":
-                # creating a list of columns except for the target column
-                columns = [col for col in df.columns if col != target_]
+            # creating a list of columns except for the target column
+            columns = list(df.columns)
+            columns.remove(target_)
             
             # scaling the data using the selected method
             scaled_df, scaler = FE.scale(df,columns, scaling_method)
