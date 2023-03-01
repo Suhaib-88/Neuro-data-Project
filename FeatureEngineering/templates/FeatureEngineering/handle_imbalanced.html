@@ -45,9 +45,9 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Select method for Handling Imbalance Data</label>
                 <select class="form-control" name="method" id="method">
-                    <option value="OS">Over Sampling</option>
-                    <option value="US">Under Sampling</option>
-                    <option value="SMOTE">Synthetic Minority Over-sampling Technique</option>
+                  {% for col in imbalance_methods %}
+                    <option value="{{col}}">{{col}}</option>
+                  {% endfor %}
                   </select>
               </div>
            </div>

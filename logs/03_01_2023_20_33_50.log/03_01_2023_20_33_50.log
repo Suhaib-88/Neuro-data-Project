@@ -1,0 +1,26 @@
+[ 2023-03-01 20:33:51,196 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:33:53,693 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:33:56,166 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:33:57,276 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:33:57,276 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-03-01 20:34:01,032 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:34:01,035 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:34:01,860 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:34:01,878 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:34:01,903 ] 17 root - INFO - Reading contents of configure file!
+[ 2023-03-01 20:34:18,170 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-03-01 20:34:28,942 ] 113 root - INFO - All records deleted. Total time taken: 2.126037836074829 seconds.
+[ 2023-03-01 20:34:37,225 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.9588727951049805 seconds.
+[ 2023-03-01 20:34:40,624 ] 84 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-01 20:34:52,373 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-03-01 20:35:02,695 ] 113 root - INFO - All records deleted. Total time taken: 2.127687454223633 seconds.
+[ 2023-03-01 20:35:10,708 ] 88 root - INFO - Your data is sucessfully uploaded. Total time taken: 3.8398444652557373 seconds.
+[ 2023-03-01 20:35:14,337 ] 156 root - INFO - Found Majority and Minority CLasses
+[ 2023-03-01 20:35:14,587 ] 167 root - INFO - Smote Implemented
+[ 2023-03-01 20:35:14,928 ] 102 root - INFO - removed temp files successfully!
+[ 2023-03-01 20:35:14,980 ] 125 root - INFO - DataFrame updated successfully!
+[ 2023-03-01 20:36:01,579 ] 16 root - INFO - BarPlot Implemented!
+[ 2023-03-01 20:36:02,065 ] 26 root - INFO - PiePlot Implemented!
+[ 2023-03-01 20:38:46,058 ] 16 root - INFO - BarPlot Implemented!
+[ 2023-03-01 20:38:46,125 ] 26 root - INFO - PiePlot Implemented!
+[ 2023-03-01 20:38:56,961 ] 752 root - INFO - Redirect To Export Resources Page
