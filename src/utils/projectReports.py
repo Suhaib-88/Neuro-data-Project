@@ -18,9 +18,10 @@ class ProjectReports:
     @staticmethod
     def insert_project_info(project_id,project_type,project_name,init_status):
         try:
-            query = f"""INSERT INTO projects_info (Projectid, ModuleId, ProjectType, ProjectName, SetTarget, ModuleUrl, IsInitialized) 
-            VALUES ("{project_id}", '1', "{project_type}", "{project_name}", "None", "None", {init_status})
-            ON DUPLICATE KEY UPDATE ProjectName = '{project_name}', ProjectType = '{project_type}'"""
+            query = f"""INSERT INTO projects_info (Projectid, ModuleId, ProjectType, ProjectName, SetTarget, ModuleUrl, IsInitialized)
+                    VALUES ("{project_id}", '1', "{project_type}", "{project_name}", "None", "None", {init_status})
+                    ON DUPLICATE KEY UPDATE Projectid = (SELECT MAX(Projectid) FROM projects_info) + 1, ProjectName = '{project_name}', ProjectType = '{project_type}';
+                    """
 
             logging.info(f"{ProjectReports.id} : Sucessfully entered Project Details!")
             rowcount = sql_obj.insert_records(query)
