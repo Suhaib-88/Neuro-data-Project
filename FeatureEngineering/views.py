@@ -200,12 +200,6 @@ class FE_feature_scaling(View):
             if Project_details.problem_statement_type != "Clustering" and target_ == 'None':
                 return render(request,'dataProcessing/target_col.html',{"Projects":Project_details,"cols":list(df.columns),"isSetTarget":False,"msg":"Please select a target column first"})
 
-            # If the target column is set, store the columns that can be used for scaling
-            if target_ !="None":
-                columns = [col for col in df.columns if col != target_]
-
-            # Filter the dataset to contain only the columns that can be used for scaling
-            df = df.loc[:, columns]
 
             # Check if scaling has already been performed for this project
             query_ = f"Select * from Project_Actions  where ProjectId={Project_details.id} and ProjectActionId=3"            
@@ -247,7 +241,7 @@ class FE_feature_scaling(View):
             Project_details = upload_Dataset.objects.get(id=id_)
             
             # fetching the target column from the database
-            target_ = sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={id_}""")[0]
+            target_ = sql_obj.fetch_one(f"""SELECT SetTarget FROM projects_info WHERE Projectid={Project_details.id}""")[0]
             
             # getting the selected scaling method from the form
             scaling_method = request.POST['scaling_method']
@@ -258,6 +252,9 @@ class FE_feature_scaling(View):
             # creating a list of columns except for the target column
             columns = list(df.columns)
             columns.remove(target_)
+
+            # Filter the dataset to contain only the columns that can be used for scaling
+            df = df.loc[:, columns]
             
             # scaling the data using the selected method
             scaled_df, scaler = FE.scale(df,columns, scaling_method)
