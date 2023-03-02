@@ -70,12 +70,12 @@ class Project(View):
             Project_details.id,
             Project_details.problem_statement_type,
             Project_details.problem_statement_name,
-            1
+            1,
         )
 
         
         # insert the project id to an sql table "get_project_id"
-        sql_obj.insert_records(f"""INSERT INTO get_project_id (project_id) VALUES ({Project_details.id});""")
+        sql_obj.insert_records(f"""INSERT INTO get_project_id (project_id,user_id) VALUES ({Project_details.id});""")
 
 
         ProjectReports.insert_project_action_report(Project_details.id,PROJECT_ACTIONS.get("INITIALIZATION"))
