@@ -5,6 +5,8 @@ import numpy as np
 import glob
 import shutil
 from dataIngestion.models import upload_Dataset
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 import pickle
 from logger import logging
 from data_access.mysql_connect import MySql 
@@ -19,6 +21,23 @@ def read_configure_file(config_file):
 
     except Exception as e:
         logging.error(f"Error occurred while loading configure file: {e}!")
+
+def merge_uploaded_file(file):
+    """
+    Merge the uploaded file from the user. 
+    Parameters:
+        file (file object): The uploaded file
+    Returns:
+        status (str): The status of the file handling process (success/failure)
+    """
+    if file is not None:
+        # Save the uploaded file to the specified path
+        path = default_storage.save('uploads/' + file.name, ContentFile(file.read()))
+        
+        sql_obj.insert_records(f'''INSERT INTO file_data (filename, file_number)
+        VALUES ('{file.name}','3');
+        ''')
+        
 
 def absoluteFilePaths(directory):
     for dirpath,_,filenames in os.walk(directory):

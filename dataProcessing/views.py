@@ -75,7 +75,7 @@ class Project(View):
 
         
         # insert the project id to an sql table "get_project_id"
-        sql_obj.insert_records(f"""INSERT INTO get_project_id (project_id,user_id) VALUES ({Project_details.id});""")
+        sql_obj.insert_records(f"""INSERT INTO get_project_id (project_id) VALUES ({Project_details.id});""")
 
 
         ProjectReports.insert_project_action_report(Project_details.id,PROJECT_ACTIONS.get("INITIALIZATION"))
@@ -728,11 +728,10 @@ def export_resources(request):
             # Get project actions data based on the project ID
             all_actions_data = sql_obj.fetch_all(f''' select project_actions.ProjectActionId,project_actions.current_datetime,projectreports.Input,projectreports.ModuleName from projectreports join project_actions on project_actions.Projectid=projectreports.Projectid where project_actions.ProjectId ={int(id_)}
             ''')
-            print(all_actions_data)
 
             # Save project actions data as a CSV file
             if len(all_actions_data) > 0:
-                df = pd.DataFrame(np.array(all_actions_data), columns=['ActionId', 'Input', 'Current_date'])
+                df = pd.DataFrame(np.array(all_actions_data), columns=['ActionId', 'Current_date','Input', 'ModuleName'])
                 df.to_csv(os.path.join(folder_path, 'actions.csv'))
 
             # Zip all files in the folder

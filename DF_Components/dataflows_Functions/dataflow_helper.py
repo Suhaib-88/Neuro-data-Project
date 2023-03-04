@@ -18,7 +18,8 @@ import csv
 import json
 import re
 import sqlite3
-from src.utils.basicFunctions import read_configure_file,absoluteFilePaths
+from src.utils.basicFunctions import read_configure_file,absoluteFilePaths,check_file_exists
+
 from data_access.mysql_connect import MySql
 
 
@@ -189,7 +190,7 @@ class commonTasks:
         """
         try:
             # Load the dataframe
-            df = pd.read_csv(filename)
+            status,df = check_file_exists(filename)
             mid = len(df)//2
 
             # Split the dataframe into two parts and store the results in two separate dataframes
@@ -409,7 +410,7 @@ class commonTasks:
         try:
             file_name=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 1 ORDER BY id DESC LIMIT 1;""")[0]
             if selected_cols !="--None--":
-                df=pd.read_csv(path,usecols=selected_cols)
+                status,df=check_file_exists(path,usecols=selected_cols)
 
                 path=f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/export_column'''
                 if not os.path.isdir(path):
@@ -814,7 +815,7 @@ class otherTransformations:
         """
         try:
             file_name=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 1 ORDER BY id DESC LIMIT 1;""")[0]
-            df=pd.read_csv(filename)
+            status,df=check_file_exists(filename)
             sampled_df=df.sample(frac=percentage_of_records)
 
             path=f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/row_percent_sampler'''
@@ -845,15 +846,16 @@ class otherTransformations:
         try:
             file_name=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 1 ORDER BY id DESC LIMIT 1;""")[0]
             
+            status,df=check_file_exists(filename)
             if selected_operation=='Sum':
-                table = pd.pivot_table(pd.read_csv(filename), values =value_col, index =index_cols,
+                table = pd.pivot_table(df, values =value_col, index =index_cols,
                                     columns =header_cols, aggfunc = np.sum)
 
             elif selected_operation=='Mean':
-                table = pd.pivot_table(pd.read_csv(filename), values =value_col, index =index_cols,
+                table = pd.pivot_table(df, values =value_col, index =index_cols,
                                     columns =header_cols, aggfunc = np.mean)
             elif selected_operation=='Standard Deviation':
-                table = pd.pivot_table(pd.read_csv(filename), values =value_col, index =index_cols,
+                table = pd.pivot_table(df, values =value_col, index =index_cols,
                                     columns =header_cols, aggfunc = np.std)
 
             path=f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/Pivot_component'''
@@ -917,7 +919,7 @@ class otherTransformations:
         try:
             file_name=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 1 ORDER BY id DESC LIMIT 1;""")[0]
 
-            df=pd.read_csv(filename)
+            status,df=check_file_exists(filename)
             sampled_df=df.sample(n=num_of_records)
             
             path=f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/row_sampler'''

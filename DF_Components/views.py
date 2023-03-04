@@ -450,7 +450,7 @@ class ComponentsList(LoginRequiredMixin,ListView):
                 #Retrieve the path to the file to be transformed
                 path=os.path.join(path,file_name)
                 #Read the data into a pandas dataframe
-                df=pd.read_csv(path)
+                status,df=check_file_exists(path)
 
                 #Retrieve the code provided by the user for the custom script component
                 code=request.POST.get('code')

@@ -1,0 +1,62 @@
+[ 2023-03-05 03:00:16,774 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:00:28,026 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:00:40,464 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:00:44,805 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:00:44,805 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-03-05 03:01:01,568 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:01:01,568 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:01:02,272 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:01:02,278 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:01:02,288 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 03:01:10,616 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Aggregate Component>]>
+[ 2023-03-05 03:01:12,451 ] 532 root - INFO - Successfully added components :Aggregate Component
+[ 2023-03-05 03:01:16,745 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 03:01:16,749 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 03:01:16,754 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 03:01:23,644 ] 176 root - ERROR - Error while aggregating components: 
+[ 2023-03-05 03:01:24,366 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 03:01:24,369 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 03:01:24,373 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:04:29,508 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Import data from DataBase>, <DataFlowComponent: Balanced Data Distributor>]>
+[ 2023-03-05 04:04:33,253 ] 532 root - INFO - Successfully added components :Balanced Data Distributor
+[ 2023-03-05 04:04:37,717 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:04:37,787 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:04:38,126 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:04:42,112 ] 208 root - ERROR - 'utf-8' codec can't decode byte 0x8f in position 22: invalid start byte
+[ 2023-03-05 04:04:42,638 ] 222 django.request - ERROR - Internal Server Error: /Components/Component/
+Traceback (most recent call last):
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\contrib\auth\mixins.py", line 52, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\suhai\anaconda3\envs\test\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\suhai\Newz\neuro-project-engineering\DF_Components\views.py", line 151, in post
+    status,res1,res2 = commonTasks.balanced_data_distributor(path)
+TypeError: cannot unpack non-iterable NoneType object
+[ 2023-03-05 04:08:32,239 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Aggregate Component>, <DataFlowComponent: Conditional Splitter>, <DataFlowComponent: Data Conversion>, <DataFlowComponent: Export Column>, <DataFlowComponent: Merge Join Component>, <DataFlowComponent: MultiCast Component>, <DataFlowComponent: RowCount Component>, <DataFlowComponent: Sort Component>, <DataFlowComponent: Union All Component>, <DataFlowComponent: Duplicate resolver Component>, <DataFlowComponent: Audit Component>, <DataFlowComponent: Character Map Component>, <DataFlowComponent: Copy Column Component>, <DataFlowComponent: Percentage sampling Component>, <DataFlowComponent: Pivot Component>, <DataFlowComponent: Unpivot Component>, <DataFlowComponent: Row Sampling Component>, <DataFlowComponent: Derived Column Component>]>
+[ 2023-03-05 04:08:32,892 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Conditional Splitter>, <DataFlowComponent: Data Conversion>]>
+[ 2023-03-05 04:08:35,566 ] 532 root - INFO - Successfully added components :Conditional Splitter
+[ 2023-03-05 04:08:37,745 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:08:37,770 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:08:37,773 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:08:50,299 ] 254 root - ERROR - 
+[ 2023-03-05 04:08:51,128 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:08:51,271 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:08:51,275 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:13:20,329 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Import data from file>, <DataFlowComponent: Import data from cloud>, <DataFlowComponent: Balanced Data Distributor>, <DataFlowComponent: Conditional Splitter>, <DataFlowComponent: Export Column>, <DataFlowComponent: MultiCast Component>, <DataFlowComponent: Union All Component>, <DataFlowComponent: Duplicate resolver Component>, <DataFlowComponent: CDC Splitter>, <DataFlowComponent: Copy Column Component>, <DataFlowComponent: DQS Cleaning>, <DataFlowComponent: Percentage sampling Component>, <DataFlowComponent: Row Sampling Component>, <DataFlowComponent: Derived Column Component>]>
+[ 2023-03-05 04:13:26,533 ] 532 root - INFO - Successfully added components :Export Column
+[ 2023-03-05 04:13:29,278 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:13:29,329 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:13:29,332 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:13:47,578 ] 422 root - ERROR - 'utf-8' codec can't decode byte 0x8f in position 22: invalid start byte
+[ 2023-03-05 04:13:48,297 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:13:48,335 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:13:48,339 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:18:17,216 ] 203 django.utils.autoreload - INFO - C:\Users\suhai\Newz\neuro-project-engineering\DF_Components\dataflows_Functions\dataflow_helper.py changed, reloading.

@@ -4,7 +4,7 @@ import os
 import numpy as np
 from EDA.functions_EDA.eda_operations import EDA
 from src.utils.plotlyFunctions import Plotly_agent
-from src.utils.basicFunctions import fetch_num_cat_cols,save_project_pca,save_numpy_array,absoluteFilePaths
+from src.utils.basicFunctions import fetch_num_cat_cols,save_project_pca,save_numpy_array,absoluteFilePaths,merge_uploaded_file
 from django.contrib import messages
 
 
@@ -305,10 +305,10 @@ class dataIntegration:
                 proj1=Project()
                 df=proj1.fetch(id=id_)
                 file=request.FILES['upload-files']
-                dataSource.handle_uploaded_file_2(file)
+                merge_uploaded_file(file)
                 
                 # Check if the uploaded file exists and display it on the UI
-                file_name2=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 2 ORDER BY id DESC LIMIT 1;""")[0]
+                file_name2=sql_obj.fetch_one(f"""SELECT filename FROM file_data WHERE file_number = 3 ORDER BY id DESC LIMIT 1;""")[0]
 
                 get_status,df1= check_file_exists(os.path.join(next(absoluteFilePaths('media')),'dataflow_uploads',file_name2))
                 return render(request,'dataPreProcessing/integrate_datasets.html', {'integrate_functions':INTEGRATE_FUNCTIONS,"cols1":list(df.columns),"cols2":list(df1.columns),'is_loaded':get_status,"success":True})        

@@ -1,0 +1,68 @@
+[ 2023-03-05 04:21:28,897 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:22:15,381 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:23:41,574 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:24:02,076 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:24:02,077 ] 20 root - INFO - Mongodb Connection Established
+[ 2023-03-05 04:25:18,964 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:25:18,968 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:25:24,717 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:25:24,862 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:25:25,425 ] 19 root - INFO - Reading contents of configure file!
+[ 2023-03-05 04:26:32,461 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:26:32,528 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:26:32,707 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:26:42,980 ] 423 root - ERROR - check_file_exists() got an unexpected keyword argument 'usecols'
+[ 2023-03-05 04:26:43,660 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:26:43,666 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:26:43,669 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:27:43,041 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Import data from DataBase>, <DataFlowComponent: Import data from file>, <DataFlowComponent: Import data from cloud>, <DataFlowComponent: RowCount Component>, <DataFlowComponent: Row Sampling Component>]>
+[ 2023-03-05 04:27:51,019 ] 532 root - INFO - Successfully added components :Row Sampling Component
+[ 2023-03-05 04:27:53,555 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:27:53,558 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:27:53,563 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:28:03,963 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:28:04,682 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:28:04,685 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:28:04,688 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:28:39,727 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Import data from DataBase>, <DataFlowComponent: Import data from file>, <DataFlowComponent: Import data from cloud>, <DataFlowComponent: Balanced Data Distributor>, <DataFlowComponent: Conditional Splitter>, <DataFlowComponent: Data Conversion>, <DataFlowComponent: Data Streaming Destination>, <DataFlowComponent: Merge Join Component>, <DataFlowComponent: MultiCast Component>, <DataFlowComponent: Union All Component>, <DataFlowComponent: Duplicate resolver Component>, <DataFlowComponent: Audit Component>, <DataFlowComponent: CDC Splitter>, <DataFlowComponent: DQS Cleaning>, <DataFlowComponent: Percentage sampling Component>, <DataFlowComponent: Pivot Component>, <DataFlowComponent: Unpivot Component>, <DataFlowComponent: Derived Column Component>, <DataFlowComponent: Custom Script>]>
+[ 2023-03-05 04:28:41,988 ] 572 root - INFO - Searching components :<QuerySet []>
+[ 2023-03-05 04:28:43,361 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Import data from DataBase>, <DataFlowComponent: Import data from file>, <DataFlowComponent: Import data from cloud>, <DataFlowComponent: Aggregate Component>, <DataFlowComponent: Balanced Data Distributor>, <DataFlowComponent: Conditional Splitter>, <DataFlowComponent: Data Conversion>, <DataFlowComponent: Data Streaming Destination>, <DataFlowComponent: Export Column>, <DataFlowComponent: Merge Join Component>, <DataFlowComponent: MultiCast Component>, <DataFlowComponent: RowCount Component>, <DataFlowComponent: Sort Component>, <DataFlowComponent: Union All Component>, <DataFlowComponent: Duplicate resolver Component>, <DataFlowComponent: Audit Component>, <DataFlowComponent: CDC Splitter>, <DataFlowComponent: Character Map Component>, <DataFlowComponent: Copy Column Component>, <DataFlowComponent: DQS Cleaning>, '...(remaining elements truncated)...']>
+[ 2023-03-05 04:28:44,298 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Aggregate Component>, <DataFlowComponent: Percentage sampling Component>]>
+[ 2023-03-05 04:28:45,132 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Aggregate Component>]>
+[ 2023-03-05 04:28:47,593 ] 532 root - INFO - Successfully added components :Aggregate Component
+[ 2023-03-05 04:28:52,012 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:28:52,015 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:28:52,018 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:29:11,927 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:29:11,931 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:29:11,933 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:29:54,210 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Import data from DataBase>, <DataFlowComponent: Balanced Data Distributor>, <DataFlowComponent: Conditional Splitter>, <DataFlowComponent: Data Conversion>, <DataFlowComponent: Data Streaming Destination>, <DataFlowComponent: MultiCast Component>, <DataFlowComponent: Sort Component>, <DataFlowComponent: Duplicate resolver Component>, <DataFlowComponent: CDC Splitter>, <DataFlowComponent: DQS Cleaning>, <DataFlowComponent: Percentage sampling Component>, <DataFlowComponent: Custom Script>]>
+[ 2023-03-05 04:29:55,385 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Conditional Splitter>, <DataFlowComponent: CDC Splitter>]>
+[ 2023-03-05 04:29:59,093 ] 532 root - INFO - Successfully added components :Conditional Splitter
+[ 2023-03-05 04:30:01,460 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:30:01,464 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:30:01,467 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:30:50,872 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:30:50,875 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:30:50,878 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:33:37,684 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:33:37,687 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:33:37,690 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:34:41,674 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:34:41,677 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:34:41,680 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:35:21,151 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:35:21,154 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:35:21,158 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:35:46,275 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:35:46,279 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:35:46,282 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:37:51,708 ] 572 root - INFO - Searching components :<QuerySet [<DataFlowComponent: Aggregate Component>]>
+[ 2023-03-05 04:37:54,834 ] 532 root - INFO - Successfully added components :Aggregate Component
+[ 2023-03-05 04:37:56,944 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:37:56,952 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:37:56,966 ] 103 root - INFO - Fetching categorical and numerical columns!
+[ 2023-03-05 04:38:17,623 ] 177 root - ERROR - Error while aggregating components: 
+[ 2023-03-05 04:38:18,260 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:38:18,260 ] 91 root - INFO - Reading data from various file formats!
+[ 2023-03-05 04:38:18,268 ] 103 root - INFO - Fetching categorical and numerical columns!
