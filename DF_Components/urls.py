@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 urlpatterns = [
     path('Component/',ComponentsList.as_view(),name='component-list'),
+    path('components_table',components_Table,name='component-table'),
     ]
 
 htmx_urlpatterns = [

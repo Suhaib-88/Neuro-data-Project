@@ -1,0 +1,106 @@
+{% extends 'dataIngestion/base.html' %}
+
+{% block content %}
+<table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Aggregate Component</td>
+        <td>The Aggregate transformation is used to perform aggregate operations/functions on groups in a dataset. The aggregate functions available are- Count, Count Distinct, Sum, Average, Minimum, and Maximum.</td>
+      </tr>
+      <tr>
+        <td>Balanced Data Distributor</td>
+        <td>The Distributor takes a single input and distributes the incoming rows to one or more outputs uniformly via multithreading.</td>
+      </tr>
+      <tr>
+        <td>Conditional Split</td>
+        <td>The Conditional Split transformation can route data rows to different outputs depending on the content of the data.</td>
+      </tr>
+      <tr>
+        <td>Merge Join Component</td>
+        <td>The Merge Join Transformation is used to perform Joins such as Inner Join, Left Outer Join, Full Outer Join, and Right Outer Join.</td>
+      </tr>
+      <tr>
+        <td>Multicast Component</td>
+        <td>The Multicast transformation distributes its input to one or more outputs.</td>
+      </tr>
+      <tr>
+        <td>Row Count Component</td>
+        <td>The Row Count component returns the number of rows in a dataset.</td>
+      </tr>
+      <tr>
+        <td>Custom Script</td>
+        <td>The Script Component allows you to write custom Python script.</td>
+      </tr>
+      <tr>
+        <td>Union All</td>
+        <td>The Union All Transformation is used to combine data from multiple sources (excel files, flat files, databases etc.).</td>
+      </tr>
+      <tr>
+        <td>Duplicate Resolver</td>
+        <td>The Remove Duplicate Rows transformation removes duplicate rows from a dataset. You can specify a column to identify row as duplicate.</td>
+      </tr>
+      <tr>
+        <td>Sort Component</td>
+        <td>The Sort transformation sorts input data in ascending or descending order and copies the sorted data to the transformation output.</td>
+      </tr>
+      <tr>
+        <td>Audit</td>
+        <td>The Audit transformation enables the data flow in a package to include data about the environment in which the package runs.</td>
+      </tr>
+      <tr>
+        <td>CDC Splitter</td>
+        <td>The CDC splitter splits a single flow of change rows from a CDC source data flow.</td>
+      </tr>
+      <tr>
+        <td>Character Map</td>
+        <td>The Character Map transformation changes specific characters in a string column to a different character or characters.</td>
+      </tr>
+      <tr>
+        <td>Copy Column</td>
+        <td>The Copy Column transformation creates new columns by copying input columns and adding the new columns to the transformation output.</td>
+      </tr>
+      <tr>
+        <td>DQS Cleaning</td>
+        <td>The DQS Cleansing transformation uses Data Quality Services (DQS) to correct data from a connected data source, by applying approved rules that were created for the connected data source.</td>
+      </tr>
+      <tr>
+        <td>Export Column</td>
+        <td>The Export Column transformation exports the content of a column to a file or external database.</td>
+      </tr>
+      <tr>
+        <td>Percentage Sampling</td>
+        <td>The Percentage Sampling transformation creates a sample dataset by selecting a percentage of the rows
+        </td>
+      </tr>
+      <tr>
+        <td>Pivot</td>
+        <td>The Pivot transformation makes a normalized data set into a less
+            normalized but more compact version by pivoting the input data on a column
+            value.</td>
+      </tr>
+      <tr>
+        <td>Row Sampling</td>
+        <td>The Row Sampling transformation is used to obtain a randomly
+            selected subset of an input dataset.</td>
+      </tr>
+      <tr>
+        <td>Unpivot</td>
+        <td>The Unpivot transformation makes an unnormalized dataset into a
+            more normalized version by expanding values from multiple columns in a single
+            record into multiple records with the same values in a single column.</td>
+      </tr>
+    </tbody>
+</table>  
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+      <button type="button" class="btn btn-danger" onclick="history.back()">Go Back</button>
+  </div>
+</div>
+{% endblock %}

@@ -74,18 +74,18 @@ def handle_uploaded_file(f,file_path):
             destination.write(chunk)
 
 
-def check_file_exists(file_path):
+def check_file_exists(file_path,**kwargs):
     try:
         if file_path.endswith('csv'):
-            df = pd.read_csv(file_path)
+            df = pd.read_csv(file_path,**kwargs)
         elif file_path.endswith('tsv'):
-            df = pd.read_csv(file_path)
+            df = pd.read_csv(file_path,sep='\t',**kwargs)
         elif file_path.endswith('json'):
-            df = pd.read_json(file_path)
+            df = pd.read_json(file_path,**kwargs)
         elif file_path.endswith('xlsx'):
-            df = pd.read_excel(file_path)
+            df = pd.read_excel(file_path,**kwargs)
         elif file_path.endswith('xml'):
-            df = pd.read_xml(file_path)
+            df = pd.read_xml(file_path,**kwargs)
         else:
             df = False, None
         logging.info("Reading data from various file formats!")

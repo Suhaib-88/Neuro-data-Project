@@ -352,7 +352,6 @@ class commonTasks:
                         add_computed_field([
                             dict(target=dict(name='new_column', type='number'),
                                 operation=lambda row: float(row[f'{column_name}']) * float(number)),
-                            dict(target=dict(name='created', type='date'), operation='constant', with_=datetime.today()),
                         ]),
                         dump_to_path(f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/derived_column''')
 
@@ -363,7 +362,6 @@ class commonTasks:
                         add_computed_field([
                             dict(target=dict(name='new_column', type='number'),
                                 operation=lambda row: float(row[f'{column_name}']) / float(number)),
-                            dict(target=dict(name='created', type='date'), operation='constant', with_=datetime.today()),
                         ]),
                         dump_to_path(f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/derived_column''')
 
@@ -374,7 +372,6 @@ class commonTasks:
                         add_computed_field([
                             dict(target=dict(name='new_column', type='number'),
                                 operation=lambda row: float(row[f'{column_name}']) - float(number)),
-                            dict(target=dict(name='created', type='date'), operation='constant', with_=datetime.today()),
                         ]),
                         dump_to_path(f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/derived_column''')
 
@@ -385,7 +382,6 @@ class commonTasks:
                         add_computed_field([
                             dict(target=dict(name='new_column', type='number'),
                                 operation=lambda row: float(row[f'{column_name}']) + float(number)),
-                            dict(target=dict(name='created', type='date'), operation='constant', with_=datetime.today()),
                         ]),
                         dump_to_path(f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/derived_column''')
 
@@ -442,7 +438,7 @@ class commonTasks:
              
                 Flow(load(f'{filename1}'),
                     load(f'{filename2}'),
-                    join(f'{filename1.split(".")[0]}',[f'{col1}'],f'{filename2.split(".")[0]}',[f'{col2}'],mode=f'{mode_of_join}'),
+                    join(f'{os.path.basename(filename1).split(".")[0]}',[f'{col1}'],f'{os.path.basename(filename2).split(".")[0]}',[f'{col2}'],mode=f'{mode_of_join}'),
                     dump_to_path(f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/merge_join''')
                     ).process()
 

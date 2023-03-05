@@ -29,6 +29,8 @@ sql_obj= MySql(
     database = config_args['confidential_info']['database'],)
 
 
+def components_Table(request):
+    return render(request,'DF_Components/components_table.html')
 
 # Create your views here.
 class ComponentsList(LoginRequiredMixin,ListView):
@@ -345,7 +347,7 @@ class ComponentsList(LoginRequiredMixin,ListView):
 
                 # Call the copy_column_transfomer function from the otherTransformations module
                 # to perform the copy column operation
-                status=otherTransformations.copy_column_transfomer(path,select_condition,col_new_name,dtype)
+                status=otherTransformations.copy_column_transfomer(path,selected_column,col_new_name,dtype)
                 # If the copy column operation was successful, show a success message
                 if status=='success':
                     messages.success(request,"Copy column component successfully added")
@@ -445,10 +447,6 @@ class ComponentsList(LoginRequiredMixin,ListView):
 
             #Check if component with ID 61 is selected
             if "61" in component_ids:
-                file_name=sql_obj.fetch_one(f"""SELECT filename FROM file_data_info WHERE file_number = 1 ORDER BY id DESC LIMIT 1;""")[0]
-
-                #Retrieve the path to the file to be transformed
-                path=os.path.join(path,file_name)
                 #Read the data into a pandas dataframe
                 status,df=check_file_exists(path)
 
@@ -473,13 +471,18 @@ class ComponentsList(LoginRequiredMixin,ListView):
                         localsParameter = {'df': df}
                         # Execute the code with the specified global and local parameters
                         exec(code, globalsParameter, localsParameter)
+
+                                
+                        file_path=f'''{next(absoluteFilePaths('output_dataflows'))}/{file_name.split('.')[0]}/Custom_script'''
+                        if not os.path.isdir(file_path):
+                            os.makedirs(file_path)
                         # Write the updated dataframe to the file path
-                        df.to_csv(path,index=False,mode='w')
+                        df.to_csv(os.path.join(file_path,'custom_script.csv'))
                         # Show a success message if the code was executed successfully
                         messages.success(request,"Custom script component successfully added")
                     except Exception as e:
                         # render the exception if there was an error in the code execution
-                        return render(request,'custom-script.html', {"status":"error","msg":"Code snippets is not valid"})
+                        logging.error(e)
                 else:
                     messages.error(request,"Code snippets is not valid")
             
