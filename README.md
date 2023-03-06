@@ -1,5 +1,11 @@
 # Neuro-data-Project
 
+## A Brief of the Problem statement
+
+Create a web app application to perform Data cleaning, Feature engineering, and EDA.
+The web application should allow the user to perform various data transformation
+operations on the dataset with help of prebuild component. Users must be able to drag
+and drop the existing component at UI to perform any operation.
 
 ## Application deployment link
 https://autodataai.azurewebsites.net/
