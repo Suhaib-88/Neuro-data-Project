@@ -53,7 +53,39 @@ Azure web app service
 
 
 ## Documentation
-!(Complete Documentation)[https://drive.google.com/drive/folders/1rtgib-mMRg5fHhSu_uYNiUxPDOxqmesV?usp=sharing]
+![https://drive.google.com/drive/folders/1rtgib-mMRg5fHhSu_uYNiUxPDOxqmesV?usp=sharing](Complete Documentation)
+
+## How to run the app locally?
+
+### Step 1: Clone the repo
+``` git clone https://github.com/Suhaib-88/Neuro-data-Project.git  ```
+``` cd Neuro-data-Project  ```
+
+### Step 2: Create virtual environment
+
+``` conda create -n testenv python=3.9 -y ```
+``` conda activate testenv ```
+
+### Step 3: Install the required libraries
+
+Using pip
+``` pip install -r requirements.txt ```
+
+or
+
+``` python setup.py install ```
+
+### Step 4: Run the app
+
+``` python manage.py runserver ```
+
+Alternatively you can build and run docker using:
+
+docker build
+``` docker build -t <IMAGE_NAME> ```
+
+docker run
+``` docker run -d -p 8080:8080 <IMAGE_NAME> ```
 
 ## Contributors
 @Suhaib-88
