@@ -1,6 +1,10 @@
 # Neuro-data-Project
 
 
+## Application deployment link
+https://autodataai.azurewebsites.net/
+(Currently deactived)
+
 ## Features
 
 ----- Main Page -----
@@ -16,7 +20,13 @@
 4. Export section
 5. Project Operations section
 6. Custom script page
-7. Help page
+7. System Live Logs
+8. Help page
+
+
+## Dashboard Interface
+
+![captures_chrome-capture-2023-2-1](https://user-images.githubusercontent.com/73020771/223081479-a1328711-f8e6-470e-96a7-df8005c8854f.png)
 
 
 ## Tech Stack
@@ -32,13 +42,18 @@ Front End:
 5. HTMX
 
 Back End:
-1. Python
+1. Python 3.9
 2. Data Preprocessing Libs(Numpy, Pandas, Matplotlib, Plotly)
 3. Database (MongoDB, Mysql, Sqlite3)
-4. DataFlows Library [https://github.com/datahq/dataflows/blob/master/PROCESSORS.md]
+4. DataFlows Library for prebuilt components ![Dataflows Component python library](https://github.com/datahq/dataflows/blob/master/PROCESSORS.md)
+
+## Deployment Architecture:
+Azure web app service
+![cs drawio (1)](https://user-images.githubusercontent.com/73020771/223089084-65e07610-0615-45b8-bcd9-e7df174eef97.png)
+
 
 ## Documentation
-Complete Documentation[https://drive.google.com/drive/folders/1rtgib-mMRg5fHhSu_uYNiUxPDOxqmesV?usp=sharing]
+!(Complete Documentation)[https://drive.google.com/drive/folders/1rtgib-mMRg5fHhSu_uYNiUxPDOxqmesV?usp=sharing]
 
 ## Contributors
 @Suhaib-88
